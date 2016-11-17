@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	    <meta charset="utf-8">
+	    <title>Regístrate en La Leche Music</title>
+        <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+	<header id="main-header"></header>
+	<div class="container-fluid">
+    	<div class="row">
+    	    <br><br><br>
+    	</div>
+    	<div class="row">
+            <div class="col-md-4 ">
+            </div>
+            <div class="col-md-3 ">
+                <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+                        <!-- Begin # Register Form -->
+                        <form id="register-form" action="../php/confirm_registro1.php" method="POST">
+                		    <div class="modal-body">
+    		    				<div id="div-register-msg">
+                                    <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Registra tu cuenta.</span>
+                                </div>
+    		    				<input id="register_username" class="form-control" type="text" placeholder="Usuario" name="register_username" required>
+                                <input id="register_email" class="form-control" type="email" placeholder="E-Mail" name="register_email" required>
+                                <input id="register_password" class="form-control" type="password" placeholder="Contraseña" name="register_password" required>
+                                <input id="register_password_conf" class="form-control" type="password" placeholder="Confirmar Contraseña" name="register_password_conf" required>
+                                <div class="radio-inline">
+                                    Soy: 
+                                    <label class="radio-inline"><input type="radio" name="register_usertype" value="fan">Fan</label>
+                                    <label class="radio-inline"><input type="radio" name="register_usertype" value="banda">Banda</label>
+                                    <label class="radio-inline"><input type="radio" name="register_usertype" value="garito">Garito</label>
+                                </div>
+                			</div>
+    		    		    <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Siguente</button>
+                                </div>
+                                <div>
+                                    <!-- IMPLEMENTACION DEL LOGIN DENTRO REGISTER <a id="register_login_btn" type="button" class="btn btn-link" href="/htmlmain.html">Log In</a> -->
+                                </div>
+    		    		    </div>
+                        </form>
+                        <!-- End # Register Form -->
+                    </div>
+            </div>
+            <div class="col-md-6 ">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

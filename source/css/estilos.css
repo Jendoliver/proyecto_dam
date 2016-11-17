@@ -1,0 +1,84 @@
+body
+{
+    
+}
+
+header
+{
+    font-size: 38px;
+    font-family: 
+}
+
+footer
+{
+    
+}
+
+/*ESTILOS HOMEPAGE*/
+.title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
+{
+    font-family:;
+    /*posible old town regular*/
+    font-size: 40px;
+    font-weight: bold; 
+}
+
+.text-homepage /*TEXTO DE LOS APARTADOS DE LA HOMEPAGE*/
+{
+    
+}
+
+.text-best-homepage /*TEXTO DE LOS MEJORES DE LA HOMEPAGE*/
+{
+    
+}
+
+img.big-homepage /*IMAGENES GRANDES HOMEPAGE*/
+{
+    
+}
+
+/*ESTILOS PERFILES*/
+.container-profile /*CONTENEDOR DEL PERFIL*/
+{
+   
+}
+
+div.profile /*DIVS DEL PERFIL*/
+{
+    
+}
+
+.title-profile /*TÍTULOS DE LOS APARTADOS DEL PERFIL*/
+{
+    
+}
+
+/*BOTONES*/
+.button /* BOTÓN BÁSICO - SUPERCLASE*/
+{
+    opacity: 1; /*PRUEBA*/
+}
+
+.button:hover /* BOTÓN BÁSICO HOVER */
+{
+    opacity: 0.5;
+}
+
+.button-search /* BOTÓN DE BÚSQUEDA */
+{
+    
+}
+
+.button-log /* BOTÓN DE LOGIN - LOGOUT */
+{
+    
+}
+
+/*ESTILOS REGISTRO*/
+.form-control 
+{  
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}

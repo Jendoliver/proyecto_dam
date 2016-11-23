@@ -1,0 +1,56 @@
+/*
+
+*/
+
+* {
+    /*estas propiedas es para que si pones que un div mida x px y despues le quieres poner un padding, un border size..etc, 
+    pues que no se sume a la medida que querias para el div; sin esto el div se agrandaria el x del padding k pongas 
+    o x de border size etc.*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#tabla2{ 
+    padding:0;
+    width: 100%; 
+    height: 100%;
+} 
+#cabtab2{ 
+    background-color:  antiquewhite; 
+    font-family: Arial,Helvetica,sans-serif; 
+    font-size: 19px; 
+    padding: 16px; 
+    font-weight: bold;
+} 
+#cuerpotab2{ 
+    font-size: 18px; 
+    text-align: left;
+    background-color:  antiquewhite;  
+    height: 85%;
+} 
+#cuerpotab2 ol{ 
+    margin: 0 2px 0 20px; 
+    padding: 10px; 
+} 
+#cuerpotab2 li{ 
+    margin:3px; 
+    padding: 5px; 
+}
+#gruposAR{
+}
+.grupos{
+}
+
+
+
+#icrear{
+    float: right;
+    padding: 0;
+    font-family: Arial,Helvetica,sans-serif;
+    width: 100%; 
+    text-align: center;
+    background-color:  antiquewhite;
+    margin-top: 0px;
+    height: 100%; 
+
+} 

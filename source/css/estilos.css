@@ -6,12 +6,20 @@ body
 header
 {
     font-size: 38px;
-    font-family: 
+    font-family: ;
 }
 
 footer
 {
-    
+    /*  posa el footer al centre abaix amb un fons de color a escollir
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+  */
 }
 
 /*ESTILOS HOMEPAGE*/

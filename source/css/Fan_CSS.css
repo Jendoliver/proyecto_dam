@@ -1,0 +1,8 @@
+*{
+    /*estas propiedas es para que si pones que un div mida x px y despues le quieres poner un padding, un border size..etc, 
+    pues que no se sume a la medida que querias para el div; sin esto el div se agrandaria el x del padding k pongas 
+    o x de border size etc.*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

@@ -1,10 +1,11 @@
 <?php
-    // if(!(alreadyExists($_POST["register_bandname"],"bands"))) { COMPROBACIÓN SI NOMBRE BANDA EXISTE EN BASE "bands", IMPLEMENTAR CON BASE DE DATOS
+    // if(!(alreadyExists($_POST["register_bandname"],"bandas"))) { COMPROBACIÓN SI NOMBRE BANDA EXISTE EN BASE "bands", IMPLEMENTAR CON BASE DE DATOS
+    session_start();
     $_SESSION["bandname"] = $_POST["register_bandname"];
     $_SESSION["style"] = $_POST["register_style"];
     $_SESSION["city"] = $_POST["register_city"];
     header('Location: ../html/registro_exito.html');
-    /* else
+    /* else  (SI EL NOMBRE DE LA BANDA YA EXISTE)
     {
         $message = "El nombre de la banda ya existe";
         echo "<script type='text/javascript'>

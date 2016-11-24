@@ -20,7 +20,7 @@
         </script>";
     }
     
-    else 
+    else // if(!(alreadyExists($_POST["register_email"],"users"))) { COMPROBACIÓN SI NOMBRE USUARIO EXISTE EN BASE "users", IMPLEMENTAR CON BASE DE DATOS
     { // SI TODO VA GUAY REDIRIGIMOS AL USUARIO A LA SEGUNDA PARTE DEL REGISTRO SEGÚN SU TIPO DE USUARIO
         session_start(); // TAMBIÉN GUARDAMOS LOS DATOS DE SU REGISTRO EN VARIABLES $_SESSION PARA MÁS ADELANTE USARLAS EN SU PERFIL
         $_SESSION["username"] = $_POST["register_username"];
@@ -31,7 +31,7 @@
             case "fan": header('Location: ../html/registro_exito.html'); break;
             case "banda": header('Location: ../html/registro_banda.html'); break;
             case "garito": header('Location: ../html/registro_garito.html'); break;
-            default: echo "<h1>ERROR: SERVER DOWN</h1>";
+            default: echo "<h1>ERROR: MURRI FIRDST</h1>";
         }
     }
 ?>

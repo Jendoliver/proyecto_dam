@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 .bodyperfiles{
-    background-image: url( Imagenes/rampage.gif);
+    background-image: url( ../img/rampage.gif);
 }
 .contenedorperfil {
     background-color: #c9b18d ;/*este color es solo para visualizar el tamaño de la pagina*/
@@ -20,7 +20,7 @@
 }
 .headerperfiles{
     height: 200px;
-    background-image: url(Imagenes/the-night.png);
+    background-image: url(../img/the-night.png);
     width:100%;
     margin-bottom: 10px;
 }
@@ -107,7 +107,6 @@
 .buscadoryredes a {
     text-align: center;
     font-size: 20px;  
-
 
 }
 .icon-button {
@@ -280,6 +279,7 @@
     background-color: darkgrey;
     width:100%;
     bottom: 0;
+    text-align: center;
 }
 .divbanner{
     clear: both;

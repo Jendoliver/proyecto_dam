@@ -1,28 +1,66 @@
-body
-{
-    
-}
-
+/********************************************************ESTILOS GENERALES************************************************/
 header
 {
-    font-size: 38px;
-    font-family: ;
+	/*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
+	background-size: 30% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+	/*background: #333;*/
+	color: red;
+	height: 140px;
+}
+
+body
+{
+    background-image: url(../img/rampage.gif);
+    width: 100%;
+}
+
+* {
+    /*estas propiedas es para que si pones que un div mida x px y despues le quieres poner un padding, un border size..etc, 
+    pues que no se sume a la medida que querias para el div; sin esto el div se agrandaria el x del padding k pongas 
+    o x de border size etc.*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container /*CLASE CONTENEDOR GENERAL*/
+{
+    position: relative;
+    background-color: #c9b18d; /*este color es solo para visualizar el tamaño de la pagina*/
+    height: 1695px;
+    width: 80%;
+    max-width: 1170px;
+    margin:0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+header > nav
+{
+    font-size: 20px;
+    font-family: arial; /*A CAMBIAR*/
 }
 
 footer
 {
-    /*  posa el footer al centre abaix amb un fons de color a escollir
     position: absolute;
-    right: 0;
+    clear:both;
+    height: 175px;
+    background-color: darkgrey;
+    width: 100%;
     bottom: 0;
-    left: 0;
-    padding: 1rem;
-    background-color: #efefef;
     text-align: center;
-  */
 }
 
-/*ESTILOS HOMEPAGE*/
+footer > div /*A CAMBIAR Y COMPLETAR*/
+{
+    font-size: 12px;
+    font-family: roboto;
+}
+
+/********************************************************ESTILOS HOMEPAGE************************************************/
 .title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
 {
     font-family:;
@@ -41,52 +79,377 @@ footer
     
 }
 
+/*extret de comunperfiles per el nom de web i el nom de perfil*/
+#nombreweb
+{
+    color: #dcdcdc;
+    display: inline-block;
+    float: left;
+    font-family: Tw Cen MT;
+    font-size: 25px;
+    height: 200px;
+    letter-spacing: -4px;
+    padding: 43px;
+    text-align: center;
+    width: 44%
+}
+
+.nombreperfil
+{
+    width: 32%;
+    height: 200px;
+    float:right;
+    letter-spacing: -4px;
+    font-family: Tw Cen MT;
+    padding: 73px 0 73px 0;
+    display:inline-block;  
+    color: #dcdcdc;
+    text-align: center;
+}
+
 img.big-homepage /*IMAGENES GRANDES HOMEPAGE*/
 {
     
 }
 
-/*ESTILOS PERFILES*/
-.container-profile /*CONTENEDOR DEL PERFIL*/
-{
-   
-}
-
-div.profile /*DIVS DEL PERFIL*/
-{
-    
-}
-
+/********************************************************ESTILOS PERFILES************************************************/
 .title-profile /*TÍTULOS DE LOS APARTADOS DEL PERFIL*/
 {
     
 }
 
-/*BOTONES*/
-.button /* BOTÓN BÁSICO - SUPERCLASE*/
+.container-profile /*CONTENEDOR DEL PERFIL*/
 {
-    opacity: 1; /*PRUEBA*/
+    position: relative;
+    background-color: #c9b18d ;/*este color es solo para visualizar el tamaño de la pagina*/
+    height: 1695px;
+    width: 80%;
+    max-width: 1170px;
+    margin:0 auto;
+    overflow: hidden;
 }
 
-.button:hover /* BOTÓN BÁSICO HOVER */
+.datosperfil
 {
-    opacity: 0.5;
+    float: right;
+    padding: 10px;
+    font-family: Arial,Helvetica,sans-serif;
+    width: 100%; 
+    text-align: center;
+    background-color:  antiquewhite;
+    margin-top: 20px;
+    height: 275px;
 }
 
-.button-search /* BOTÓN DE BÚSQUEDA */
+div.profile /*DIVS DEL PERFIL ".divsperfilizq" en el comun*/
 {
-    
+    width: 48%;
+    padding: 10px;
+    float: left;
+    text-align:  center;
+    display: inline-block;
+    background-color: #c9b18d;
+    margin: 10px;
+    height: 395px;
 }
 
-.button-log /* BOTÓN DE LOGIN - LOGOUT */
+/*extraido de comun perfiles es para tablas*/
+.tabla
+{ 
+    padding:0;
+    width: 100%; 
+    height: 100%;
+} 
+
+.cabtab
+{ 
+    background-color:  antiquewhite; 
+    font-family: Arial,Helvetica,sans-serif; 
+    font-size: 19px; 
+    padding: 10px; 
+    font-weight: bold;
+} 
+
+.cuerpotab
+{ 
+    font-size: 18px; 
+    text-align: left;
+    background-color:  antiquewhite;  
+} 
+
+.cuerpotab ul
+{ 
+    margin: 0 2px 0 20px; 
+    padding: 0 0 0 0px; 
+} 
+
+.cuerpotab li
+{ 
+    margin:3px; 
+    padding: 5px; 
+}
+/*extraido de comun perfiles es para tablas*/
+
+.bodyperfiles /*extret de comuperfiles per les imatges de fons*/
 {
-    
+    background-image: url( ../img/rampage.gif);
 }
 
-/*ESTILOS REGISTRO*/
+.headerperfiles
+{
+    height: 200px;
+    background-image: url(../img/the-night.png);
+    width:100%;
+    margin-bottom: 10px;
+}
+
+/*extret de comunperfiles per el logo de adalt a la esquerra*/
+#logo
+{
+    width: 24%;
+    float: left;
+    padding: 20px;
+    display: inline-block;
+    height: 100%;
+}
+
+.imagenlogo
+{
+    width: 100%;
+    height: 100%;
+}
+
+.imagen
+{
+    width: 100%;
+    height: 100%; 
+}
+
+.divsperfilderch
+{
+    display:  inline-block;
+    float: right;
+    background-color: #c9b18d;
+    height: 395px;
+    margin: 10px;
+    width: 48%;
+    padding: 10px;
+}
+
+.divsperfilizq /*extret de comun div per foto de perfil a la esquerra*/
+{
+    width: 48%;
+    padding: 10px;
+    float: left;
+    text-align:  center;
+    display: inline-block;
+    background-color: #c9b18d;
+    margin: 10px;
+    height: 395px;
+}
+
+.buscadoryredes
+{
+    background-color:  antiquewhite;
+    float: right;
+    padding: 10px;
+    height: 80px;
+    width: 100%;
+}
+
+.buscadoryredes a 
+{
+    text-align: center;
+    font-size: 20px;  
+}
+
+.searchform 
+{
+    display:  inline-block;
+    width: 250px;
+    margin-left: 10px;
+    height:30px;    
+}
+
+/********************************************************ESTILOS REGISTRO************************************************/
+.form-container
+{
+    display: inline-block;
+    margin-top: 10%;
+    width: 30%;
+}
+
 .form-control 
-{  
+{
+    display: block;
+    margin: auto;
     border-color: #a94442;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/********************************************************ESTILOS BOTONES************************************************/
+.myButton 
+{
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+    background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+    background-color:#f9f9f9;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:10px 76px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+    margin: 10px;
+}
+
+.myButton:hover 
+{
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+    background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+    background-color:#e9e9e9;
+}
+
+.myButton:active 
+{
+    position:relative;
+    top:1px;
+}
+
+.btncambiar
+{
+    float: right;
+}
+
+.btncambiarfotovideo
+{
+    float: right;
+    position: relative;
+    margin-top: -31px;
+    margin-right: -1px;
+}
+
+.btnsalir
+{
+    width: 54px;  
+    letter-spacing: 2px;
+}
+
+.video
+{
+    width: 100%;
+    height: 100%;  
+}
+
+.proximosconciertos
+{    
+    display:  inline-block;
+    float: right;
+    padding: 10px;
+    font-family: Arial,Helvetica,sans-serif;
+    width: 100%; 
+    text-align: center;
+    background-color:  antiquewhite;
+    margin-top: 20px;
+    height: 275px; 
+}
+
+.donativos
+{
+    margin-bottom: 20px;
+    float: left;
+    width: 48%;
+    text-align: center;
+    display: inline-block;
+}
+/*extrett de comunperfiles per als tres iconos de redes sociales*/
+.icon-button 
+{
+    background-color: white;
+    border-radius: 3em;
+    cursor: pointer;
+    display: inline-block;
+    height: 3em;
+    line-height: 3em;
+    margin: 0 8px;
+    position: relative;
+    width: 3em;
+}
+
+.icon-button span 
+{
+    border-radius: 0;
+    display: block;
+    height: 0;
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 0;
+}
+.icon-button:hover span 
+{
+    width: 3em;
+    height: 3em;
+    border-radius: 3em;
+    margin: -1.5em;
+}
+
+.linkedin span {
+    background-color: #4393BB;
+}
+.twitter span {
+    background-color: #4099ff;
+}
+.facebook span {
+    background-color: #3B5998;
+}
+.votos{
+    margin-bottom: 20px;
+    float: right;
+    width: 48%;
+    text-align: center;
+    display: inline-block;
+}
+.divbanner{
+    clear: both;
+    height: 114px;
+    margin: 20px 20px 10px;
+    
+}
+.banner{
+    width: 100%;
+    height: 100%; 
+}
+.publi{
+    float: right;
+    height: 80px;
+    width: 100%;
 }

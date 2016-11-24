@@ -1,13 +1,13 @@
 /********************************************************ESTILOS GENERALES************************************************/
-header
+.headerhomepage
 {
-	/*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
-	background-size: 30% 100%;
+    /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
+    background-size: 30% 100%;
     background-repeat: no-repeat;
     background-position: center; 
-	/*background: #333;*/
-	color: red;
-	height: 140px;
+    /*background: #333;*/
+    color: red;
+    height: 140px;
 }
 
 body
@@ -37,7 +37,7 @@ body
     text-align: center;
 }
 
-header > nav
+.headerhomepage > nav
 {
     font-size: 20px;
     font-family: arial; /*A CAMBIAR*/
@@ -63,7 +63,7 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 /********************************************************ESTILOS HOMEPAGE************************************************/
 .title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
 {
-    font-family:;
+    font-family: roboto;
     /*posible old town regular*/
     font-size: 40px;
     font-weight: bold; 

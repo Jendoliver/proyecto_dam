@@ -1,21 +1,4 @@
 /********************************************************ESTILOS GENERALES************************************************/
-.headerhomepage
-{
-    /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
-    background-size: 30% 100%;
-    background-repeat: no-repeat;
-    background-position: center; 
-    /*background: #333;*/
-    color: red;
-    height: 140px;
-}
-
-body
-{
-    background-image: url(../img/rampage.gif);
-    width: 100%;
-}
-
 * {
     /*estas propiedas es para que si pones que un div mida x px y despues le quieres poner un padding, un border size..etc, 
     pues que no se sume a la medida que querias para el div; sin esto el div se agrandaria el x del padding k pongas 
@@ -29,18 +12,17 @@ body
 {
     position: relative;
     background-color: #c9b18d; /*este color es solo para visualizar el tamaño de la pagina*/
+    border-radius: 5px;
     height: 1695px;
     width: 80%;
     max-width: 1170px;
     margin:0 auto;
     overflow: hidden;
     text-align: center;
-}
-
-.headerhomepage > nav
-{
-    font-size: 20px;
-    font-family: arial; /*A CAMBIAR*/
+    background: -moz-linear-gradient(top, #f3e2c7 0%, #c19e67 6%, #b68d4c 92%, #e9d4b3 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 );
 }
 
 footer
@@ -61,12 +43,36 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 }
 
 /********************************************************ESTILOS HOMEPAGE************************************************/
+.headerhomepage
+{
+    /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
+    background-size: 30% 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    /*background: #333;*/
+    color: red;
+    height: 140px;
+}
+
+.headerhomepage > nav
+{
+    font-size: 20px;
+    font-family: arial; /*A CAMBIAR*/
+}
+
 .title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
 {
     font-family: roboto;
     /*posible old town regular*/
     font-size: 40px;
     font-weight: bold; 
+}
+
+.bodyhomepage
+{
+    position: relative;
+    background-image: url(../img/background_homepage.jpg);
+    width: 100%;
 }
 
 .text-homepage /*TEXTO DE LOS APARTADOS DE LA HOMEPAGE*/
@@ -272,6 +278,13 @@ div.profile /*DIVS DEL PERFIL ".divsperfilizq" en el comun*/
 }
 
 /********************************************************ESTILOS REGISTRO************************************************/
+.bodyregistro
+{
+    position: relative;
+    background-image: url(../img/background_homepage.jpg);
+    width: 100%;
+}
+
 .form-container
 {
     display: inline-block;
@@ -284,6 +297,7 @@ div.profile /*DIVS DEL PERFIL ".divsperfilizq" en el comun*/
     display: block;
     margin: auto;
     border-color: #a94442;
+    border-radius: 5px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);

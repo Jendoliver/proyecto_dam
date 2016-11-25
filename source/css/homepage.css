@@ -2,3 +2,8 @@
     margin-top:50px;
     width: 100%
 }
+
+.bodyhomepage{
+    background-image: url(../img/background_homepage.jpg);
+    width: 100%;
+}

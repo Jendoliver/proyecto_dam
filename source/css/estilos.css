@@ -13,7 +13,7 @@
     position: relative;
     background-color: #c9b18d; /*este color es solo para visualizar el tamaño de la pagina*/
     border-radius: 5px;
-    height: 1695px;
+    height: 95%;
     width: 80%;
     max-width: 1170px;
     margin:0 auto;
@@ -53,12 +53,13 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 .headerhomepage
 {
     /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
+    position: fixed;
     background-size: 30% 100%;
     background-repeat: no-repeat;
     background-position: center; 
     /*background: #333;*/
     color: red;
-    height: 140px;
+    height: 100px;
 }
 
 .headerhomepage > nav

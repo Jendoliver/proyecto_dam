@@ -19,10 +19,15 @@
     margin:0 auto;
     overflow: hidden;
     text-align: center;
-    background: -moz-linear-gradient(top, #f3e2c7 0%, #c19e67 6%, #b68d4c 92%, #e9d4b3 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 );
+    background: -moz-linear-gradient(left, #4c4c4c 0%, #561313 1%, #441717 2%, #7a2f2f 2%, #891717 4%, #4c2727 97%, #6b4646 98%, #1c1c1c 100%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #4c4c4c 0%,#561313 1%,#441717 2%,#7a2f2f 2%,#891717 4%,#4c2727 97%,#6b4646 98%,#1c1c1c 100%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #4c4c4c 0%,#561313 1%,#441717 2%,#7a2f2f 2%,#891717 4%,#4c2727 97%,#6b4646 98%,#1c1c1c 100%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=1 );
+    /*
+    background: -moz-linear-gradient(top, #f3e2c7 0%, #c19e67 6%, #b68d4c 92%, #e9d4b3 100%);
+    background: -webkit-linear-gradient(top, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%);
+    background: linear-gradient(to bottom, #f3e2c7 0%,#c19e67 6%,#b68d4c 92%,#e9d4b3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 );*/
 }
 
 footer
@@ -46,26 +51,53 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 .bodyhomepage
 {
     position: relative;
-    background-image: url(../img/background_homepage.jpg);
     width: 100%;
+    background: -moz-linear-gradient(top, #4c4c4c 0%, #561313 2%, #441717 5%, #7a2f2f 9%, #8c4f4f 12%, #4c2727 82%, #6b4646 87%, #1c1c1c 95%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #4c4c4c 0%,#561313 2%,#441717 5%,#7a2f2f 9%,#8c4f4f 12%,#4c2727 82%,#6b4646 87%,#1c1c1c 95%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #4c4c4c 0%,#561313 2%,#441717 5%,#7a2f2f 9%,#8c4f4f 12%,#4c2727 82%,#6b4646 87%,#1c1c1c 95%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 );
 }
 
 .headerhomepage
 {
-    /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
     position: fixed;
-    background-size: 30% 100%;
-    background-repeat: no-repeat;
-    background-position: center; 
-    /*background: #333;*/
     color: red;
     height: 100px;
+    width: 100%;
+    z-index: 1;
+    background: -moz-linear-gradient(top, #4c4c4c 0%, #595959 2%, #474747 5%, #2c2c2c 9%, #000000 12%, #111111 82%, #2b2b2b 87%, #1c1c1c 95%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #4c4c4c 0%,#595959 2%,#474747 5%,#2c2c2c 9%,#000000 12%,#111111 82%,#2b2b2b 87%,#1c1c1c 95%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 2%,#474747 5%,#2c2c2c 9%,#000000 12%,#111111 82%,#2b2b2b 87%,#1c1c1c 95%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 );
 }
 
-.headerhomepage > nav
+.menuhomepage /*MENU DE LA HOMEPAGE*/
 {
+    display: inline-block;
+    width: 75%;
+    margin: 20px;
+}
+
+.menuitem-homepage /*CADA UNO DE LOS ÍTEMS DEL MENÚ*/
+{
+    display: inline-block;
+    width: 14%;
+    height: 80%;
     font-size: 20px;
-    font-family: arial; /*A CAMBIAR*/
+    font-family: roboto;
+}
+
+.loginregister-homepage /*BLOQUE LOGIN/REGISTER*/
+{
+    display: inline-block;
+    width: 20%;
+}
+
+.loginregister-button /*BOTONES LOGIN/REGISTER*/
+{
+    display: block;
+    height: 48%;
+    margin: 10px;
 }
 
 .maindiv-homepage /*DIV GORDO HOMEPAGE*/
@@ -324,8 +356,12 @@ div.profile /*DIVS DEL PERFIL ".divsperfilizq" en el comun*/
 .bodyregistro
 {
     position: relative;
-    background-image: url(../img/background_homepage.jpg);
     width: 100%;
+    height: 1000px;
+    background: -moz-linear-gradient(top, #4c4c4c 0%, #561313 2%, #441717 5%, #7a2f2f 9%, #8c4f4f 12%, #4c2727 82%, #6b4646 87%, #1c1c1c 95%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #4c4c4c 0%,#561313 2%,#441717 5%,#7a2f2f 9%,#8c4f4f 12%,#4c2727 82%,#6b4646 87%,#1c1c1c 95%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #4c4c4c 0%,#561313 2%,#441717 5%,#7a2f2f 9%,#8c4f4f 12%,#4c2727 82%,#6b4646 87%,#1c1c1c 95%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 );
 }
 
 .form-container

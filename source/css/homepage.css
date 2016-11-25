@@ -1,4 +1,9 @@
 #biglogo > img{
-    width: 100%
+    width: 100%;
+    margin-top: 100px;
 }
 
+.img-article > img {
+    width: 375px;
+    height: 220px;
+}

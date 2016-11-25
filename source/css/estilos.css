@@ -43,6 +43,13 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 }
 
 /********************************************************ESTILOS HOMEPAGE************************************************/
+.bodyhomepage
+{
+    position: relative;
+    background-image: url(../img/background_homepage.jpg);
+    width: 100%;
+}
+
 .headerhomepage
 {
     /*background-image: url(""); INTRODUCIR IMAGEN DEL HEADER */
@@ -60,63 +67,71 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
     font-family: arial; /*A CAMBIAR*/
 }
 
+.maindiv-homepage /*DIV GORDO HOMEPAGE*/
+{
+    width: 88%;
+    margin: 20px;
+}
+
+.div-homepage /*DIV SECCION HOMEPAGE*/
+{
+    width: 88%;
+    height: 33%;
+    margin: 20px;
+}
+
 .title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
 {
     font-family: roboto;
     /*posible old town regular*/
+    height: 20%;
+    width: 88%;
     font-size: 40px;
     font-weight: bold; 
 }
 
-.bodyhomepage
+.block-div-homepage /*BLOQUE FOTO/TEXTO DIV GORDO HOMEPAGE*/
 {
-    position: relative;
-    background-image: url(../img/background_homepage.jpg);
-    width: 100%;
+    display: inline-block;
+    width: 47%;
+    height: 90%;
+    margin: 20px;
 }
 
 .text-homepage /*TEXTO DE LOS APARTADOS DE LA HOMEPAGE*/
 {
-    
+    font-family: roboto;
+    font-size: 12px;
+    height: 48%;
+    width: 95%;
+    margin: 20px;
 }
 
 .text-best-homepage /*TEXTO DE LOS MEJORES DE LA HOMEPAGE*/
 {
-    
+    font-family: roboto;
+    font-size: 20px;
+    height: 20%;
+    width: 95%;
+    margin: 20px;
 }
 
-/*extret de comunperfiles per el nom de web i el nom de perfil*/
-#nombreweb
+.div-pics-best-homepage /*CUATRO FOTOS DE LOS MEJORES DE LA HOMEPAGE*/
 {
-    color: #dcdcdc;
+    width: 95%;
+    height: 28%;
+    margin: 20px;
+}
+
+.pics-best-homepage /*CADA UNA DE LAS FOTOS DE LOS MEJORES*/
+{
     display: inline-block;
-    float: left;
-    font-family: Tw Cen MT;
-    font-size: 25px;
-    height: 200px;
-    letter-spacing: -4px;
-    padding: 43px;
-    text-align: center;
-    width: 44%
+    width: 23%;
+    height: 95%;
+    margin: 20px;
 }
 
-.nombreperfil
-{
-    width: 32%;
-    height: 200px;
-    float:right;
-    letter-spacing: -4px;
-    font-family: Tw Cen MT;
-    padding: 73px 0 73px 0;
-    display:inline-block;  
-    color: #dcdcdc;
-    text-align: center;
-}
 
-img.big-homepage /*IMAGENES GRANDES HOMEPAGE*/
-{
-    
-}
 
 /********************************************************ESTILOS PERFILES************************************************/
 .title-profile /*TÍTULOS DE LOS APARTADOS DEL PERFIL*/
@@ -275,6 +290,33 @@ div.profile /*DIVS DEL PERFIL ".divsperfilizq" en el comun*/
     width: 250px;
     margin-left: 10px;
     height:30px;    
+}
+
+#nombreweb
+{
+    color: #dcdcdc;
+    display: inline-block;
+    float: left;
+    font-family: Tw Cen MT;
+    font-size: 25px;
+    height: 200px;
+    letter-spacing: -4px;
+    padding: 43px;
+    text-align: center;
+    width: 44%
+}
+
+.nombreperfil
+{
+    width: 32%;
+    height: 200px;
+    float:right;
+    letter-spacing: -4px;
+    font-family: Tw Cen MT;
+    padding: 73px 0 73px 0;
+    display:inline-block;  
+    color: #dcdcdc;
+    text-align: center;
 }
 
 /********************************************************ESTILOS REGISTRO************************************************/

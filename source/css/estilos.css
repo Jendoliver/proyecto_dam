@@ -8,6 +8,13 @@
     box-sizing: border-box;
 }
 
+/* FUENTE PERSONALIZADA BROTHERS */
+@font-face {
+    font-family: oldtown;    /* Nom que li volem posar a la font */
+    src: url(../fonts/OldTown.ttf);     /* url de la fuente guardada en el servidore */
+    /* A la hora de aplicar la fuente solo hace falta que pongamos el nombre que le hemos dado */
+}
+
 .container /*CLASE CONTENEDOR GENERAL*/
 {
     position: relative;
@@ -110,15 +117,13 @@ footer > div /*A CAMBIAR Y COMPLETAR*/
 
 .div-homepage /*DIV SECCION HOMEPAGE*/
 {
-    width: 88%;
     height: 33%;
     margin: 20px;
 }
 
 .title-homepage /*TÍTULOS DE LOS APARTADOS DE LA HOMEPAGE*/
 {
-    font-family: roboto;
-    /*posible old town regular*/
+    font-family: oldtown;
     height: 20%;
     width: 88%;
     font-size: 40px;

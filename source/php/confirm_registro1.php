@@ -26,9 +26,13 @@
         $_SESSION["username"] = $_POST["register_username"];
         $_SESSION["password"] = $_POST["register_password"];
         $_SESSION["email"] = $_POST["register_email"];
+        if(isset($_POST["register_image"]))
+            $_SESSION["image"] = $_POST["register_image"];
+        else
+            $_SESSION["image"] = "http://img.desmotivaciones.es/201012/aaaaa_28.jpg"; // hay que cambiar esto poyankres (imagen por defecto del perfil)
         switch($_POST["register_usertype"])
         {
-            case "fan": header('Location: ../html/registro_exito.html'); break;
+            case "fan": /*AQUÍ HAY QUE INSERTAR EN LA BASE DE DATOS*/ header('Location: ../html/registro_exito.html'); break;
             case "banda": header('Location: ../html/registro_banda.html'); break;
             case "garito": header('Location: ../html/registro_garito.html'); break;
             default: echo "<h1>ERROR: MURRI FIRDST</h1>";

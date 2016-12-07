@@ -15,6 +15,15 @@
     /* A la hora de aplicar la fuente solo hace falta que pongamos el nombre que le hemos dado */
 }
 
+/* EJEMPLO DE USO DE @media CON PANTALLA, MÓVIL Y PROYECTOR (ES POSIBLE ESPECIFICAR MÁS, COMO max-width etc, NO SOLO EL TIPO DE DISPOSITIVO)
+@media screen and (max-width: 800px) and (min-width: 90px)
+{
+    CLASES QUE CAMBIAN
+}
+@media handheld
+@media projection
+*/
+
 .container /*CLASE CONTENEDOR GENERAL*/
 {
     position: relative;

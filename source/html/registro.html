@@ -8,31 +8,32 @@
 <body class="bodyregistro">
     <div class="container">
     	<header></header> <!-- HAY QUE INCLUIR EL HEADER -->
-            <div>
-                <!-- Begin # Register Form -->
-                <form class="form-container" action="../php/confirm_registro1.php" method="POST">
-                    <div>
-                        <span id="text-register-msg">Registra tu cuenta.</span>
-                    </div>
-                    <input id="register_username" class="form-control" type="text" placeholder="Usuario" name="register_username" required>
-                    <input id="register_email" class="form-control" type="email" placeholder="E-Mail" name="register_email" required>
-                    <input id="register_password" class="form-control" type="password" placeholder="Contraseña" name="register_password" required>
-                    <input id="register_password_conf" class="form-control" type="password" placeholder="Confirmar Contraseña" name="register_password_conf" required>
-                    <div id="usertype">
-                        Soy: 
-                        <label class="radio-inline"><input type="radio" name="register_usertype" value="fan">Fan</label>
-                        <label class="radio-inline"><input type="radio" name="register_usertype" value="banda">Banda</label>
-                        <label class="radio-inline"><input type="radio" name="register_usertype" value="garito">Garito</label>
-                    </div>
-                    <div id="submitbutton">
-                        <button type="submit" class="myButton">Siguente</button>
-                    </div>
-                    <div>
-                        <!-- IMPLEMENTACION DEL LOGIN DENTRO REGISTER <a id="register_login_btn" type="button" class="btn btn-link" href="/htmlmain.html">Log In</a> -->
-                    </div>
-                </form>
-                <!-- End # Register Form -->
-            </div>
+        <div>
+            <!-- Begin # Register Form -->
+            <form class="form-container" action="../php/confirm_registro1.php" method="POST">
+                <div>
+                    <span id="text-register-msg">Registra tu cuenta.</span>
+                </div>
+                <input id="register_username" class="form-control" type="text" placeholder="Usuario" name="register_username" required>
+                <input id="register_email" class="form-control" type="email" placeholder="E-Mail" name="register_email" required>
+                <input id="register_password" class="form-control" type="password" placeholder="Contraseña" name="register_password" required>
+                <input id="register_password_conf" class="form-control" type="password" placeholder="Confirmar Contraseña" name="register_password_conf" required>
+                <input id="register_image" class="form-control" type="text" placeholder="URL de la imagen de la banda" name="register_image">
+                <div id="usertype">
+                    Soy: 
+                    <label class="radio-inline"><input type="radio" name="register_usertype" value="fan">Fan</label>
+                    <label class="radio-inline"><input type="radio" name="register_usertype" value="banda">Banda</label>
+                    <label class="radio-inline"><input type="radio" name="register_usertype" value="garito">Garito</label>
+                </div>
+                <div id="submitbutton">
+                    <button type="submit" class="myButton">Siguente</button>
+                </div>
+                <div>
+                    <!-- IMPLEMENTACION DEL LOGIN DENTRO REGISTER <a id="register_login_btn" type="button" class="btn btn-link" href="/htmlmain.html">Log In</a> -->
+                </div>
+            </form>
+            <!-- End # Register Form -->
+        </div>
         <footer></footer> <!-- HAY QUE INCLUIR EL FOOTER -->
     </div>
 </body>

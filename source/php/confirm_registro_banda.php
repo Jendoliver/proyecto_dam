@@ -4,7 +4,10 @@
     $_SESSION["bandname"] = $_POST["register_bandname"];
     $_SESSION["style"] = $_POST["register_style"];
     $_SESSION["city"] = $_POST["register_city"];
-    header('Location: ../html/registro_exito.html');
+    $_SESSION["website"] = $_POST["register_website"];
+    $_SESSION["telnum"] = $_POST["telnum"];
+    $_SESSION["memnum"] = $_POST["register_memnum"];
+    header('Location: ../html/registro_banda_miembros.php');
     /* else  (SI EL NOMBRE DE LA BANDA YA EXISTE)
     {
         $message = "El nombre de la banda ya existe";

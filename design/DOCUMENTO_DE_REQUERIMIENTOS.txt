@@ -1,0 +1,22 @@
+HOMEPAGE:
+    - Idiomas
+    - Puntuaciones de conciertos/bandas
+    - Mejorar la visibilidad
+    - Banners de publicidad
+    
+REGISTRO:
+    -No ha dit res dolent primo
+    
+PERFILES:
+    LOCAL:
+        -Falta información en cuanto a la lista de aceptar conciertos (que grupos hay en ese concierto)
+        -Modificar conciertos (Hora, fecha, etc)
+        
+    GRUPO:
+        -Información de los apartados detallada (ciudad en proximos conciertos)
+        
+    FAN:
+        -Repartir mejor el espacio (A la izquierda hay mucho junto y a la derecha demasiado vacio
+        -
+        
+  

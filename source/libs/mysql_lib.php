@@ -14,4 +14,19 @@
             return false;
         return true;
     }
+    
+    function insertData($data, $table, $usertype) // FUNCIÓN PARA INSERTAR UN DATO EN UNA TABLA (devuelve bool: 1 - NO ERRORES, 0 - ERRORES)
+    { // data = dato a insertar, table = tabla en la que insertar, attrib = columna
+        if(!($db = mysqli_connect("127.0.0.1", "jandol", "", "usuarios", 3306)))
+            die("Error: No se pudo conectar");
+        
+        switch($usertype) // 
+        {
+            case "fan":
+            case "banda":
+            case "garito":
+            default:
+        }
+        $res = mysqli_query($db, $query);
+    }
 ?>

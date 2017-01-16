@@ -19,13 +19,13 @@ web varchar(150),
 aforo int,
 valoracion int DEFAULT NULL,
 id_poblacion int,
-CONSTRAINT fk_usuario_poblacion FOREIGN KEY(`id_poblacion`) REFERENCES Poblacion(`id`) ON DELETE CASCADE ON UPDATE CASCADE -- poblacion del usuario
+CONSTRAINT fk_usuario_poblacion FOREIGN KEY(`id_poblacion`) REFERENCES Poblacion(`id`) ON DELETE SET NULL ON UPDATE CASCADE -- poblacion del usuario
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS Multimedia( -- ruta de los archivos multimedia y fk del usuario propietario
 filename varchar(50) PRIMARY KEY,
 id_user varchar(20),
-CONSTRAINT fk_multimedia_usuario FOREIGN KEY(`id_user`) REFERENCES Usuario(`username`)
+CONSTRAINT fk_multimedia_usuario FOREIGN KEY(`id_user`) REFERENCES Usuario(`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS Genero( -- generos disponibles

@@ -48,13 +48,13 @@
 
 footer
 {
-    position: absolute;
     clear:both;
     height: 175px;
     background-color: darkgrey;
     width: 100%;
     bottom: 0;
     text-align: center;
+    background: linear-gradient(to right, #4c4c4c 0%,#561313 1%,#441717 2%,#7a2f2f 2%,#891717 4%,#4c2727 97%,#6b4646 98%,#1c1c1c 100%,#131313 100%);
 }
 
 footer > div /*A CAMBIAR Y COMPLETAR*/

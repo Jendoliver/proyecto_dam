@@ -6,43 +6,6 @@
 */
 require_once "bbdd_lib.php";
 
-//AUTENTICACIÓN
-// TO DO
-function checkUser($user, $pass) // Función que comprueba que el login es correcto
-{
-    $con = conectar("proyecto");
-    $query = "SELECT * FROM Usuario WHERE username = '$user' AND pass = '$pass';";
-    if($res = mysqli_query($con, $query)) // si no hay error
-    {
-        if(mysqli_num_rows($res)) // si hay alguna tupla así
-        {
-            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;";
-            if($res = mysqli_query($con, $query)) {
-                if(mysqli_num_rows($res)) {
-                    desconectar($con);
-                    return 1; // Login correcto, el usuario es un fan
-                }
-            }
-            else {
-                errorConsulta();
-                desconectar($con);
-            }
-            desconectar($con);
-            return 1; // login correcto
-        }
-        else
-        {
-            desconectar($con);
-            return 0; // login incorrecto
-        }
-    }
-    else
-    {
-        errorConsulta();
-        desconectar($con);
-    }
-}
-
 //SELECTS HOMEPAGE
 function selectProximosConciertos()
 {
@@ -109,7 +72,7 @@ function selectMejoresBandas()
     }  
 }
 
-function selectMejoresConciertos()//pendent per mirar
+function selectMejoresConciertos()
 {
     $con = conectar("proyecto");
     $query = "SELECT publicname, nom_local, fecha, 
@@ -180,7 +143,7 @@ function selectVideo($src)
 function selectConciertosValorados() // conciertos que el fan ha valorado
 {
     session_start();
-    $username = $_SESSION["username"];//pendent per revisar
+    $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
                 FROM Concierto
@@ -204,7 +167,7 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
 function selectProximosConciertosLike() // proximos conciertos de las bandas a las que le has dado like
 {
     session_start();
-    $username = $_SESSION["username"];//pendent per revisar
+    $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
                 FROM Concierto
@@ -233,18 +196,7 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
 
 function selectConciertosAceptado() // conciertos para los que han aceptado a la banda
 {
-    $con = conectar("proyecto");
-    $query = "";
-    if($res = mysqli_query($con, $query))
-    {
-        createTable($res);
-        desconectar($con);
-    }
-    else
-    {
-        errorConsulta($con);
-        desconectar($con);
-    }
+    
 }
 
 //SELECTS LOCAL

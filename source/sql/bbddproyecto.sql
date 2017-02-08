@@ -39,8 +39,8 @@ id int PRIMARY KEY,
 fecha date NOT NULL,
 precio int NOT NULL, -- NO ESTÁ EN EL MODELO RELACIONAL
 nom_local varchar(20), -- NOMBRE DEL LOCAL QUE REALIZA EL CONCIERTO
-CONSTRAINT fk_concierto_usuario FOREIGN KEY(`nom_local`) REFERENCES Usuario(`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) DEFAULT CHARSET=utf8;
+CONSTRAINT fk_concierto_usuario FOREIGN KEY(`nom_local`) REFERENCES Usuario(`username`) ON DELETE CASCADE ON UPDATE CASCADE --Hemos cambiado username por public name
+) DEFAULT CHARSET=utf8; 
 
 CREATE TABLE IF NOT EXISTS Musico( -- musicos que forman parte de bandas (no son usuarios singulares, varios forman parte de uno mismo)
 id int PRIMARY KEY,

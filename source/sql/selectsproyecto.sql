@@ -10,7 +10,7 @@ SELECT * FROM usuario WHERE id_poblacion != 1; -- 5
 
 SELECT * FROM usuario WHERE aforo IS NULL AND valoracion IS NULL; -- 6, para reconocer a un fan
 
-SELECT * FROM usuario WHERE aforo IS NOT NULL AND aforo >= 150 AND aforo <= 300; -- 7, para reconocer a un local con aforo entre 150 y 300
+SELECT * FROM usuario WHERE aforo >= 150 AND aforo <= 300; -- 7, para reconocer a un local con aforo entre 150 y 300
 
 SELECT id_banda AS 'Bandas con más de tres miembros' FROM (SELECT *, count(id_banda) as n_banda FROM Pertenece GROUP BY id_banda ) as info_bandas WHERE info_bandas.n_banda >= 3; -- 8, bandas con tres o más miembros
 
@@ -75,6 +75,7 @@ WHERE COUNT(SELECT * FROM votos_bandas WHERE id_fan = $_SESSION["username"]) = 1
 ORDER BY fecha ASC
 LIMIT 10;
 
--- BANDAS Y LOCALES QUE
-SELECT * FROM votos_locales WHERE id_fan = $_SESSION["username"]
-SELECT * FROM votos_bandas WHERE 
+-- conciertos a los que se ha apuntado la banda
+SELECT id_concierto
+FROM Participa
+INNER JOIN Concierto on id_conicerto = 

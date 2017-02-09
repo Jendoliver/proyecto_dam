@@ -7,16 +7,15 @@
 require_once "bbdd_lib.php";
 
 //AUTENTICACIÓN
-// TO DO
-function checkUser($user, $pass) // Función que comprueba que el login es correcto
+function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
     $con = conectar("proyecto");
     $query = "SELECT * FROM Usuario WHERE username = '$user' AND pass = '$pass';";
-    if($res = mysqli_query($con, $query)) // si no hay error
+    if($res = mysqli_query($con, $query)) // si no hay error en la consulta
     {
-        if(mysqli_num_rows($res)) // si hay alguna tupla así
+        if(mysqli_num_rows($res)) // si existe un usuario con ese username y pass, comprobamos su tipo
         {
-            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;";
+            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
             if($res = mysqli_query($con, $query)) {
                 if(mysqli_num_rows($res)) {
                     desconectar($con);
@@ -27,13 +26,35 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
                 errorConsulta();
                 desconectar($con);
             }
-            desconectar($con);
-            return 1; // login correcto
+            
+            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
+            if($res = mysqli_query($con, $query)) {
+                if(mysqli_num_rows($res)) {
+                    desconectar($con);
+                    return 2; // Login correcto, el usuario es una banda
+                }
+            }
+            else {
+                errorConsulta();
+                desconectar($con);
+            }
+            
+            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
+            if($res = mysqli_query($con, $query)) {
+                if(mysqli_num_rows($res)) {
+                    desconectar($con);
+                    return 3; // Login correcto, el usuario es un local
+                }
+            }
+            else {
+                errorConsulta();
+                desconectar($con);
+            }
         }
         else
         {
             desconectar($con);
-            return 0; // login incorrecto
+            return 0; // no existe un usuario con esas credenciales
         }
     }
     else
@@ -109,7 +130,7 @@ function selectMejoresBandas()
     }  
 }
 
-function selectMejoresConciertos()//pendent per mirar
+function selectMejoresConciertos()
 {
     $con = conectar("proyecto");
     $query = "SELECT publicname, nom_local, fecha, 
@@ -180,7 +201,7 @@ function selectVideo($src)
 function selectConciertosValorados() // conciertos que el fan ha valorado
 {
     session_start();
-    $username = $_SESSION["username"];//pendent per revisar
+    $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
                 FROM Concierto
@@ -204,7 +225,7 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
 function selectProximosConciertosLike() // proximos conciertos de las bandas a las que le has dado like
 {
     session_start();
-    $username = $_SESSION["username"];//pendent per revisar
+    $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
                 FROM Concierto

@@ -36,20 +36,20 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">ACCEDER
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <form id="login-form" action="" method="POST"> <!-- TODO: LINKEAR CON SELECTOR -->
-        		                <div class="modal-body">
+                            <div class="modal-body">
+                                <form id="login-form" action="../back_end/selector.php" method="POST">
         				    		<div id="div-login-msg">
                                         <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                         <span id="text-login-msg">Datos de acceso:</span>
                                     </div>
         				    		<input id="login_username" class="form-control" type="text" placeholder="Usuario" name="username" required>
         				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" name="password" required>
-                		    	    <button type="submit" class="btn btn-success btn-sm btn-block">Login</button>
-                		    	</div>
-        				        <div class="modal-footer">
-                                    <a href="#" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->
-        				        </div>
-                            </form>
+                		    	    <button type="submit" name="login" class="btn btn-success btn-sm btn-block">Login</button>
+                                </form>
+                		    </div>
+    				        <div class="modal-footer">
+                                <a href="#" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->
+    				        </div>
                         </ul>
                     </li>
                     <li class="dropdown">

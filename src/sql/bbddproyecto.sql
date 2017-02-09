@@ -16,7 +16,7 @@ img varchar(50), -- NOMBRE DE LA IMAGEN
 publicname varchar(50),
 tel char(9),
 web varchar(150),
-aforo int,
+aforo int DEFAULT NULL,
 valoracion int DEFAULT NULL,
 direccion varchar(100), -- NO ESTÁ EN EL MODELO RELACIONAL
 id_poblacion int,

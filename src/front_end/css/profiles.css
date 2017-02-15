@@ -8,10 +8,39 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Open Sans Condensed', sans-serif, sans-serif;
 }
 
-#header{
+#header
+{
 	border:1px solid #ddd;
 	margin-bottom:20px;
-	}
+}
+	
+#img-profile
+{
+  width:160px;
+  height:160px;
+  float:left;
+  padding:0;
+  margin-top:-130px;
+  overflow:hidden;
+  border:3px solid #eee;
+  margin-left:15px;
+  background:#333;
+  text-align:center;
+  line-height:160px;
+  color:#fff !important;
+  font-size:2em;
+  -webkit-transition:  all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition:  all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#cerrarsesion
+{
+  margin: 13px;
+  margin-bottom: 0;
+  height: 70%;
+}
 	
 .navbar {
   font-family: Montserrat, sans-serif;
@@ -24,28 +53,6 @@ h1, h2, h3, h4, h5, h6{
   opacity: 1;
 }
 	
-.navbar-brand
-{
-    width:160px;
-    height:160px;
-    float:left;
-    padding:0;
-    margin-top:-130px;
-    overflow:hidden;
-    border:3px solid #eee;
-    margin-left:15px;
-    background:#333;
-    text-align:center;
-    line-height:160px;
-    color:#fff !important;
-    font-size:2em;
-    -webkit-transition:  all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition:  all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out ;
-}
-	
-	
 .user-name{
 	color:#fff;
 	font-size:2.4em;
@@ -54,7 +61,15 @@ h1, h2, h3, h4, h5, h6{
 	margin-left:15px;
         font-family: 'Open Sans Condensed', sans-serif, sans-serif;
 
-	}	
+	}
+	
+	.site-description{
+	color:#fff;
+	font-size:1.3em;
+	float:left;
+	margin-top:-30px !important;
+	margin-left:15px;
+	}
 
 .main-menu{
 	position:absolute;

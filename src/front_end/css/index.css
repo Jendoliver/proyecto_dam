@@ -13,6 +13,9 @@ h1 {
     font-family: oldtown;
     color: black;
 }
+.justified {
+  text-align: justify;
+}
 .carousel-inner img {
   -webkit-filter: grayscale(90%);
   filter: grayscale(90%); /* make all photos black and white */ 

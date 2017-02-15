@@ -30,9 +30,39 @@ function errorLogin()
 
 function errorNotLogged()
 {
-    $message = "No has iniciat sessió --- ACCÉS DENEGAT";
+    $message = "No has iniciado sesión --- ACCESO DENEGADO";
     echo "<script type='text/javascript'>
     alert('$message');
-    window.location = '$homepage';
+    window.location = '../front_end/index.php';
     </script>";
 }
+
+/*function errorNotLogged()
+{
+    ?>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">No has iniciado sesión</h4>
+          </div>
+          <div class="modal-body">
+            <p>Acceso denegado.</p>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-block btn-primary" href="../../front_end/" data-dismiss="modal">IR A LA HOMEPAGE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+}*/
+
+function errorNoResults()
+{
+    echo "<h1>No hay resultados</h1>";
+}
+
+?>

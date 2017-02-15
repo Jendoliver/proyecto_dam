@@ -15,41 +15,7 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
     {
         if(mysqli_num_rows($res)) // si existe un usuario con ese username y pass, comprobamos su tipo
         {
-            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
-            if($res = mysqli_query($con, $query)) {
-                if(mysqli_num_rows($res)) {
-                    desconectar($con);
-                    return 1; // Login correcto, el usuario es un fan
-                }
-            }
-            else {
-                errorConsulta();
-                desconectar($con);
-            }
-            
-            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
-            if($res = mysqli_query($con, $query)) {
-                if(mysqli_num_rows($res)) {
-                    desconectar($con);
-                    return 2; // Login correcto, el usuario es una banda
-                }
-            }
-            else {
-                errorConsulta();
-                desconectar($con);
-            }
-            
-            $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
-            if($res = mysqli_query($con, $query)) {
-                if(mysqli_num_rows($res)) {
-                    desconectar($con);
-                    return 3; // Login correcto, el usuario es un local
-                }
-            }
-            else {
-                errorConsulta();
-                desconectar($con);
-            }
+            return checkUserType($user);
         }
         else
         {
@@ -58,6 +24,54 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
         }
     }
     else
+    {
+        errorConsulta();
+        desconectar($con);
+    }
+}
+
+function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan, 2 = Banda, 3 = Local
+{
+    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
+    if($res = mysqli_query($con, $query)) 
+    {
+        if(mysqli_num_rows($res)) 
+        {
+            desconectar($con);
+            return 1; // El usuario es un fan
+        }
+    }
+    else 
+    {
+        errorConsulta();
+        desconectar($con);
+    }
+    
+    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
+    if($res = mysqli_query($con, $query)) 
+    {
+        if(mysqli_num_rows($res)) 
+        {
+            desconectar($con);
+            return 2; // El usuario es una banda
+        }
+    }
+    else 
+    {
+        errorConsulta();
+        desconectar($con);
+    }
+    
+    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
+    if($res = mysqli_query($con, $query)) 
+    {
+        if(mysqli_num_rows($res)) 
+        {
+            desconectar($con);
+            return 3; // El usuario es un local
+        }
+    }
+    else 
     {
         errorConsulta();
         desconectar($con);
@@ -249,13 +263,38 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
 //SELECTS BANDA
 function selectConciertosApuntado() // conciertos a los que se ha apuntado la banda
 {
-    
+    session_start();
+    $username = $_SESSION["username"];
+    $con = conectar("proyecto");
+    $query = "SELECT id_concierto, nom_local, fecha, aceptado
+            FROM Participa
+            INNER JOIN Concierto on id_conicerto = Concierto.id
+            WHERE id_banda = '$username'
+            ORDER BY fecha ASC
+            LIMIT 10;";
+    if($res = mysqli_query($con, $query))
+    {
+        createTable($res);
+        desconectar($con);
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }
 }
 
 function selectConciertosAceptado() // conciertos para los que han aceptado a la banda
 {
+    session_start();
+    $username = $_SESSION["username"];
     $con = conectar("proyecto");
-    $query = "";
+    $query = "SELECT id_concierto, nom_local, fecha, aceptado
+            FROM Participa
+            INNER JOIN Concierto on id_conicerto = Concierto.id
+            WHERE id_banda = '$username' AND aceptado = 1
+            ORDER BY fecha ASC
+            LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -271,73 +310,49 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
 //SELECTS LOCAL
 function selectGruposAprobar() // grupos que se han apuntado a un concierto propuesto
 {
-    
+    session_start();
+    $username = $_SESSION["username"];
+    $con = conectar("proyecto");
+    $query = "SELECT publicname, id, fecha
+            FROM Concierto
+            INNER JOIN Participa on Concierto.id = Participa.id_concierto
+            INNER JOIN Usuario on Participa.id_banda = Usuario.username
+            WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username'
+            ORDER BY fecha ASC
+            LIMIT 10;";
+    if($res = mysqli_query($con, $query))
+    {
+        createTable($res);
+        desconectar($con);
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }
 }
 
 function selectProximosConciertosLocal() // seleccionar proximos conciertos propuestos por el local
 {
-    
-}
-
-//UTILIDADES
-function createTableCursos($res) // HAY QUE ADAPTAR ESTA FUNCIÓN A NUESTRO PROYECTO CHAVALADA
-{
-    if($row = mysqli_fetch_assoc($res)) //comprobamos que hay algo para evitar warning
+    session_start();
+    $username = $_SESSION["username"];
+    $con = conectar("proyecto");
+    $query = "SELECT id, fecha, precio
+            FROM Concierto
+            INNER JOIN Usuario on Usuario.publicname = Concierto.nom_local
+            WHERE nom_local = pubblicname AND username = '$username'
+            ORDER BY fecha ASC
+            LIMIT 10;";
+    if($res = mysqli_query($con, $query))
     {
-        $table = "<table class='table table-hover'>"; // ese bootstrap joder
-        $table .= "<thead>";
-        foreach($row as $key => $value) // header tabla
-        {
-            $table .= "<th>$key</th>";
-        }
-        $table .= "<th>Modificar curs</th><th>Visualitzar alumnes</th></thead><tbody>"; // columna de botón modificar, cierre del header y apertura del body
-    
-        do // llenar tabla con el contenido de la query
-        {
-            $i = 0;
-            $table .= "<tr>"; // principio de fila
-            foreach($row as $key => $value) // llenamos una fila
-            {
-                if($i == 0) // pillamos la primary para lanzar el modify sobre eso
-                {    
-                    $idcurso = $value;
-                    $table .= "<td>$value</td>";
-                }
-                else if($i == 1)
-                {
-                    switch($value)
-                    {
-                        case 0: $table .= "<td>Monitor</td>"; break;
-                        case 1: $table .= "<td>Director</td>"; break;
-                        case 2: $table .= "<td>Premonitor</td>"; break;
-                        case 3: $table .= "<td>Altres</td>"; break;
-                        default: errorCreateTable();
-                    }
-                }
-                else if($i == 2)
-                {
-                    switch($value)
-                    {
-                        case 0: $table .= "<td>Matí</td>"; break;
-                        case 1: $table .= "<td>Tarda</td>"; break;
-                        case 2: $table .= "<td>Cap de setmana</td>"; break;
-                        case 3: $table .= "<td>Intensiu</td>"; break;
-                        default: errorCreateTable();
-                    }
-                }
-                else
-                    $table .= "<td>$value</td>";
-                $i++;
-            }
-            $table .= "<td><form action='../front_end/modificardatos.php' method='POST'><input type='hidden' name='idcurso' value='$idcurso'><input type='submit' class='btn btn-info btn-sm' name='curso' value='MODIFICAR'></form></td>"; // botón de modificar
-            $table .= "<td><form action='../front_end/modificardatos.php' method='POST'><input type='hidden' name='idcurso' value='$idcurso'><input type='submit' class='btn btn-info btn-sm' name='alumnos' value='MOSTRAR'></form></td>";
-            $table .= "</tr>";
-        } while ($row = mysqli_fetch_assoc($res));
-        $table .= "</tbody></table>";
-        echo $table;
+        createTable($res);
+        desconectar($con);
     }
     else
-        errorNoResults();
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }
 }
 
 ?>

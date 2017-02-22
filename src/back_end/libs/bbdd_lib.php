@@ -4,11 +4,11 @@
 *   bbdd_lib.php: FUNCIONES BÁSICAS DE COMUNICACIÓN CON LA BBDD
 *
 */
-require_once "error_lib.php";
+require "error_lib.php";
 
 function conectar($db) // Todo un clásico
 {
-    $conexion = mysqli_connect("localhost", "root", "", $db) or
+    $conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $db) or
         die("No se ha podido conectar a la BBDD");
     return $conexion;
 }
@@ -65,7 +65,7 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
         {
             $table .= "<th>$key</th>";
         }
-        $table .= "<th>Modificar curs</th><th>Visualitzar alumnes</th></thead><tbody>"; // columna de botón modificar, cierre del header y apertura del body
+        $table .= "</thead><tbody>"; // cierre del header y apertura del body
     
         do // llenar tabla con el contenido de la query
         {

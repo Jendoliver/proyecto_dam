@@ -13,6 +13,23 @@ h1, h2, h3, h4, h5, h6{
 	border:1px solid #ddd;
 	margin-bottom:20px;
 }
+
+#footer 
+{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 280px;
+  background: 
+  /* color overlay */ 
+    /*linear-gradient(
+      rgba(240, 212, 0, 0.45), 
+      rgba(0, 0, 0, 0.45)
+    ),*/
+    /* image to overlay */
+    url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
+}
 	
 #img-profile
 {

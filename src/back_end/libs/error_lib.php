@@ -5,7 +5,7 @@
 *   error_lib.php: LIBRERÍA DE ERRORES
 *
 */
-require_once "constants.php";
+require "constants.php";
 
 /****** ERRORES GRAVES ******/
 function errorConsulta($con)

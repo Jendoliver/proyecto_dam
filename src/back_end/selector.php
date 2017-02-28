@@ -8,9 +8,9 @@ if(isset($_POST["login"])) // Venimos de index.php, el usuario quiere iniciar se
     switch($usertype) // Guardamos las variables que modifican el espacio personal y redirigimos al que toca según el tipo de usuario
     {
         case 0: errorLogin(); break;
-        case 1: getSession($_POST["username"], $usertype); header("Location: $fanpage"); break;
-        case 2: getSession($_POST["username"], $usertype); header("Location: $bandpage"); break;
-        case 3: getSession($_POST["username"], $usertype); header("Location: $garitopage"); break;
+        case 1: getSession($_POST["username"], $usertype); header("Location: ../front_end/fan.php"); break;
+        case 2: getSession($_POST["username"], $usertype); header("Location: ../front_end/banda.php"); break;
+        case 3: getSession($_POST["username"], $usertype); header("Location: ../front_end/local.php"); break;
     }
 }
 /*else if

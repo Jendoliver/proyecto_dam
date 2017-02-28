@@ -13,12 +13,12 @@
 </head>
 
 <body>
-    <?php /*
-    require_once "../back_end/libs/bbdd_lib.php";
+    <?php
+    require "../back_end/libs/selects_lib.php";
     if(!auth())
         errorNotLogged();
     else
-    { */?>
+    { ?>
     <?php require "headerperfiles.php"; ?>
         <div class="container"> <!-- INICIO DEL MAIN CONTAINER -->
             <!-- BARRA DE BÚSQUEDA -->
@@ -28,15 +28,15 @@
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Información personal</h3>
-                        <?php //session_start(); extract $_SESSION; ?>
-                        <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: jandol1996@hotmail.com<?php //echo $email?></div>
+                        <?php session_start(); extract($_SESSION); ?>
+                        <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Próximos conciertos de las bandas que te gustan</h3>
                         <div class="container">
-                            <?php //selectProximosConciertosLike() ?>
+                            <?php selectProximosConciertosLike() ?>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="well">
                         <h3>Conciertos que has valorado</h3>
                         <div class="container">
-                            <?php //selectConciertosValorados() ?>
+                            <?php selectConciertosValorados() ?>
                         </div>
                     </div>
                 </div>
@@ -54,5 +54,5 @@
         </div> <!-- FIN DEL MAIN CONTAINER -->
         <?php require "footer.php" ?>
     </div>
-    <?php // } ?>
+    <?php } ?>
 </body>

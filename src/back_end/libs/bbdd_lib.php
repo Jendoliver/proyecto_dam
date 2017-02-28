@@ -30,7 +30,7 @@ function auth() // Función que comprueba que se accede a la web logueado (1 - O
 
 function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXISTE UN DATO EN UNA TABLA (devuelve bool)
 { // data = dato a encontrar, table = tabla en la que buscar, attrib = columna
-    $con = conectar($db);
+    $con = conectar("proyecto");
 
     $query = "SELECT $attrib FROM $table WHERE $attrib = '".mysqli_real_escape_string($con, $data)."'";
     if($res = mysqli_query($con, $query))
@@ -49,8 +49,8 @@ function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXI
 
 function getSession($user, $usertype) // obtiene las variables de sesión de un usuario
 {
-    $con = conectar($db);
-    $query = "SELECT * FROM Usuario WHERE username = '$user'";
+    $con = conectar("proyecto");
+    $query = "SELECT * FROM usuario WHERE username = '$user'";
     if($res = mysqli_query($con, $query))
     {
         session_start();

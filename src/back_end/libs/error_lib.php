@@ -47,6 +47,15 @@ function errorNotLogged()
     </script>";
 }
 
+function errorUserExists()
+{
+    $message = "El nombre de usuario indicado ya está en uso";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '../front_end/registro.php';
+    </script>";
+}
+
 /*function errorNotLogged()
 {
     ?>

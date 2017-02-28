@@ -216,10 +216,10 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id)
-            FROM Concierto
-            INNER JOIN participa on Concierto.id = participa.id_concierto
+            FROM concierto
+            INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
-            INNER JOIN votos_conciertos on Concierto.id = votos_conciertos.id_concierto
+            INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
             WHERE id_fan='$username'
             ORDER BY fecha ASC
             LIMIT 10;";
@@ -241,8 +241,8 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
-            FROM Concierto
-            INNER JOIN participa on Concierto.id = participa.id_concierto
+            FROM concierto
+            INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
             INNER JOIN votos_bandas on votos_bandas.id_banda = usuario.username
             WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username')
@@ -268,7 +268,7 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
     $con = conectar("proyecto");
     $query = "SELECT id_concierto, nom_local, fecha, aceptado
             FROM participa
-            INNER JOIN Concierto on id_concierto = Concierto.id
+            INNER JOIN concierto on id_concierto = concierto.id
             WHERE id_banda = '$username'
             ORDER BY fecha ASC
             LIMIT 10;";
@@ -291,7 +291,7 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
     $con = conectar("proyecto");
     $query = "SELECT id_concierto, nom_local, fecha
             FROM participa
-            INNER JOIN Concierto on participa.id_concierto = Concierto.id
+            INNER JOIN concierto on participa.id_concierto = concierto.id
             WHERE aceptado = 1 AND id_banda = '$username'
             ORDER BY fecha ASC
             LIMIT 10;";
@@ -314,8 +314,8 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT publicname, id, fecha
-            FROM Concierto
-            INNER JOIN participa on Concierto.id = participa.id_concierto
+            FROM concierto
+            INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
             WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username'
             ORDER BY fecha ASC
@@ -338,8 +338,8 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
     $query = "SELECT id, fecha, precio
-            FROM Concierto
-            INNER JOIN usuario on usuario.username = Concierto.nom_local
+            FROM concierto
+            INNER JOIN usuario on usuario.username = concierto.nom_local
             WHERE username = '$username'
             ORDER BY fecha ASC
             LIMIT 10; ";

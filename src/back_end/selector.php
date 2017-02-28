@@ -1,5 +1,5 @@
 <?php // selector.php: Archivo encargado de gestionar los formularios que utilizan la librería selects_lib.php
-require_once "libs/selects_lib.php";
+require "libs/selects_lib.php";
 
 if(isset($_POST["login"])) // Venimos de index.php, el usuario quiere iniciar sesión
 {

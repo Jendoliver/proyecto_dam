@@ -6,9 +6,10 @@
 */
 require "error_lib.php";
 
-function conectar($db) // Todo un clásico
+function conectar($database) // Todo un clásico
 {
-    $conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $db) or
+    //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $database) or PARA EL HOSTING
+    $conexion = mysqli_connect("localhost", "jandol", "", $database) or // Para C9
         die("No se ha podido conectar a la BBDD");
     return $conexion;
 }
@@ -27,9 +28,28 @@ function auth() // Función que comprueba que se accede a la web logueado (1 - O
         return 0;
 }
 
+function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXISTE UN DATO EN UNA TABLA (devuelve bool)
+{ // data = dato a encontrar, table = tabla en la que buscar, attrib = columna
+    $con = conectar($db);
+
+    $query = "SELECT $attrib FROM $table WHERE $attrib = '".mysqli_real_escape_string($con, $data)."'";
+    if($res = mysqli_query($con, $query))
+    {
+        desconectar($con);
+        if (mysqli_num_rows($res))
+            return 1;
+        return 0;
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }
+}
+
 function getSession($user, $usertype) // obtiene las variables de sesión de un usuario
 {
-    $con = conectar("proyecto");
+    $con = conectar($db);
     $query = "SELECT * FROM Usuario WHERE username = '$user'";
     if($res = mysqli_query($con, $query))
     {

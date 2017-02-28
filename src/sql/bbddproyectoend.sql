@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `ohhhmusic3` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `ohhhmusic3`;
+CREATE DATABASE  IF NOT EXISTS `proyecto` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `proyecto`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: kato.epsevg.upc.es    Database: ohhhmusic3

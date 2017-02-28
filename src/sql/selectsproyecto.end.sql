@@ -18,29 +18,26 @@ SELECT * FROM usuario WHERE valoracion IS NOT NULL; -- 9, para reconocer a un lo
 
 SELECT * FROM usuario WHERE id_poblacion IN(1, 2); -- 10
 
-
-
-
 -- select per tenir publicname a partir de username de local  - Funciona
 SELECT publicname
 FROM usuario
 INNER JOIN Concierto on nom_local = username
 WHERE nom_local = $_SESSION["username"];
 
+-- els que posi ja fets son de la base de dades nova no vol dir que funcioni(si funciona posara fet i funciona)
 -- SELECTS HOMEPAGE  
-SELECT fecha, nom_local, publicname
-FROM Concierto 
-INNER JOIN Participa on Concierto.id = Participa.id_concierto
-INNER JOIN Usuario on Participa.id_banda = Usuario.username
+SELECT dia, idlocal, nombre_artistico
+FROM usuario
+INNER JOIN genero on genero = idgenero
+INNER JOIN concierto on idgenero = genero
 ORDER BY fecha ASC
-LIMIT 10; -- select proximos conciertos bonitos  -  FUNCIONA
+LIMIT 10; -- select proximos conciertos bonitos  
 
-SELECT publicname, nombre_genero, valoracion
-FROM Usuario 
-INNER JOIN Genero_user on Usuario.username = Genero_user.id_user
-INNER JOIN Genero on Genero_user.id_genero = Genero.id
-WHERE aforo IS NOT NULL
-ORDER BY valoracion DESC -- select 5 MEJORES GARITOS por valoracion  -  NO MUESTRA NADA
+SELECT nombre, genero, votosconcierto
+FROM Usuario
+SELECT COUNT(*) AS votosconcierto FROM voto_concierto WHERE 
+INNER JOIN voto_concierto on Usuario.username = Genero_user.id_user
+ORDER BY voto_concierto DESC -- select 5 MEJORES GARITOS(amb la nova base sera concerts) por valoracion  -  no hi ha votacio a garitos pero si a concerts
 LIMIT 5;
 
 SELECT publicname, nombre_genero, valoracion

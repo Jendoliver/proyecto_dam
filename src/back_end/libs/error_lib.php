@@ -18,6 +18,16 @@ function errorSelector()
     echo "<h1>ERROR EN EL FICHERO SELECTOR.PHP</h1>";
 }
 
+function errorInsertor()
+{
+    echo "<h1>ERROR EN EL FICHERO INSERTOR.PHP</h1>";
+}
+
+function errorRegistro()
+{
+    echo "<h1>ERROR EN LA FUNCIÓN DE REGISTRO</h1>";
+}
+
 /****** ERRORES COMUNES ******/
 function errorLogin()
 {

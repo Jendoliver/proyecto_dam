@@ -1,14 +1,16 @@
 CUENTA HOSTALIA
-lechemusic
-a53318214M!
+    usuario -  lechemusic
+    contraseña -  a53318214M!
 
 CUENTA GMAIL
-lalechemusic@gmail.com
-a53318214M!
+    correo -  lalechemusic@gmail.com
+    contraseña -  a53318214M!
 
-CONTRASEÑA FTP
-QhqbKlYtu1K!esi0
+CUENTA FTP
+    servidor -  ftp.d4993709-72947.srv-hostalia.com
+    usuario -  f202854
+    contraseña -  QhqbKlYtu1K!esi0
 
 USUARIO BASE DE DATOS
-lechero
-9fk27/Cj?[h]vCLN
+    user -  lechero
+    pass -  9fk27/Cj?[h]vCLN

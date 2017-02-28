@@ -9,8 +9,8 @@ require_once "bbdd_lib.php";
 //AUTENTICACIÓN
 function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
-    $con = conectar($db);
-    $query = "SELECT * FROM Usuario WHERE username = '$user' AND pass = '$pass';";
+    $con = conectar("proyecto");
+    $query = "SELECT * FROM usuario WHERE username = '$user' AND pass = '$pass';";
     if($res = mysqli_query($con, $query)) // si no hay error en la consulta
     {
         if(mysqli_num_rows($res)) // si existe un usuario con ese username y pass, comprobamos su tipo
@@ -32,7 +32,7 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
 
 function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan, 2 = Banda, 3 = Local
 {
-    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
+    $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
     if($res = mysqli_query($con, $query)) 
     {
         if(mysqli_num_rows($res)) 
@@ -47,7 +47,7 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
         desconectar($con);
     }
     
-    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
+    $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
     if($res = mysqli_query($con, $query)) 
     {
         if(mysqli_num_rows($res)) 
@@ -62,7 +62,7 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
         desconectar($con);
     }
     
-    $query = "SELECT * FROM Usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
+    $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
     if($res = mysqli_query($con, $query)) 
     {
         if(mysqli_num_rows($res)) 
@@ -81,11 +81,11 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
 //SELECTS HOMEPAGE
 function selectProximosConciertos()
 {
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT fecha, nom_local, publicname
-                FROM Concierto
-                INNER JOIN Participa on Concierto.id = Participa.id_concierto
-                INNER JOIN Usuario on Participa.id_banda = Usuario.username
+                FROM concierto
+                INNER JOIN participa on concierto.id = participa.id_concierto
+                INNER JOIN usuario on participa.id_banda = usuario.username
                 ORDER BY fecha ASC
                 LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -102,14 +102,14 @@ function selectProximosConciertos()
 
 function selectMejoresGaritos()
 {
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT publicname, nombre_genero, valoracion
-                FROM Usuario
-                INNER JOIN Genero_user on Usuario.username = Genero_user.id_user
-                INNER JOIN Genero on Genero_user.id_genero = Genero.id
-                WHERE aforo IS NOT NULL
-                ORDER BY valoracion DESC
-                LIMIT 5;";
+            FROM usuario 
+            INNER JOIN genero_user on usuario.username = genero_user.id_user
+            INNER JOIN genero on genero_user.id_genero = genero.id
+            WHERE aforo IS NOT NULL
+            ORDER BY valoracion DESC
+            LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -124,14 +124,14 @@ function selectMejoresGaritos()
 
 function selectMejoresBandas()
 {
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT publicname, nombre_genero, valoracion
-                FROM Usuario
-                INNER JOIN Genero_user on Usuario.username = Genero_user.id_user
-                INNER JOIN Genero on Genero_user.id_genero = Genero.id
-                WHERE aforo IS NULL AND valoracion IS NOT NULL
-                ORDER BY valoracion DESC
-                LIMIT 5;";
+            FROM usuario 
+            INNER JOIN genero_user on usuario.username = genero_user.id_user
+            INNER JOIN genero on genero_user.id_genero = genero.id
+            WHERE aforo IS NULL AND valoracion IS NOT NULL
+            ORDER BY valoracion DESC 
+            LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -146,17 +146,15 @@ function selectMejoresBandas()
 
 function selectMejoresConciertos() // no funciona
 {
-    $con = conectar($db);
-    $query = "SELECT publicname, nom_local, fecha, 
-               (SELECT COUNT(*) 
-                    FROM votos_conciertos 
-                    INNER JOIN Concierto on Votos_conciertos.id_concierto = Concierto.id 
-                    GROUP BY Concierto.id) as valoracion_concierto
-                FROM Concierto
-                INNER JOIN Participa on Concierto.id = Participa.id_banda
-                INNER JOIN Usuario on Participa.id_banda = Usuario.username
-                ORDER BY valoracion_concierto DESC
-                LIMIT 5;";
+    $con = conectar("proyecto");
+    $query = "SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id)AS valoracion_conciertos
+            FROM concierto
+            INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
+            INNER JOIN participa on concierto.id = participa.id_concierto
+            INNER JOIN usuario on participa.id_banda = usuario.username
+            GROUP BY id_concierto
+            ORDER BY valoracion_conciertos DESC
+            LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -174,8 +172,8 @@ function selectImgPerfil() // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARL
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
-    $query = "SELECT img FROM Usuario WHERE username = '$username'";
+    $con = conectar("proyecto");
+    $query = "SELECT img FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
         createTable($res); // cambiar esto
@@ -192,8 +190,8 @@ function selectPublicname()
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
-    $query = "SELECT publicname FROM Usuario WHERE username = '$username'";
+    $con = conectar("proyecto");
+    $query = "SELECT publicname FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
         desconectar($con);
@@ -216,14 +214,15 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
-    $query = "SELECT fecha, publicname, nom_local
-                FROM Concierto
-                INNER JOIN Participa on Concierto.id = Participa.id_banda
-                INNER JOIN Usuario on Participa.id_banda = Usuario.username
-                WHERE COUNT(SELECT * FROM votos_conciertos WHERE id_fan = '$username') = 1
-                ORDER BY fecha ASC
-                LIMIT 10;";
+    $con = conectar("proyecto");
+    $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id)
+            FROM Concierto
+            INNER JOIN participa on Concierto.id = participa.id_concierto
+            INNER JOIN usuario on participa.id_banda = usuario.username
+            INNER JOIN votos_conciertos on Concierto.id = votos_conciertos.id_concierto
+            WHERE id_fan='$username'
+            ORDER BY fecha ASC
+            LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -240,14 +239,15 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT fecha, publicname, nom_local
-                FROM Concierto
-                INNER JOIN Participa on Concierto.id = Participa.id_banda
-                INNER JOIN Usuario on Participa.id_banda = Usuario.username
-                WHERE COUNT(SELECT * FROM votos_bandas WHERE id_fan = '$username') = 1
-                ORDER BY fecha ASC
-                LIMIT 10;";
+            FROM Concierto
+            INNER JOIN participa on Concierto.id = participa.id_concierto
+            INNER JOIN usuario on participa.id_banda = usuario.username
+            INNER JOIN votos_bandas on votos_bandas.id_banda = usuario.username
+            WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username')
+            ORDER BY fecha ASC
+            LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);
@@ -265,10 +265,10 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT id_concierto, nom_local, fecha, aceptado
-            FROM Participa
-            INNER JOIN Concierto on id_conicerto = Concierto.id
+            FROM participa
+            INNER JOIN Concierto on id_concierto = Concierto.id
             WHERE id_banda = '$username'
             ORDER BY fecha ASC
             LIMIT 10;";
@@ -288,11 +288,11 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
-    $query = "SELECT id_concierto, nom_local, fecha, aceptado
-            FROM Participa
-            INNER JOIN Concierto on id_conicerto = Concierto.id
-            WHERE id_banda = '$username' AND aceptado = 1
+    $con = conectar("proyecto");
+    $query = "SELECT id_concierto, nom_local, fecha
+            FROM participa
+            INNER JOIN Concierto on participa.id_concierto = Concierto.id
+            WHERE aceptado = 1 AND id_banda = '$username'
             ORDER BY fecha ASC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -312,11 +312,11 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT publicname, id, fecha
             FROM Concierto
-            INNER JOIN Participa on Concierto.id = Participa.id_concierto
-            INNER JOIN Usuario on Participa.id_banda = Usuario.username
+            INNER JOIN participa on Concierto.id = participa.id_concierto
+            INNER JOIN usuario on participa.id_banda = usuario.username
             WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username'
             ORDER BY fecha ASC
             LIMIT 10;";
@@ -336,13 +336,13 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar($db);
+    $con = conectar("proyecto");
     $query = "SELECT id, fecha, precio
             FROM Concierto
-            INNER JOIN Usuario on Usuario.publicname = Concierto.nom_local
-            WHERE nom_local = pubblicname AND username = '$username'
+            INNER JOIN usuario on usuario.username = Concierto.nom_local
+            WHERE username = '$username'
             ORDER BY fecha ASC
-            LIMIT 10;";
+            LIMIT 10; ";
     if($res = mysqli_query($con, $query))
     {
         createTable($res);

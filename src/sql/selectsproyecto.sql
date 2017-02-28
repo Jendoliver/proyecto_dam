@@ -27,45 +27,65 @@ FROM usuario
 INNER JOIN Concierto on nom_local = username
 WHERE nom_local = $_SESSION["username"];
 
--- SELECTS HOMEPAGE  
+-- SELECTS HOMEPAGE 
+-- select proximos conciertos bonitos  -  FUNCIONA
 SELECT fecha, nom_local, publicname
 FROM Concierto 
 INNER JOIN Participa on Concierto.id = Participa.id_concierto
 INNER JOIN Usuario on Participa.id_banda = Usuario.username
 ORDER BY fecha ASC
-LIMIT 10; -- select proximos conciertos bonitos  -  FUNCIONA
+LIMIT 10; 
 
+ -- select 5 MEJORES GARITOS por valoracion  - FUNCIONA
 SELECT publicname, nombre_genero, valoracion
 FROM Usuario 
 INNER JOIN Genero_user on Usuario.username = Genero_user.id_user
 INNER JOIN Genero on Genero_user.id_genero = Genero.id
 WHERE aforo IS NOT NULL
-ORDER BY valoracion DESC -- select 5 MEJORES GARITOS por valoracion  -  NO MUESTRA NADA
-LIMIT 5;
+ORDER BY valoracion DESC
 
+-- select 5 MEJORES bandas por valoracion  -  FUNCIONA i es podra modificar en el php per ferho per genere
 SELECT publicname, nombre_genero, valoracion
 FROM Usuario 
 INNER JOIN Genero_user on Usuario.username = Genero_user.id_user
 INNER JOIN Genero on Genero_user.id_genero = Genero.id
 WHERE aforo IS NULL AND valoracion IS NOT NULL
-ORDER BY valoracion DESC -- select 5 MEJORES bandas por valoracion  -  NO MUESTRA NADA
+ORDER BY valoracion DESC 
 LIMIT 5;
 
+-- mejores conciertos - el de abaix del comentari FUNCIONA
 SELECT publicname, nom_local, fecha, (SELECT COUNT(*) FROM votos_conciertos INNER JOIN Concierto on Votos_conciertos.id_concierto = Concierto.id GROUP BY Concierto.id) as valoracion_concierto -- valoracion_concierto
 FROM Concierto
 INNER JOIN Participa on Concierto.id = Participa.id_concierto
 INNER JOIN Usuario on Participa.id_banda = Usuario.username
-ORDER BY valoracion_concierto DESC -- mejores conciertos
+ORDER BY valoracion_concierto DESC 
+LIMIT 5;
+-- aquest selector funciona i mostra el concert amb vots pero tota la resta dinformacio que volem mostrar no he aconseguit que funcioni
+-- select id_concierto, count(id_fan) as valoracion_concierto
+-- from votos_conciertos
+-- group by id_concierto
+-- ORDER BY valoracion_concierto DESC
+-- LIMIT 5;
+
+-- te pinta de que funciona perfectament i mostra tot correcte millor que els de dalt
+SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id)AS valoracion_conciertos
+FROM Concierto
+INNER JOIN votos_conciertos on Concierto.id = votos_conciertos.id_concierto
+INNER JOIN Participa on Concierto.id = Participa.id_concierto
+INNER JOIN Usuario on Participa.id_banda = Usuario.username
+GROUP BY id_concierto
+ORDER BY valoracion_conciertos DESC
 LIMIT 5;
 
---SELECTS PÁGINA FAN
+
+-- SELECTS PÁGINA FAN
 -- imagen perfil
 SELECT img FROM Usuario WHERE username = $_SESSION["username"];
 
 -- nombre publico
 SELECT publicname FROM Usuario WHERE username = $_SESSION["username"];
 
--- conciertos valorados  -  NO MUESTRA NADA
+-- conciertos valorados  -  FUNCIONA el de abaix on el comentari
 SELECT fecha, publicname, nom_local
 FROM Concierto
 INNER JOIN Participa on Concierto.id = Participa.id_concierto
@@ -74,12 +94,33 @@ WHERE (SELECT  COUNT(*) FROM votos_conciertos WHERE id_fan = $_SESSION["username
 ORDER BY fecha ASC
 LIMIT 10;
 
--- proximos conciertos de las bandas a las que le has dado like  -  NO MUESTRA NADA
+-- te pinta de que funciona perfectament, mostra els concerts que es dona like els vots que te i la banda(no he borrat el de dalt per si acas)
+SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id)
+FROM Concierto
+INNER JOIN Participa on Concierto.id = Participa.id_concierto
+INNER JOIN Usuario on Participa.id_banda = Usuario.username
+INNER JOIN votos_conciertos on Concierto.id = votos_conciertos.id_concierto
+WHERE id_fan=$_SESSION["username"]
+ORDER BY fecha ASC
+LIMIT 10;
+
+
+-- proximos conciertos de las bandas a las que le has dado like  -  funciona el de abaix on el comentari
 SELECT fecha, publicname, nom_local
 FROM Concierto
 INNER JOIN Participa on Concierto.id = Participa.id_concierto
 INNER JOIN Usuario on Participa.id_banda = Usuario.username
 WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = $_SESSION["username"]) = 1
+ORDER BY fecha ASC
+LIMIT 10;
+
+-- sembla que funciona be pero faltaria posar una condicio de que la data a de ser superior a la del dia de la consulta
+SELECT fecha, publicname, nom_local
+FROM Concierto
+INNER JOIN Participa on Concierto.id = Participa.id_concierto
+INNER JOIN Usuario on Participa.id_banda = Usuario.username
+INNER JOIN votos_bandas on votos_bandas.id_banda = usuario.username
+WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username')
 ORDER BY fecha ASC
 LIMIT 10;
 

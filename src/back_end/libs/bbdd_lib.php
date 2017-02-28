@@ -70,7 +70,8 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
     if($res = mysqli_query($con, $query))
     {
         session_start();
-        extract($res);
+        $row = mysqli_fetch_assoc($res);
+        extract($row);
         $_SESSION["username"] = $username;
         $_SESSION["publicname"] = $publicname;
         $_SESSION["email"] = $email;

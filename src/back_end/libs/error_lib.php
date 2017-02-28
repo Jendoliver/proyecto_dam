@@ -28,6 +28,13 @@ function errorRegistro()
     echo "<h1>ERROR EN LA FUNCIÓN DE REGISTRO</h1>";
 }
 
+function console_log( $data ) // Para depurar php
+{
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
+
 /****** ERRORES COMUNES ******/
 function errorLogin()
 {

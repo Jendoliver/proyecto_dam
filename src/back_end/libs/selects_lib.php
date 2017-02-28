@@ -222,7 +222,7 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
             INNER JOIN usuario on participa.id_banda = usuario.username
             INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
             WHERE id_fan='$username'
-            ORDER BY fecha ASC
+            ORDER BY fecha DESC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
@@ -247,7 +247,7 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
             INNER JOIN usuario on participa.id_banda = usuario.username
             INNER JOIN votos_bandas on votos_bandas.id_banda = usuario.username
             WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username')
-            ORDER BY fecha ASC
+            ORDER BY fecha DESC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {

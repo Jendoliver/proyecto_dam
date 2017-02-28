@@ -21,7 +21,7 @@ else if(isset($_POST["registro_banda"])) // Caso banda
     {
         for($i=0; $i<$memnum; $i++)
         {
-            insertMusico($nombre[$i], $apellido[$i], $instrumento[$i], $edad[$i], $username); // a continuación los músicos, que quedan registrados en "pertenece"
+            insertMusico($membername[$i], $memberape1[$i], $memberape2[$i], $memberinstrument[$i], $memberage[$i], $username); // a continuación los músicos, que quedan registrados en "pertenece"
         }    
         getSession($username, 2); 
         $_SESSION["token"] = 1;

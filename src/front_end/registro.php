@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/smoothiexxx.js"></script>
+    <script src="js/members.js"></script>
     <title>Regístrate en La Leche Music</title>
 </head>
 <body>
@@ -179,8 +180,9 @@
                             </div>
                             <div class="form-group"> <!-- JS!!!!!!!!!!!!!!!!!!!!!! -->
                                 <label for="memnum">Número de miembros:</label>
-                                <input type="number" class="form-control" name="memnum" placeholder="rocknroll" maxlength="20" required>
+                                <input id="members" type="number" min="1" maxlength="2" class="form-control" name="memnum" placeholder="rocknroll" required>
                             </div>
+                            <div id="membersdiv"></div>
                             <button type="submit" name="registro_banda" class="btn btn-success btn-block">¡Quiero que me escuchen por todo el mundo!</button>
                         </form>
                     </div>

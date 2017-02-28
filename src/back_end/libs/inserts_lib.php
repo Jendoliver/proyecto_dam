@@ -60,6 +60,25 @@ function insertBanda($username, $password, $email, $publicname, $pic="img/user_i
     }
 }
 
+function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la tabla musico y la tabla usa
+{
+    $con = conectar("proyecto");
+    $id = generateID("musico");
+    $insert = "INSERT INTO musico VALUES ($id, '$nom', '$ape1', '$ape2', $edad);";
+    if(mysqli_query($con, $insert))
+    {
+        $insert = "INSERT INTO usa VALUES ($id, $inst);";
+        if(mysqli_query($con, $insert))
+        {
+            desconectar($con);
+            return 1;
+        }
+    }
+    errorConsulta($con);
+    desconectar($con);
+    return 0;
+}
+
 function insertGarito($username, $password, $email, $publicname, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
 {
     $con = conectar("proyecto");

@@ -28,6 +28,22 @@ function auth() // Función que comprueba que se accede a la web logueado (1 - O
         return 0;
 }
 
+function generateID($table)
+{
+    $con = conectar("proyecto");
+    $query = "SELECT * FROM $table";
+    if($res = mysqli_query($con, $query))
+    {
+        desconectar($con);
+        return mysqli_num_rows($res)+1;
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }
+}
+
 function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXISTE UN DATO EN UNA TABLA (devuelve bool)
 { // data = dato a encontrar, table = tabla en la que buscar, attrib = columna
     $con = conectar("proyecto");

@@ -32,6 +32,7 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
 
 function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan, 2 = Banda, 3 = Local
 {
+    $con = conectar("proyecto");
     $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
     if($res = mysqli_query($con, $query)) 
     {

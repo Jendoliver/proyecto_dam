@@ -58,9 +58,14 @@ CREATE TABLE `genero` (
 --
 
 INSERT INTO `genero` (`id`, `nombre_genero`) VALUES
-(1, 'nu metal'),
-(2, 'heavy metal'),
-(3, 'thrash metal');
+(1, 'Heavy Metal'),
+(2, 'Jazz'),
+(3, 'Blues'),
+(4, 'Clásico'),
+(5, 'Rap'),
+(6, 'R&B'),
+(7, 'Soul'),
+(8, 'Çoñarda');
 
 -- --------------------------------------------------------
 

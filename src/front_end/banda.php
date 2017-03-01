@@ -30,6 +30,10 @@
                         <h3>Información personal</h3>
                         <?php session_start(); extract($_SESSION); ?>
                         <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
+                        <div><span class="glyphicon glyphicon-home"></span> Ciudad de residencia: <?php echo $poblacion?></div>
+                        <div><span class="glyphicon glyphicon-globe"></span> Página web: <?php echo $web?></div>
+                        <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <?php echo $poblacion?></div>
+                        <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
                     </div>
                 </div>
             </div>

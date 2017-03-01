@@ -30,12 +30,13 @@
                         <h3>Información personal</h3>
                         <?php session_start(); extract($_SESSION); ?>
                         <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
+                        <div><span class="glyphicon glyphicon-home"></span> Ciudad de residencia: <?php echo $poblacion?></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Próximos conciertos de las bandas que te gustan</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectProximosConciertosLike() ?>
                         </div>
                     </div>
@@ -45,7 +46,7 @@
                 <div class="col-md-12">
                     <div class="well">
                         <h3>Conciertos que has valorado</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectConciertosValorados() ?>
                         </div>
                     </div>

@@ -5,42 +5,57 @@ require "libs/inserts_lib.php";
 if(isset($_POST["registro_fan"])) // Caso fan
 {
     extract($_POST);
-    if(insertFan($username, $password, $email, $publicname, $pic))
+    if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        getSession($username, 1); 
-        $_SESSION["token"] = 1;
-        header('Location: ../front_end/fan.php');
+        if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
+        {
+            getSession($username, 1); 
+            $_SESSION["token"] = 1;
+            header('Location: ../front_end/fan.php');
+        }
+        else
+            errorRegistro();
     }
     else
-        errorRegistro();
+        errorPassword();
 }
 else if(isset($_POST["registro_banda"])) // Caso banda
 {
     extract($_POST);
-    if(insertBanda($username, $password, $email, $publicname, $pic, $website="", $telnum)) // creamos primero la banda
+    if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        for($i=0; $i<$memnum; $i++)
+        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website="", $telnum)) // creamos primero la banda
         {
-            insertMusico($membername[$i], $memberape1[$i], $memberape2[$i], $memberinstrument[$i], $memberage[$i], $username); // a continuación los músicos, que quedan registrados en "pertenece"
-        }    
-        getSession($username, 2); 
-        $_SESSION["token"] = 1;
-        header('Location: ../front_end/banda.php');
+            for($i=0; $i<$memnum; $i++)
+            {
+                insertMusico($membername[$i], $memberape1[$i], $memberape2[$i], $memberinstrument[$i], $memberage[$i], $username); // a continuación los músicos, que quedan registrados en "pertenece"
+            }    
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
+            header('Location: ../front_end/banda.php');
+        }
+        else
+            errorRegistro();
     }
     else
-        errorRegistro();
+        errorPassword();
 }
 else if(isset($_POST["registro_garito"])) // Caso garito
 {
     extract($_POST);
-    if(insertGarito($username, $password, $email, $publicname, $pic, $direccion, $aforomax, $website="", $telnum))
-    {    
-        getSession($username, 3); 
-        $_SESSION["token"] = 1;
-        header('Location: ../front_end/local.php');
+    if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
+    {
+        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website="", $telnum))
+        {    
+            getSession($username, 3); 
+            $_SESSION["token"] = 1;
+            header('Location: ../front_end/local.php');
+        }
+        else
+            errorRegistro();
     }
     else
-        errorRegistro();
+        errorPassword();
 }
 else
     errorInsertor();

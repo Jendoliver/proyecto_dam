@@ -8,12 +8,12 @@
 
 require "selects_lib.php";
 
-function insertFan($username, $password, $email, $publicname, $pic="img/user_image.png")
+function insertFan($username, $password, $email, $publicname, $poblacion, $pic="img/user_image.png")
 {
     $con = conectar("proyecto");
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`img`) VALUES ('$username', '$password', '$email', '$publicname', '$pic');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic');";
         if(mysqli_query($con, $insert))
         {
             desconectar($con);
@@ -34,23 +34,23 @@ function insertFan($username, $password, $email, $publicname, $pic="img/user_ima
     }
 }
 
-function insertBanda($username, $password, $email, $publicname, $pic="img/user_image.png", $website="", $telnum)
+function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $website="", $telnum)
 {
     $con = conectar("proyecto");
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`img`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', '$pic', '$website', '$telnum');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$website', '$telnum');";
         if(mysqli_query($con, $insert))
         {
-            desconectar($con);
-            return 1;
+            if(mysqli_query($con, "INSERT INTO genero_user VALUES ('$username', $idgenero);"))
+            {
+                desconectar($con);
+                return 1;
+            }
         }
-        else
-        {
-            errorConsulta($con);
-            desconectar($con);
-            return 0;
-        }
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
     }
     else
     {
@@ -67,7 +67,7 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
     $insert = "INSERT INTO musico VALUES ($id, '$nom', '$ape1', '$ape2', $edad);";
     if(mysqli_query($con, $insert))
     {
-        $insert = "INSERT INTO usa VALUES ($id, $inst);";
+        $insert = "INSERT INTO usa VALUES ($id, '$inst');";
         if(mysqli_query($con, $insert))
         {
             desconectar($con);
@@ -79,23 +79,23 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
     return 0;
 }
 
-function insertGarito($username, $password, $email, $publicname, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
+function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
 {
     $con = conectar("proyecto");
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`img`,`direccion`,`aforo`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', '$pic', '$direccion', '$aforomax', $website', '$telnum');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`direccion`,`aforo`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$direccion', '$aforomax', '$website', '$telnum');";
         if(mysqli_query($con, $insert))
         {
-            desconectar($con);
-            return 1;
+            if(mysqli_query($con, "INSERT INTO genero_user VALUES ('$username', $idgenero);"))
+            {
+                desconectar($con);
+                return 1;
+            }
         }
-        else
-        {
-            errorConsulta($con);
-            desconectar($con);
-            return 0;
-        }
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
     }
     else
     {

@@ -12,6 +12,7 @@
     <title>Regístrate en La Leche Music</title>
 </head>
 <body>
+    <?php require "../back_end/libs/selects_lib.php"; ?>
     <div class="container-fluid">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
@@ -112,6 +113,12 @@
                                 <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com" maxlength="100" required>
                             </div>
                             <div class="form-group">
+                                <label for="poblacion">Ciudad de residencia:</label>
+                                <select class="form-control" name="poblacion">
+                                    <?php selectPoblaciones() ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="pass">Contraseña:</label>
                                 <input type="password" class="form-control" name="password" placeholder="lml" maxlength="20" required>
                             </div>
@@ -155,7 +162,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de vosotros! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon" maxlength="11">
+                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon PAAAAAAAAAAARDO" maxlength="11">
                             </div>
                             <h3>Información de la banda</h3>
                             <div class="form-group">
@@ -163,22 +170,26 @@
                                 <input type="text" class="form-control" name="publicname" placeholder="Fénix" maxlength="50" required>
                             </div>
                             <div class="form-group">
-                                <label for="poblacion">Ciudad de residencia:</label> <!-- ESTO TIENE QUE SER UN SELECT -->
-                                <input type="text" class="form-control" name="poblacion" placeholder="El puro Infierno" maxlength="20" required>
+                                <label for="poblacion">Ciudad de residencia:</label>
+                                <select class="form-control" name="poblacion">
+                                    <?php selectPoblaciones() ?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="bandstyle">Estilo de la banda <em>(opcional, luego podrás especificar más)</em>:</label> <!-- TAMBIÉN SELECT -->
-                                <input type="text" class="form-control" name="bandstyle" placeholder="Heavy Metal" maxlength="20">
+                                <label for="bandstyle">Estilo de la banda <em>(opcional, luego podrás especificar más)</em>:</label>
+                                <select class="form-control" name="idgenero">
+                                    <?php selectGeneros() ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="website">Página web de la banda <em>(¡si tenéis!)</em>:</label>
-                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150" required>
+                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150">
                             </div>
                             <div class="form-group">
                                 <label for="telnum">Número de teléfono de la banda <em>(opcional)</em>:</label>
                                 <input type="text" class="form-control" name="telnum" placeholder="rocknroll" maxlength="20" required>
                             </div>
-                            <div class="form-group"> <!-- JS!!!!!!!!!!!!!!!!!!!!!! -->
+                            <div class="form-group">
                                 <label for="memnum">Número de miembros:</label>
                                 <input id="members" type="number" min="1" maxlength="2" class="form-control" name="memnum" placeholder="rocknroll" required>
                             </div>
@@ -215,7 +226,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tu garito! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon" maxlength="11">
+                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon PAAAAAAAAAAARDO" maxlength="11">
                             </div>
                             <h3>Información del garito</h3>
                             <div class="form-group">
@@ -223,12 +234,20 @@
                                 <input type="text" class="form-control" name="publicname" placeholder="Bóveda" maxlength="50" required>
                             </div>
                             <div class="form-group">
+                                <label for="garitostyle">Estilo más común <em>(opcional, luego podrás especificar más)</em>:</label>
+                                <select class="form-control" name="idgenero">
+                                    <?php selectGeneros() ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="direccion">Dirección del garito:</label>
                                 <input type="text" class="form-control" name="direccion" placeholder="Calle Roc Boronat, 33" maxlength="100" required>
                             </div>
                             <div class="form-group">
-                                <label for="poblacion">Ciudad:</label> <!-- ESTO TIENE QUE SER UN SELECT -->
-                                <input type="text" class="form-control" name="poblacion" placeholder="El puro Infierno" maxlength="20" required>
+                                <label for="poblacion">Ciudad:</label>
+                                <select class="form-control" name="poblacion">
+                                    <?php selectPoblaciones() ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="aforomax">Aforo máximo:</label>
@@ -236,7 +255,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="website">Página web del garito <em>(¡si tenéis!)</em>:</label>
-                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150" required>
+                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150">
                             </div>
                             <div class="form-group">
                                 <label for="telnum">Número de teléfono del responsable del garito:</label>

@@ -145,10 +145,10 @@ function selectMejoresBandas()
     }  
 }
 
-function selectMejoresConciertos() // no funciona
+function selectMejoresConciertos()
 {
     $con = conectar("proyecto");
-    $query = "SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id)AS valoracion_conciertos
+    $query = "SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
@@ -166,6 +166,39 @@ function selectMejoresConciertos() // no funciona
         errorConsulta($con);
         desconectar($con);
     }
+}
+
+//SELECTS REGISTRO
+function selectGeneros()
+{
+    $con = conectar("proyecto");
+    if($res = mysqli_query($con, "SELECT id, nombre_genero FROM genero"))
+    {
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            echo "<option value='$id'>$nombre_genero</option>";
+        }
+    }
+    else
+        errorConsulta($con);
+    desconectar($con);
+}
+
+function selectPoblaciones()
+{
+    $con = conectar("proyecto");
+    if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
+    {
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            echo "<option value='$id'>$nombre_poblacion</option>";
+        }
+    }
+    else
+        errorConsulta($con);
+    desconectar($con);
 }
 
 //SELECTS PERFILES (generales)
@@ -216,7 +249,7 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
     session_start();
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
-    $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id)
+    $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
@@ -314,7 +347,7 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
     session_start();
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
-    $query = "SELECT publicname, id, fecha
+    $query = "SELECT publicname, fecha
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
@@ -338,7 +371,7 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
     session_start();
     $username = $_SESSION["username"];
     $con = conectar("proyecto");
-    $query = "SELECT id, fecha, precio
+    $query = "SELECT fecha, precio
             FROM concierto
             INNER JOIN usuario on usuario.username = concierto.nom_local
             WHERE username = '$username'

@@ -11,6 +11,7 @@ function conectar($database) // Todo un clásico
     //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $database) or PARA EL HOSTING
     $conexion = mysqli_connect("localhost", "jandol", "", $database) or // Para C9
         die("No se ha podido conectar a la BBDD");
+    mysqli_set_charset($conexion, "utf8");
     return $conexion;
 }
 
@@ -74,6 +75,7 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
         extract($row);
         $_SESSION["username"] = $username;
         $_SESSION["publicname"] = $publicname;
+        $_SESSION["poblacion"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
         $_SESSION["email"] = $email;
         $_SESSION["img"] = $img;
         
@@ -92,6 +94,37 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
 }
 
 //UTILIDADES
+function localToPublic($username) // devuelve el publicname asociado a $username - 0 = ERROR
+{
+    $con = conectar("proyecto");
+    $query = "SELECT publicname FROM usuario WHERE username = '$username';";
+    if($res = mysqli_query($con, $query))
+    {
+        $row = mysqli_fetch_assoc($res);
+        desconectar($con);
+        return $row["publicname"];
+    }
+    else
+        errorConsulta($con);
+    desconectar($con);
+    return 0;
+}
+
+function idToValue($id, $col, $table) // devuelve el valor en la columna $col asociado a la id en una tabla hash
+{
+    $con = conectar("proyecto");
+    if($res = mysqli_query($con, "SELECT $col FROM $table WHERE id = $id"))
+    {
+        $row = mysqli_fetch_assoc($res);
+        desconectar($con);
+        return $row[$col];
+    }
+    else
+        errorConsulta($con);
+    desconectar($con);
+    return 0;
+}
+
 function createTable($res) // Crea una tabla genérica automáticamente con el resultado de una query
 {
     if($row = mysqli_fetch_assoc($res)) //comprobamos que hay algo para evitar warning
@@ -100,7 +133,20 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
         $table .= "<thead>";
         foreach($row as $key => $value) // header tabla
         {
-            $table .= "<th>$key</th>";
+            switch($key)
+            {
+                case "nom_local": $table .= "<th>Garito</th>"; break;
+                case "id_banda": $table .= "<th>Banda</th>"; break;
+                case "publicname": $table .= "<th>Nombre</th>"; break;
+                case "nombre_genero": $table .= "<th>Género</th>"; break;
+                case "valoracion": $table .= "<th>Valoración</th>"; break;
+                case "valoracion_conciertos": $table .= "<th>Valoración</th>"; break;
+                case "fecha": $table .= "<th>Fecha</th>"; break;
+                case "precio": $table .= "<th>Pago por grupo</th>"; break;
+                case "aceptado": $table .= "<th>Estado de la solicitud</th>"; break;
+                case "id_concierto": break;
+                default: $table .= "<th>$key</th>";
+            }
         }
         $table .= "</thead><tbody>"; // cierre del header y apertura del body
     
@@ -109,7 +155,22 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
             $table .= "<tr>"; // principio de fila
             foreach($row as $key => $value) // llenamos una fila
             {
-                $table .= "<td>$value</td>";
+                switch($key)
+                {
+                    case "nom_local": $table .= "<td>".localToPublic($value)."</td>"; break;
+                    case "id_banda": $table .= "<td>".localToPublic($value)."</td>"; break;
+                    case "aceptado":
+                        {
+                            switch($value)
+                            {
+                                case 0: $table .= "<td>Pendiente</td>"; break;
+                                case 1: $table .= "<td>Aceptado</td>"; break;
+                                case 2: $table .= "<td>Rechazado</td>"; break;
+                            }
+                        }
+                    case "id_concierto": break;
+                    default: $table .= "<td>$value</td>";
+                }
             }
             $table .= "</tr>";
         } while ($row = mysqli_fetch_assoc($res));

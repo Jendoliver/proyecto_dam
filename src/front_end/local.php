@@ -30,6 +30,10 @@
                         <h3>Información personal</h3>
                         <?php session_start(); extract($_SESSION); ?>
                         <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
+                        <div><span class="glyphicon glyphicon-home"></span> Dirección: <?php echo $direccion.", ".$poblacion?></div>
+                        <div><span class="glyphicon glyphicon-globe"></span> Página web: <?php echo $web?></div>
+                        <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <?php echo $tel?></div>
+                        <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
                     </div>
                 </div>
             </div>
@@ -47,7 +51,7 @@
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Grupos pendientes de aprobar</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectGruposAprobar() ?>
                         </div>
                     </div>
@@ -55,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Conciertos creados</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectProximosConciertosLocal() ?>
                         </div>
                     </div>
@@ -64,5 +68,5 @@
         </div> <!-- FIN DEL MAIN CONTAINER -->
         <?php require "footer.php" ?>
     </div>
-    <?php // } ?>
+    <?php } ?>
 </body>

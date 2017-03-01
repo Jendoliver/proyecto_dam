@@ -45,6 +45,15 @@ function errorLogin()
     </script>";
 }
 
+function errorPassword()
+{
+    $message = "Las contraseñas no coinciden";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '../front_end/registro.php';
+    </script>";
+}
+
 function errorNotLogged()
 {
     $message = "No has iniciado sesión --- ACCESO DENEGADO";

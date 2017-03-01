@@ -38,37 +38,41 @@ function console_log( $data ) // Para depurar php
 /****** ERRORES COMUNES ******/
 function errorLogin()
 {
+    global $homepage;
     $message = "Login incorrecto";
     echo "<script type='text/javascript'>
     alert('$message');
-    window.location = '../front_end/index.php';
+    window.location = '$homepage';
     </script>";
 }
 
 function errorPassword()
 {
+    global $registro;
     $message = "Las contraseñas no coinciden";
     echo "<script type='text/javascript'>
     alert('$message');
-    window.location = '../front_end/registro.php';
+    window.location = '$registro';
     </script>";
 }
 
 function errorNotLogged()
 {
+    global $homepage;
     $message = "No has iniciado sesión --- ACCESO DENEGADO";
     echo "<script type='text/javascript'>
     alert('$message');
-    window.location = '../front_end/index.php';
+    window.location = '$homepage';
     </script>";
 }
 
 function errorUserExists()
 {
+    global $registro;
     $message = "El nombre de usuario indicado ya está en uso";
     echo "<script type='text/javascript'>
     alert('$message');
-    window.location = '../front_end/registro.php';
+    window.location = '$registro';
     </script>";
 }
 

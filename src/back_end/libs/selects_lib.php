@@ -4,12 +4,12 @@
 *   selects_lib.php: LIBRERÍA DE CONSULTAS SELECT DE LA APLICACIÓN
 *
 */
-require_once "bbdd_lib.php";
+require "bbdd_lib.php";
 
 //AUTENTICACIÓN
 function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user' AND pass = '$pass';";
     if($res = mysqli_query($con, $query)) // si no hay error en la consulta
     {
@@ -32,7 +32,7 @@ function checkUser($user, $pass) // Función que comprueba que el login es corre
 
 function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan, 2 = Banda, 3 = Local
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
     if($res = mysqli_query($con, $query)) 
     {
@@ -82,7 +82,7 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
 //SELECTS HOMEPAGE
 function selectProximosConciertos()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, nom_local, publicname
                 FROM concierto
                 INNER JOIN participa on concierto.id = participa.id_concierto
@@ -103,7 +103,7 @@ function selectProximosConciertos()
 
 function selectMejoresGaritos()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname, nombre_genero, valoracion
             FROM usuario 
             INNER JOIN genero_user on usuario.username = genero_user.id_user
@@ -125,7 +125,7 @@ function selectMejoresGaritos()
 
 function selectMejoresBandas()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname, nombre_genero, valoracion
             FROM usuario 
             INNER JOIN genero_user on usuario.username = genero_user.id_user
@@ -147,7 +147,7 @@ function selectMejoresBandas()
 
 function selectMejoresConciertos()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
@@ -171,7 +171,7 @@ function selectMejoresConciertos()
 //SELECTS REGISTRO
 function selectGeneros()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, "SELECT id, nombre_genero FROM genero"))
     {
         while($row = mysqli_fetch_assoc($res))
@@ -187,7 +187,7 @@ function selectGeneros()
 
 function selectPoblaciones()
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
     {
         while($row = mysqli_fetch_assoc($res))
@@ -206,7 +206,7 @@ function selectImgPerfil() // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARL
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT img FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
@@ -224,7 +224,7 @@ function selectPublicname()
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
@@ -248,7 +248,7 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
@@ -273,7 +273,7 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, publicname, nom_local
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
@@ -299,7 +299,7 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT id_concierto, nom_local, fecha, aceptado
             FROM participa
             INNER JOIN concierto on id_concierto = concierto.id
@@ -322,7 +322,7 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT id_concierto, nom_local, fecha
             FROM participa
             INNER JOIN concierto on participa.id_concierto = concierto.id
@@ -346,7 +346,7 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname, fecha
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
@@ -370,7 +370,7 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
 {
     session_start();
     $username = $_SESSION["username"];
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, precio
             FROM concierto
             INNER JOIN usuario on usuario.username = concierto.nom_local

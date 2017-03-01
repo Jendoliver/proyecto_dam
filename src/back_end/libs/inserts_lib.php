@@ -10,7 +10,7 @@ require "selects_lib.php";
 
 function insertFan($username, $password, $email, $publicname, $poblacion, $pic="img/user_image.png")
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic');";
@@ -36,7 +36,7 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
 
 function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $website="", $telnum)
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$website', '$telnum');";
@@ -62,7 +62,7 @@ function insertBanda($username, $password, $email, $publicname, $poblacion, $idg
 
 function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la tabla musico y la tabla usa
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $id = generateID("musico");
     $insert = "INSERT INTO musico VALUES ($id, '$nom', '$ape1', '$ape2', $edad);";
     if(mysqli_query($con, $insert))
@@ -81,7 +81,7 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
 
 function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`direccion`,`aforo`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$direccion', '$aforomax', '$website', '$telnum');";

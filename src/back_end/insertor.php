@@ -11,7 +11,7 @@ if(isset($_POST["registro_fan"])) // Caso fan
         {
             getSession($username, 1); 
             $_SESSION["token"] = 1;
-            header('Location: ../front_end/fan.php');
+            header("Location: $fanpage");
         }
         else
             errorRegistro();
@@ -32,7 +32,7 @@ else if(isset($_POST["registro_banda"])) // Caso banda
             }    
             getSession($username, 2); 
             $_SESSION["token"] = 1;
-            header('Location: ../front_end/banda.php');
+            header("Location: $bandpage");
         }
         else
             errorRegistro();
@@ -49,7 +49,7 @@ else if(isset($_POST["registro_garito"])) // Caso garito
         {    
             getSession($username, 3); 
             $_SESSION["token"] = 1;
-            header('Location: ../front_end/local.php');
+            header("Location: $garitopage");
         }
         else
             errorRegistro();

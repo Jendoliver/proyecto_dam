@@ -6,6 +6,7 @@
 */
 require "error_lib.php";
 
+
 function conectar($database) // Todo un clásico
 {
     //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $database) or PARA EL HOSTING
@@ -31,7 +32,7 @@ function auth() // Función que comprueba que se accede a la web logueado (1 - O
 
 function generateID($table)
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM $table";
     if($res = mysqli_query($con, $query))
     {
@@ -47,7 +48,7 @@ function generateID($table)
 
 function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXISTE UN DATO EN UNA TABLA (devuelve bool)
 { // data = dato a encontrar, table = tabla en la que buscar, attrib = columna
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
 
     $query = "SELECT $attrib FROM $table WHERE $attrib = '".mysqli_real_escape_string($con, $data)."'";
     if($res = mysqli_query($con, $query))
@@ -66,7 +67,7 @@ function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXI
 
 function getSession($user, $usertype) // obtiene las variables de sesión de un usuario
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user'";
     if($res = mysqli_query($con, $query))
     {
@@ -96,7 +97,7 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
 //UTILIDADES
 function localToPublic($username) // devuelve el publicname asociado a $username - 0 = ERROR
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname FROM usuario WHERE username = '$username';";
     if($res = mysqli_query($con, $query))
     {
@@ -112,7 +113,7 @@ function localToPublic($username) // devuelve el publicname asociado a $username
 
 function idToValue($id, $col, $table) // devuelve el valor en la columna $col asociado a la id en una tabla hash
 {
-    $con = conectar("proyecto");
+    $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, "SELECT $col FROM $table WHERE id = $id"))
     {
         $row = mysqli_fetch_assoc($res);

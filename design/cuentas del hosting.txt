@@ -8,8 +8,8 @@ CUENTA GMAIL
 
 CUENTA FTP
     servidor -  ftp.d4993709-72947.srv-hostalia.com
-    usuario -  f202854.lechero
-    contraseña -  08E=ckAvP0Owacww
+    usuario -  f202854
+    contraseña -  RfE8XZvYvMeJD7-s
 
 USUARIO BASE DE DATOS
     user -  lechero

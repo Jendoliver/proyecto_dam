@@ -33,7 +33,7 @@ INSERT INTO Concierto VALUES
 (1, '2011-12-24', 120, 'bovedamarina'),
 (2, '2012-11-23', 10, 'bovedamarina'),
 (3, '2014-10-20', 20, 'bovedamarina');
-
+--dsgqw
 INSERT INTO Participa VALUES
 (1, 'fenixheavymetal', 1),
 (1, 'losdostolays', 1),

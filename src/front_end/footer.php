@@ -58,7 +58,7 @@
             </div>
         </div><br>
         <div class="row">
-            <p><center>¿Tienes alguna duda? <a href="#">¡Contáctanos!</a> <p class="footertext">Copyright 2017 ©</p></center></p>
+            <p><center>¿Tienes alguna duda? <a href="#">¡Contáctanos man!</a> <p class="footertext">Copyright 2017 ©</p></center></p>
         </div>
     </div>
 </div>

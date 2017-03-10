@@ -8,6 +8,7 @@
 
 require "selects_lib.php";
 
+/************ REGISTRO ****************/
 function insertFan($username, $password, $email, $publicname, $poblacion, $pic="img/user_image.png")
 {
     $con = conectar($GLOBALS['db']);
@@ -103,4 +104,31 @@ function insertGarito($username, $password, $email, $publicname, $poblacion, $id
         desconectar($con);
         return 0;
     }
+}
+
+/************ GESTIÓN DE CONCIERTOS ****************/
+function crearConcierto($fecha, $precio, $userlocal) // $fecha = DATE, $precio = INT, $userlocal = STRING
+{
+    
+}
+
+function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userbanda = STRING
+{
+    
+}
+
+/************ VOTACIONES ****************/
+function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, success = return 1, fail = return 0
+{
+    
+}
+
+function votarLocal($userfan, $userlocal) // $userfan, $userlocal = STRING, success = return 1, fail = return 0
+{
+    
+}
+
+function votarConcierto($userfan, $idconcierto) // $userfan = STRING, $idconcierto = INT, success = return 1, fail = return 0
+{
+    
 }

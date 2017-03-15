@@ -120,15 +120,44 @@ function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userban
 /************ VOTACIONES ****************/
 function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, success = return 1, fail = return 0
 {
-    
+    $select = "SELECT * FROM Votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, $select)) // comprova que la consulta esta ben escrita
+    {
+        if(mysqli_num_rows($res))//si es 0 salta, si hi ha algo entra(hi ha vot)
+        {
+            $insert = "INSERT INTO Votos_bandas VALUES('$userfan','$userbanda');";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
+    }
 }
 
 function votarLocal($userfan, $userlocal) // $userfan, $userlocal = STRING, success = return 1, fail = return 0
 {
-    
+    $con = conectar($GLOBALS['db']);
 }
 
 function votarConcierto($userfan, $idconcierto) // $userfan = STRING, $idconcierto = INT, success = return 1, fail = return 0
 {
-    
+    $con = conectar($GLOBALS['db']);
 }

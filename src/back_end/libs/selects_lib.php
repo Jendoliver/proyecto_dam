@@ -87,6 +87,7 @@ function selectProximosConciertos()
                 FROM concierto
                 INNER JOIN participa on concierto.id = participa.id_concierto
                 INNER JOIN usuario on participa.id_banda = usuario.username
+                WHERE fecha>=CURDATE()
                 ORDER BY fecha ASC
                 LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -279,7 +280,7 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
             INNER JOIN votos_bandas on votos_bandas.id_banda = usuario.username
-            WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username')
+            WHERE (SELECT  COUNT(*) FROM votos_bandas WHERE id_fan = '$username') AND  fecha>=CURDATE()
             ORDER BY fecha DESC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -303,7 +304,7 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
     $query = "SELECT id_concierto, nom_local, fecha, aceptado
             FROM participa
             INNER JOIN concierto on id_concierto = concierto.id
-            WHERE id_banda = '$username'
+            WHERE id_banda = '$username' AND  fecha>=CURDATE()
             ORDER BY fecha ASC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -326,7 +327,7 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
     $query = "SELECT id_concierto, nom_local, fecha
             FROM participa
             INNER JOIN concierto on participa.id_concierto = concierto.id
-            WHERE aceptado = 1 AND id_banda = '$username'
+            WHERE aceptado = 1 AND id_banda = '$username' AND  fecha>=CURDATE()
             ORDER BY fecha ASC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -351,7 +352,7 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
-            WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username'
+            WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username' AND  fecha>=CURDATE()
             ORDER BY fecha ASC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
@@ -374,7 +375,7 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
     $query = "SELECT fecha, precio
             FROM concierto
             INNER JOIN usuario on usuario.username = concierto.nom_local
-            WHERE username = '$username'
+            WHERE username = '$username' AND fecha>=CURDATE()
             ORDER BY fecha ASC
             LIMIT 10; ";
     if($res = mysqli_query($con, $query))

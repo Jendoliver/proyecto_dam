@@ -109,7 +109,17 @@ function insertGarito($username, $password, $email, $publicname, $poblacion, $id
 /************ GESTIÓN DE CONCIERTOS ****************/
 function crearConcierto($fecha, $precio, $userlocal) // $fecha = DATE, $precio = INT, $userlocal = STRING
 {
-    
+    $con = conectar($GLOBALS['db']);
+    $id = generateID("concierto");
+    $insert = "INSERT INTO concierto VALUES($id, '$fecha', $precio, '$userlocal');";
+    if($res = mysqli_query($con, $insert))
+    {
+        desconectar($con);
+        return 1;
+    }
+    errorConsulta($con);
+    desconectar($con);
+    return 0;
 }
 
 function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userbanda = STRING
@@ -117,16 +127,16 @@ function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userban
     
 }
 
-/************ VOTACIONES ****************/
+/************ VOTACIONES ***************no comprovat encara*/
 function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, success = return 1, fail = return 0
-{
-    $select = "SELECT * FROM Votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";
+{           //si hi ha vot borrara el vot si no afegira vot(me gusta/ya no me gusta)
+    $select = "SELECT * FROM votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";
     $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, $select)) // comprova que la consulta esta ben escrita
     {
-        if(mysqli_num_rows($res))//si es 0 salta, si hi ha algo entra(hi ha vot)
+        if(mysqli_num_rows($res))//si es 0 salta, si hi ha algo entra(hi ha vot) treu el vot
         {
-            $insert = "INSERT INTO Votos_bandas VALUES('$userfan','$userbanda');";
+            $insert = "DELETE FROM votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";
             if(mysqli_query($con, $insert))
             {
                 desconectar($con);
@@ -139,9 +149,20 @@ function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, succ
                 return 0;
             }
         }
-        else
+        else  //vota
         {
-            
+            $insert = "INSERT INTO votos_bandas VALUES('$userfan','$userbanda');";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
         }
     }
     else
@@ -154,10 +175,90 @@ function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, succ
 
 function votarLocal($userfan, $userlocal) // $userfan, $userlocal = STRING, success = return 1, fail = return 0
 {
+    $select = "SELECT * FROM votos_locales WHERE id_fan='$userfan' AND id_local='$userlocal';";
     $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, $select)) // comprova que la consulta esta ben escrita
+    {
+        if(mysqli_num_rows($res))//si es 0 salta, si hi ha algo entra(hi ha vot) treu el vot
+        {
+            $insert = "DELETE FROM votos_locales WHERE id_fan='$userfan' AND id_local='$userlocal';";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
+        }
+        else  //vota
+        {
+            $insert = "INSERT INTO votos_locales VALUES('$userfan','$userlocal');";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
+        }
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
+    }
 }
 
 function votarConcierto($userfan, $idconcierto) // $userfan = STRING, $idconcierto = INT, success = return 1, fail = return 0
 {
+    $select = "SELECT * FROM votos_conciertos WHERE id_fan='$userfan' AND id_concierto='$idconcierto';";
     $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, $select)) // comprova que la consulta esta ben escrita
+    {
+        if(mysqli_num_rows($res))//si es 0 salta, si hi ha algo entra(hi ha vot) treu el vot
+        {
+            $insert = "DELETE FROM votos_conciertos WHERE id_fan='$userfan' AND id_concierto='$idconcierto';";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
+        }
+        else  //vota
+        {
+            $insert = "INSERT INTO votos_conciertos VALUES('$idconcierto','$userfan');";
+            if(mysqli_query($con, $insert))
+            {
+                desconectar($con);
+                return 1;
+            }
+            else
+            {
+                errorConsulta($con);
+                desconectar($con);
+                return 0;
+            }
+        }
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
+    }
 }

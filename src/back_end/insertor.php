@@ -57,5 +57,13 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     else
         errorPassword();
 }
+else if(isset($_POST["crear_concierto"])) // Caso crear concierto
+{
+    extract($_POST);
+    session_start();
+    if(crearConcierto($concertdate, $cash, $_SESSION["username"]))
+        conciertoCreado();
+    header("Location: $garitopage");
+}
 else
     errorInsertor();

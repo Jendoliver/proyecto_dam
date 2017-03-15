@@ -14,7 +14,7 @@
 
 <body>
     <?php
-    require "../back_end/libs/selects_lib.php";
+    require "../back_end/libs/inserts_lib.php";
     if(!auth())
         errorNotLogged();
     else

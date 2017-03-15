@@ -51,7 +51,7 @@
                                     <label for="date">Remuneración del concierto por grupo:</label>
                                     <input type="num" class="form-control" name="cash" placeholder="€" min="0" required>
                                 </div>
-                                <button type="submit" name="registro_fan" class="btn btn-success btn-block">¡Crear conciertos!</button>
+                                <button type="submit" name="crear_concierto" class="btn btn-success btn-block">¡Crear concierto!</button>
                             </form>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="well">
                         <h3>Grupos pendientes de aprobar</h3>
                         <div class="container-fluid">
-                            <?php selectGruposAprobar() ?>
+                            <?php selectGruposAprobar(); ?>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="well">
                         <h3>Conciertos creados</h3>
                         <div class="container-fluid">
-                            <?php selectProximosConciertosLocal() ?>
+                            <?php selectProximosConciertosLocal(); ?>
                         </div>
                     </div>
                 </div>

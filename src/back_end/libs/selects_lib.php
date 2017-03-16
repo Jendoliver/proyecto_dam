@@ -348,7 +348,7 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
     session_start();
     $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT publicname, fecha
+    $query = "SELECT concierto.id, publicname, fecha
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
@@ -372,7 +372,7 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
     session_start();
     $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT fecha, precio
+    $query = "SELECT concierto.id, fecha, precio
             FROM concierto
             INNER JOIN usuario on usuario.username = concierto.nom_local
             WHERE username = '$username' AND fecha>=CURDATE()

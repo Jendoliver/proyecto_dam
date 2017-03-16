@@ -4,8 +4,8 @@ require "libs/selects_lib.php";
 if(isset($_POST["login"])) // Venimos de index.php, el usuario quiere iniciar sesión
 {
     session_start();
-    $usertype = checkUser($_POST["username"], $_POST["password"]);
-    switch($usertype) // Guardamos las variables que modifican el espacio personal y redirigimos al que toca según el tipo de usuario
+    $_SESSION["usertype"] = checkUser($_POST["username"], $_POST["password"]);
+    switch($_SESSION["usertype"]) // Guardamos las variables que modifican el espacio personal y redirigimos al que toca según el tipo de usuario
     {
         case 0: errorLogin(); break;
         case 1: getSession($_POST["username"], $usertype); $_SESSION["token"] = 1; header("Location: $fanpage"); break;

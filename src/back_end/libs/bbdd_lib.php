@@ -54,9 +54,7 @@ function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXI
     if($res = mysqli_query($con, $query))
     {
         desconectar($con);
-        if (mysqli_num_rows($res))
-            return 1;
-        return 0;
+        return mysqli_num_rows($res) > 0;
     }
     else
     {
@@ -126,15 +124,37 @@ function idToValue($id, $col, $table) // devuelve el valor en la columna $col as
     return 0;
 }
 
-function createTable($res) // Crea una tabla genérica automáticamente con el resultado de una query
+function votoExiste($userfan, $votado, $tabla)
 {
+    $con = conectar($GLOBALS['db']);
+    $query = "SELECT * FROM ";
+    switch($tabla)
+    {
+        case "concierto": $query .= "votos_conciertos WHERE id_concierto = $votado AND id_fan = '$userfan';"; break;
+        case "banda": $query .= "votos_bandas WHERE id_fan = '$userfan' AND id_banda = '$votado';"; break;
+        case "local": $query .= "votos_locales WHERE id_fan = '$userfan' AND id_local = '$votado';"; break;
+    }
+    
+    if($res = mysqli_query($con, $query))
+    {
+        desconectar($con);
+        return mysqli_num_rows($res) > 0;
+    }
+    errorConsulta($con);
+    desconectar($con);
+}
+
+function createTable($res, $button = 0) // Crea una tabla genérica automáticamente con el resultado de una query
+{ // | BUTTON = 0: Sin botones | = 1: Botón de votación concierto (fans) | = 2: Botón de inscribirse a concierto (bandas) | = 3: Botones de aceptar/rechazar banda (local) 
+    if($button) { session_start(); extract($_SESSION); }
+    
     if($row = mysqli_fetch_assoc($res)) //comprobamos que hay algo para evitar warning
     {
         $table = "<table class='table table-hover'>"; // ese bootstrap joder
         $table .= "<thead>";
         foreach($row as $key => $value) // header tabla
         {
-            switch($key)
+            switch($key) // preparamos nombres de columnas bonitos
             {
                 case "nom_local": $table .= "<th>Garito</th>"; break;
                 case "id_banda": $table .= "<th>Banda</th>"; break;
@@ -146,9 +166,19 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
                 case "precio": $table .= "<th>Pago por grupo</th>"; break;
                 case "aceptado": $table .= "<th>Estado de la solicitud</th>"; break;
                 case "id_concierto": break;
+                case "id": break;
                 default: $table .= "<th>$key</th>";
             }
         }
+        
+        switch($button) // según button, añadimos cabeceras para las columnas de los botones
+        {
+            case 0: break;
+            case 1: $table .= "<th>¡Vota!</th>"; break;
+            case 2: $table .= "<th>¡Inscríbete!</th>"; break;
+            case 3: $table .= "<th>Aceptar bandas</th>"; "<th>Rechazar bandas</th>"; break;
+        }
+        
         $table .= "</thead><tbody>"; // cierre del header y apertura del body
     
         do // llenar tabla con el contenido de la query
@@ -156,7 +186,7 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
             $table .= "<tr>"; // principio de fila
             foreach($row as $key => $value) // llenamos una fila
             {
-                switch($key)
+                switch($key) // preparamos outputs especiales para que se vean bonitos
                 {
                     case "nom_local": $table .= "<td>".localToPublic($value)."</td>"; break;
                     case "id_banda": $table .= "<td>".localToPublic($value)."</td>"; break;
@@ -170,8 +200,17 @@ function createTable($res) // Crea una tabla genérica automáticamente con el r
                             }
                         }
                     case "id_concierto": break;
+                    case "id": $idconcierto = $value; break;
                     default: $table .= "<td>$value</td>";
                 }
+            }
+            
+            switch($button) // preparamos los botones según el caso
+            {
+                case 0: break; // sin botones
+                case 1: $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'>"; if(votoExiste($idconcierto, $username, "concierto")) $table .= "<button type='submit' name='dislike_concierto'><img src='../../front_end/img/dislike.gif'>"; else $table .= "<button type='submit' name='like_concierto'><img src='../../front_end/img/like.gif'>"; $table .= "</img></button></form></td>"; break; // TODO botón de votación
+                case 2: $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; break; // botón de inscribirse concierto
+                case 3: $table .= "<td><form action='../updater.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'><input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
             }
             $table .= "</tr>";
         } while ($row = mysqli_fetch_assoc($res));

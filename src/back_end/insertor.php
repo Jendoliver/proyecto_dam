@@ -65,5 +65,12 @@ else if(isset($_POST["crear_concierto"])) // Caso crear concierto
         conciertoCreado();
     header("Location: $garitopage");
 }
+else if(isset($_POST["inscribirse_concierto"])) // Caso inscribirse concierto
+{
+    extract($_POST);
+    if(altaConcierto($idconcierto, $userbanda))
+        altaCorrecta();
+    header("Location: $bandpage");
+}
 else
     errorInsertor();

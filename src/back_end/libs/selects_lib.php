@@ -6,7 +6,7 @@
 */
 require "bbdd_lib.php";
 
-//AUTENTICACIÓN
+/***************** AUTENTICACIÓN *******************/
 function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
     $con = conectar($GLOBALS['db']);
@@ -79,7 +79,7 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
     }
 }
 
-//SELECTS HOMEPAGE
+/***************** SELECTS HOMEPAGE *******************/
 function selectProximosConciertos()
 {
     $con = conectar($GLOBALS['db']);
@@ -169,7 +169,7 @@ function selectMejoresConciertos()
     }
 }
 
-//SELECTS REGISTRO
+/***************** SELECTS REGISTRO *******************/
 function selectGeneros()
 {
     $con = conectar($GLOBALS['db']);
@@ -202,17 +202,16 @@ function selectPoblaciones()
     desconectar($con);
 }
 
-//SELECTS PERFILES (generales)
-function selectImgPerfil() // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARLO EN EL SRC
+/***************** SELECTS PERFILES (generales) *******************/
+function selectImgPerfil($username) // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARLO EN EL SRC
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT img FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res); // cambiar esto
+        $row = mysqli_fetch_assoc($res);
         desconectar($con);
+        return $row["img"];
     }
     else
     {
@@ -221,21 +220,21 @@ function selectImgPerfil() // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARL
     }
 }
 
-function selectPublicname()
+function selectPublicname($username)
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname FROM usuario WHERE username = '$username'";
     if($res = mysqli_query($con, $query))
     {
+        $row = mysqli_fetch_assoc($res);
         desconectar($con);
-        return $res;
+        return $row["publicname"];
     }
     else
     {
         errorConsulta($con);
         desconectar($con);
+        return "undefined";
     }
 }
 
@@ -244,11 +243,9 @@ function selectVideo($src)
     
 }
 
-//SELECTS FAN
-function selectConciertosValorados() // conciertos que el fan ha valorado
+/***************** SELECTS FAN *******************/
+function selectConciertosValorados($username) // conciertos que el fan ha valorado
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
@@ -270,10 +267,8 @@ function selectConciertosValorados() // conciertos que el fan ha valorado
     }
 }
 
-function selectProximosConciertosLike() // proximos conciertos de las bandas a las que le has dado like
+function selectProximosConciertosLike($username) // proximos conciertos de las bandas a las que le has dado like
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, publicname, nom_local
             FROM concierto
@@ -295,11 +290,9 @@ function selectProximosConciertosLike() // proximos conciertos de las bandas a l
     }
 }
 
-//SELECTS BANDA
-function selectConciertosApuntado() // conciertos a los que se ha apuntado la banda
+/***************** SELECTS BANDA *******************/
+function selectConciertosApuntado($username) // conciertos a los que se ha apuntado la banda
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT id_concierto, nom_local, fecha, aceptado
             FROM participa
@@ -319,7 +312,7 @@ function selectConciertosApuntado() // conciertos a los que se ha apuntado la ba
     }
 }
 
-function selectConciertosAceptado() // conciertos para los que han aceptado a la banda
+function selectConciertosAceptado($username) // conciertos para los que han aceptado a la banda
 {
     session_start();
     $username = $_SESSION["username"];
@@ -342,11 +335,9 @@ function selectConciertosAceptado() // conciertos para los que han aceptado a la
     }
 }
 
-//SELECTS LOCAL
-function selectGruposAprobar() // grupos que se han apuntado a un concierto propuesto  -  FUNCIONA
+/***************** SELECTS LOCAL *******************/
+function selectGruposAprobar($username) // grupos que se han apuntado a un concierto propuesto  -  FUNCIONA
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT concierto.id, publicname, fecha
             FROM concierto
@@ -357,7 +348,7 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 3);
         desconectar($con);
     }
     else
@@ -367,10 +358,8 @@ function selectGruposAprobar() // grupos que se han apuntado a un concierto prop
     }
 }
 
-function selectProximosConciertosLocal() // seleccionar proximos conciertos propuestos por el local  -  FUNCIONA
+function selectProximosConciertosLocal($username) // seleccionar proximos conciertos propuestos por el local  -  FUNCIONA
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT concierto.id, fecha, precio
             FROM concierto
@@ -380,7 +369,7 @@ function selectProximosConciertosLocal() // seleccionar proximos conciertos prop
             LIMIT 10; ";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 2);
         desconectar($con);
     }
     else

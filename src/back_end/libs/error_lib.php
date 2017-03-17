@@ -5,7 +5,7 @@
 *   error_lib.php: LIBRERÍA DE ERRORES
 *
 */
-require "constants.php";
+require "success_lib.php";
 
 /****** ERRORES GRAVES ******/
 function errorConsulta($con)
@@ -102,17 +102,6 @@ function errorUserExists()
 function errorNoResults()
 {
     echo "<h1>No hay resultados</h1>";
-}
-
-/******** MENSAJES GUAYS *********/
-function conciertoCreado() // Molaría colección de modals
-{
-    global $garitopage;
-    $message = "¡Concierto creado con éxito!";
-    echo "<script type='text/javascript'>
-    alert('$message');
-    window.location = '$garitopage';
-    </script>";
 }
 
 ?>

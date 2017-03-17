@@ -93,6 +93,10 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
 }
 
 //UTILIDADES
+/*function isPageFrom($username) para usar solo una página...
+{
+    
+}*/
 function localToPublic($username) // devuelve el publicname asociado a $username - 0 = ERROR
 {
     $con = conectar($GLOBALS['db']);
@@ -175,7 +179,7 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
         {
             case 0: break;
             case 1: $table .= "<th>¡Vota!</th>"; break;
-            case 2: $table .= "<th>¡Inscríbete!</th>"; break;
+            case 2: if($usertype != 3) $table .= "<th>¡Inscríbete!</th>"; break; // un local no tiene que visualizar el botón
             case 3: $table .= "<th>Aceptar bandas</th>"; "<th>Rechazar bandas</th>"; break;
         }
         
@@ -209,7 +213,7 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
             {
                 case 0: break; // sin botones
                 case 1: $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'>"; if(votoExiste($idconcierto, $username, "concierto")) $table .= "<button type='submit' name='dislike_concierto'><img src='../../front_end/img/dislike.gif'>"; else $table .= "<button type='submit' name='like_concierto'><img src='../../front_end/img/like.gif'>"; $table .= "</img></button></form></td>"; break; // TODO botón de votación
-                case 2: $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; break; // botón de inscribirse concierto
+                case 2: if($usertype != 3) { $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } break; // botón de inscribirse concierto
                 case 3: $table .= "<td><form action='../updater.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'><input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
             }
             $table .= "</tr>";

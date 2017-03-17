@@ -124,7 +124,16 @@ function crearConcierto($fecha, $precio, $userlocal) // $fecha = DATE, $precio =
 
 function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userbanda = STRING
 {
-    
+    $insert = "INSERT INTO participa VALUES($idconcierto, '$userbanda', 0);";
+    $con = conectar($GLOBALS['db']);
+    if(mysqli_query($con, $insert))
+    {
+       desconectar($con);
+       return 1;
+    }
+    errorConsulta($con);
+    desconectar($con);
+    return 0;
 }
 
 /************ VOTACIONES ***************no comprovat encara*/

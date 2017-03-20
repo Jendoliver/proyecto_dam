@@ -314,8 +314,6 @@ function selectConciertosApuntado($username) // conciertos a los que se ha apunt
 
 function selectConciertosAceptado($username) // conciertos para los que han aceptado a la banda
 {
-    session_start();
-    $username = $_SESSION["username"];
     $con = conectar($GLOBALS['db']);
     $query = "SELECT id_concierto, nom_local, fecha
             FROM participa
@@ -348,7 +346,11 @@ function selectGruposAprobar($username) // grupos que se han apuntado a un conci
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res, 3);
+        session_start();
+        if($_SESSION["username"] == $username) // si es mi página
+            createTable($res, 3);
+        else
+            createTable($res);
         desconectar($con);
     }
     else

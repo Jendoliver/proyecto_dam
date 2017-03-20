@@ -63,8 +63,9 @@ function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXI
     }
 }
 
-function getSession($user, $usertype) // obtiene las variables de sesión de un usuario
+function getSession($user, $usertype, $islogged=1) // obtiene las variables de sesión de un usuario
 {
+    global $fanpage, $bandpage, $garitopage;
     $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user'";
     if($res = mysqli_query($con, $query))
@@ -72,17 +73,31 @@ function getSession($user, $usertype) // obtiene las variables de sesión de un 
         session_start();
         $row = mysqli_fetch_assoc($res);
         extract($row);
-        $_SESSION["username"] = $username;
-        $_SESSION["publicname"] = $publicname;
-        $_SESSION["poblacion"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
-        $_SESSION["email"] = $email;
-        $_SESSION["img"] = $img;
+        if($islogged)
+        {
+            $_SESSION["usertype"] = $usertype;
+            $_SESSION["username"] = $username;
+            $_SESSION["publicname"] = $publicname;
+            $_SESSION["poblacion"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
+            $_SESSION["email"] = $email;
+            $_SESSION["img"] = $img;
+        }
+        else
+        {
+            $_SESSION["usertypevisit"] = $usertype;
+            $_SESSION["usernamevisit"] = $username;
+            $_SESSION["publicnamevisit"] = $publicname;
+            $_SESSION["poblacionvisit"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
+            $_SESSION["emailvisit"] = $email;
+            $_SESSION["imgvisit"] = $img;
+        }
+        
         
         switch($usertype)
         {
-            case 1: break; // fan
-            case 2: $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; break;
-            case 3: $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; break;
+            case 1: if($islogged) $_SESSION["home"] = $fanpage; break; // fan
+            case 2: if($islogged){ $_SESSION["home"] = $bandpage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["valoracionvisit"] = $valoracion; } break;
+            case 3: if($islogged){ $_SESSION["home"] = $garitopage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["direccionvisit"] = $direccion; $_SESSION["valoracionvisit"] = $valoracion; } break;
         }
     }
     else
@@ -212,9 +227,9 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
             switch($button) // preparamos los botones según el caso
             {
                 case 0: break; // sin botones
-                case 1: $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'>"; if(votoExiste($idconcierto, $username, "concierto")) $table .= "<button type='submit' name='dislike_concierto'><img src='../../front_end/img/dislike.gif'>"; else $table .= "<button type='submit' name='like_concierto'><img src='../../front_end/img/like.gif'>"; $table .= "</img></button></form></td>"; break; // TODO botón de votación
-                case 2: if($usertype != 3) { $table .= "<td><form action='../insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } break; // botón de inscribirse concierto
-                case 3: $table .= "<td><form action='../updater.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'><input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
+                case 1: if($usertype == 1) { $table .= "<td><form action='/src/back_end/insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'>"; if(votoExiste($idconcierto, $username, "concierto")) $table .= "<button type='submit' name='dislike_concierto'><img src='../../front_end/img/dislike.png'>"; else $table .= "<button type='submit' name='like_concierto'><img src='../../front_end/img/like.png'>"; $table .= "</img></button></form></td>"; } break; // TODO botón de votación
+                case 2: if($usertype != 3) { $table .= "<td><form action='/src/back_end/insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } break; // botón de inscribirse concierto
+                case 3: $table .= "<td><form action='/src/back_end/updater.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'> <input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
             }
             $table .= "</tr>";
         } while ($row = mysqli_fetch_assoc($res));

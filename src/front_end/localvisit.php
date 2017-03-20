@@ -19,6 +19,7 @@
         errorNotLogged();
     else
     { ?>
+    <?php require "navbarlogged.php"; ?>
     <?php require "headervisit.php"; ?>
         <div class="container"> <!-- INICIO DEL MAIN CONTAINER -->
             <!-- BARRA DE BÚSQUEDA -->

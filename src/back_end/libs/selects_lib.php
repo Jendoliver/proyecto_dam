@@ -247,7 +247,7 @@ function selectVideo($src)
 function selectConciertosValorados($username) // conciertos que el fan ha valorado
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id) AS valoracion_conciertos
+    $query = "SELECT concierto.id, fecha, publicname, nom_local, (SELECT  COUNT(id_concierto) FROM votos_conciertos where id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
@@ -257,7 +257,7 @@ function selectConciertosValorados($username) // conciertos que el fan ha valora
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -270,7 +270,7 @@ function selectConciertosValorados($username) // conciertos que el fan ha valora
 function selectProximosConciertosLike($username) // proximos conciertos de las bandas a las que le has dado like
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT fecha, publicname, nom_local
+    $query = "SELECT concierto.id, fecha, publicname, nom_local
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
@@ -280,7 +280,7 @@ function selectProximosConciertosLike($username) // proximos conciertos de las b
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -294,7 +294,7 @@ function selectProximosConciertosLike($username) // proximos conciertos de las b
 function selectConciertosApuntado($username) // conciertos a los que se ha apuntado la banda
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT id_concierto, nom_local, fecha, aceptado
+    $query = "SELECT concierto.id, id_concierto, nom_local, fecha, aceptado
             FROM participa
             INNER JOIN concierto on id_concierto = concierto.id
             WHERE id_banda = '$username' AND  fecha>=CURDATE()
@@ -302,7 +302,7 @@ function selectConciertosApuntado($username) // conciertos a los que se ha apunt
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -315,7 +315,7 @@ function selectConciertosApuntado($username) // conciertos a los que se ha apunt
 function selectConciertosAceptado($username) // conciertos para los que han aceptado a la banda
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT id_concierto, nom_local, fecha
+    $query = "SELECT concierto.id, id_concierto, nom_local, fecha
             FROM participa
             INNER JOIN concierto on participa.id_concierto = concierto.id
             WHERE aceptado = 1 AND id_banda = '$username' AND  fecha>=CURDATE()
@@ -323,7 +323,7 @@ function selectConciertosAceptado($username) // conciertos para los que han acep
             LIMIT 10;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -362,6 +362,7 @@ function selectGruposAprobar($username) // grupos que se han apuntado a un conci
 
 function selectProximosConciertosLocal($username) // seleccionar proximos conciertos propuestos por el local  -  FUNCIONA
 {
+    session_start();
     $con = conectar($GLOBALS['db']);
     $query = "SELECT concierto.id, fecha, precio
             FROM concierto
@@ -371,7 +372,10 @@ function selectProximosConciertosLocal($username) // seleccionar proximos concie
             LIMIT 10; ";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res, 2);
+        if($_SESSION["usertype"] != 1)
+            createTable($res, 2);
+        else
+            createTable($res, 1);
         desconectar($con);
     }
     else

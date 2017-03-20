@@ -6,6 +6,7 @@
 */
 
 $homepage = "/src/front_end/index.php";
+$lastpage = $_SERVER["HTTP_REFERER"];
 $registro = "/src/front_end/registro.php";
 $fanpage = "/src/front_end/fan.php";
 $fanpagevisit = "/src/front_end/fanvisit.php";

@@ -27,3 +27,14 @@ function altaCorrecta()
     window.location = '$bandpage';
     </script>";
 }
+
+function votoCorrecto()
+{
+    global $lastpage;
+    $message = "¡Voto exitoso!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$lastpage';
+    </script>";
+    
+}

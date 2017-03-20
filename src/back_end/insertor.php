@@ -63,14 +63,18 @@ else if(isset($_POST["crear_concierto"])) // Caso crear concierto
     session_start();
     if(crearConcierto($concertdate, $cash, $_SESSION["username"]))
         conciertoCreado();
-    header("Location: $garitopage");
 }
 else if(isset($_POST["inscribirse_concierto"])) // Caso inscribirse concierto
 {
     extract($_POST);
     if(altaConcierto($idconcierto, $userbanda))
         altaCorrecta();
-    header("Location: $bandpage");
+}
+else if(isset($_POST["valorar_concierto"])) // Caso valorar concierto
+{
+    extract($_POST);
+    if(votarConcierto($userfan, intval($idconcierto)))
+        votoCorrecto();
 }
 else
     errorInsertor();

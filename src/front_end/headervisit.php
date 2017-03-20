@@ -50,9 +50,24 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="mainNav">
                             <ul class="nav main-menu navbar-nav">
-                                <li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
+                                <?php if($_SESSION["usertypevisit"] != 1)
+                                { if($_SESSION["usertypevisit"] == 2) $table = "banda";
+                                    else if($_SESSION["usertypevisit"] == 3) $table = "local"; 
+                                ?>
+                                <li> <!-- LIKE BUTTON -->
+                                    <form action="/src/back_end/insertor.php" method="POST">
+                                        <input type="hidden" name="userfan" value="<?php echo $_SESSION["username"]; ?>">
+                                        <input type="hidden" name="userperfil" value="<?php echo $_SESSION["usernamevisit"]; ?>">
+                                        <button class="btn btn-primary btn-xs-" type="submit" name="valorar_perfil">
+                                        <?php if(votoExiste($_SESSION["username"], $_SESSION["usernamevisit"], $table)) 
+                                                echo "<img class='img-responsive' width='50' height='30' src='/src/front_end/img/dislike.png'> Ya no me mola..."; 
+                                            else echo "<img class='img-responsive' width='50' heigth='30' src='/src/front_end/img/like.png'> ¡Me mola!"; 
+                                        ?></button>
+                                    </form>
+                                </li>
+                                <?php } ?>
+                                <li><a href="#">Fotos</a></li>
+                                <li><a href="#">Vídeos</a></li>
                             </ul>
 
                             <ul class="nav  navbar-nav navbar-right">

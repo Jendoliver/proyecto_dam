@@ -1,7 +1,7 @@
 <?php
 
 require "libs/inserts_lib.php";
-//CASOS DE REGISTRO
+/********** CASOS DE REGISTRO ***************/
 if(isset($_POST["registro_fan"])) // Caso fan
 {
     extract($_POST);
@@ -57,6 +57,7 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     else
         errorPassword();
 }
+/**************** CASOS DE GESTIÓN DE CONCIERTOS *****************/
 else if(isset($_POST["crear_concierto"])) // Caso crear concierto
 {
     extract($_POST);
@@ -70,11 +71,29 @@ else if(isset($_POST["inscribirse_concierto"])) // Caso inscribirse concierto
     if(altaConcierto($idconcierto, $userbanda))
         altaCorrecta();
 }
+/*************** CASOS DE VALORACIONES ****************/
 else if(isset($_POST["valorar_concierto"])) // Caso valorar concierto
 {
+    global $lastpage;
     extract($_POST);
     if(votarConcierto($userfan, intval($idconcierto)))
-        votoCorrecto();
+        header("Location: $lastpage");
+}
+else if(isset($_POST["valorar_perfil"])) // Caso valorar perfil
+{
+    global $lastpage;
+    session_start();
+    extract($_POST);
+    if($_SESSION["usertypevisit"] == 2) // Banda
+    {
+        if(votarBanda($userfan, $userperfil))
+            header("Location: $lastpage");
+    }
+    else if($_SESSION["usertypevisit"] == 3) // Local
+    {
+        if(votarLocal($userfan, $userperfil))
+            header("Location: $lastpage");
+    }
 }
 else
     errorInsertor();

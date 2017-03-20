@@ -50,9 +50,8 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="mainNav">
                             <ul class="nav main-menu navbar-nav">
-                                <li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Fotos</a></li>
+                                <li><a href="#">Vídeos</a></li>
                             </ul>
 
                             <ul class="nav  navbar-nav navbar-right">

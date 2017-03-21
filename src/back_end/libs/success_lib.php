@@ -28,6 +28,26 @@ function altaCorrecta()
     </script>";
 }
 
+function bandAccepted()
+{
+    global $garitopage;
+    $message = "¡Banda aceptada!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$garitopage';
+    </script>";
+}
+
+function bandNotAccepted()
+{
+    global $garitopage;
+    $message = "¡Banda rechazada!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$garitopage';
+    </script>";
+}
+
 function votoCorrecto()
 {
     global $lastpage;

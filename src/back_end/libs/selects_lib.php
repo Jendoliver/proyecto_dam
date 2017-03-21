@@ -337,11 +337,11 @@ function selectConciertosAceptado($username) // conciertos para los que han acep
 function selectGruposAprobar($username) // grupos que se han apuntado a un concierto propuesto  -  FUNCIONA
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT concierto.id, publicname, fecha
+    $query = "SELECT concierto.id, username AS 'grupoaprobar', publicname, fecha
             FROM concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
             INNER JOIN usuario on participa.id_banda = usuario.username
-            WHERE valoracion IS NOT NUlL AND direccion IS NULL AND nom_local = '$username' AND  fecha>=CURDATE()
+            WHERE valoracion IS NOT NULL AND direccion IS NULL AND nom_local = '$username' AND aceptado = 0 AND fecha>=CURDATE()
             ORDER BY fecha ASC
             LIMIT 10;";
     if($res = mysqli_query($con, $query))

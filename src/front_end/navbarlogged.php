@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#myPage">La Leche Music</a>
+            <a class="navbar-brand" href="index.php">La Leche Music</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <div class="col-sm-5 col-md-5">

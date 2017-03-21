@@ -32,6 +32,7 @@
                     <li><a href="#estilos">ESTILOS MUSICALES</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(!auth()) { ?> <!-- CAMBIO DE NAV SEGÚN LOGIN -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">ACCEDER
                         <span class="caret"></span></a>
@@ -52,6 +53,10 @@
     				        </div>
                         </ul>
                     </li>
+                    <?php } else { ?>
+                    <li><a href="<?php echo $_SESSION["home"]; ?>"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION["username"]; ?></a>
+                    <li><div id="cerrarsesion"><a class="btn btn-xs btn-danger" href="logout.php">CERRAR SESIÓN</a></div>
+                    <?php } ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">IDIOMAS
                         <span class="caret"></span></a>

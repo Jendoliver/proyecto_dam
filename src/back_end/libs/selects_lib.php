@@ -114,7 +114,7 @@ function selectMejoresGaritos()
             LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -136,7 +136,7 @@ function selectMejoresBandas()
             LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else
@@ -149,7 +149,7 @@ function selectMejoresBandas()
 function selectMejoresConciertos()
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id) AS valoracion_conciertos
+    $query = "SELECT id, votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id) AS valoracion_conciertos
             FROM concierto
             INNER JOIN votos_conciertos on concierto.id = votos_conciertos.id_concierto
             INNER JOIN participa on concierto.id = participa.id_concierto
@@ -159,7 +159,7 @@ function selectMejoresConciertos()
             LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res);
+        createTable($res, 1);
         desconectar($con);
     }
     else

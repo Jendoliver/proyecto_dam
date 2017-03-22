@@ -19,8 +19,8 @@ $garitopagevisit = "/src/front_end/localvisit.php";
 
 // back_end
 $insertor = "/src/back_end/insertor.php";
-$selector = "/src/back_end/insertor.php";
-$updater = "/src/back_end/insertor.php";
+$selector = "/src/back_end/selector.php";
+$updater = "/src/back_end/updater.php";
 
 // img
 $imglike = "/src/front_end/img/like.png";
@@ -41,8 +41,8 @@ $garitopagevisit = "/front_end/localvisit.php";
 
 // back_end
 $insertor = "/back_end/insertor.php";
-$selector = "/back_end/insertor.php";
-$updater = "/back_end/insertor.php";
+$selector = "/back_end/selector.php";
+$updater = "/back_end/updater.php";
 
 // img
 $imglike = "/front_end/img/like.png";

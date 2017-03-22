@@ -45,7 +45,7 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website="", $telnum))
+        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum))
         {    
             getSession($username, 3); 
             $_SESSION["token"] = 1;

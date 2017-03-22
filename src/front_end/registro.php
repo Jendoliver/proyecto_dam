@@ -163,7 +163,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de vosotros! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon PAAAAAAAAAAARDO" maxlength="11">
+                                <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
                             </div>
                             <h3>Información de la banda</h3>
                             <div class="form-group">
@@ -227,7 +227,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tu garito! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Introduce la defensa del Pokémon PAAAAAAAAAAARDO" maxlength="11">
+                                <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
                             </div>
                             <h3>Información del garito</h3>
                             <div class="form-group">

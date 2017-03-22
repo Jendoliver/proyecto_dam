@@ -151,7 +151,7 @@
                     <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
                     <div class="row">
                         <h2>LAS MEJORES BANDAS DEL MES</h2>
-                        <?php selectMejoresBandas(); ?>
+                        <?php if($_SESSION["usertype"] == 1) selectMejoresBandas(1); else selectMejoresBandas(); ?>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                     <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
                     <div class="row">
                         <h2>LOS MEJORES GARITOS DEL MES</h2>
-                        <?php selectMejoresGaritos(); ?>
+                        <?php if($_SESSION["usertype"] == 1) selectMejoresGaritos(1); else selectMejoresGaritos(); ?>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                     <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
                     <div class="row">
                         <h2>LOS MEJORES CONCIERTOS DEL MES</h2>
-                        <?php selectMejoresConciertos(); ?>
+                        <?php if($_SESSION["usertype"] == 1) selectMejoresConciertos(1); else selectMejoresConciertos(); ?>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@
         <div class="row"><br><br><br><br><br></div>
         <div class="row"> <!-- APROXIMACIÓN -->
             <div class="col-md-3">
+                <h3>Perfil de Jendoliver (fan)</h3>
                 <form action="../back_end/selector.php" method="POST">
                     <input type="hidden" name="username" value="jendoliver">
                     <input type="hidden" name="usertype" value="fan">
@@ -31,6 +32,7 @@
                 </form>
             </div>
             <div class="col-md-3">
+                <h3>Perfil de Fénix Oficial (banda)</h3>
                 <form action="../back_end/selector.php" method="POST">
                     <input type="hidden" name="username" value="fenixheavymetal">
                     <input type="hidden" name="usertype" value="banda">
@@ -38,6 +40,7 @@
                 </form>
             </div>
             <div class="col-md-3">
+                <h3>Perfil de Anuard (fan)</h3>
                 <form action="../back_end/selector.php" method="POST">
                     <input type="hidden" name="username" value="guimaso">
                     <input type="hidden" name="usertype" value="fan">
@@ -45,6 +48,7 @@
                 </form>
             </div>
             <div class="col-md-3">
+                <h3>Perfil de Bóveda Marina (garito)</h3>
                 <form action="../back_end/selector.php" method="POST">
                     <input type="hidden" name="username" value="bovedamarina">
                     <input type="hidden" name="usertype" value="local">

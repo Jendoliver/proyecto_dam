@@ -80,7 +80,7 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
 }
 
 /***************** SELECTS HOMEPAGE *******************/
-function selectProximosConciertos()
+function selectProximosConciertos($loggedfan=0) // NO ESTÁ EN LA HOMEPAGE (usar para lo último...?)
 {
     $con = conectar($GLOBALS['db']);
     $query = "SELECT fecha, nom_local, publicname
@@ -102,32 +102,10 @@ function selectProximosConciertos()
     }
 }
 
-function selectMejoresGaritos()
+function selectMejoresBandas($loggedfan=0)
 {
     $con = conectar($GLOBALS['db']);
-    $query = "SELECT publicname, nombre_genero, valoracion
-            FROM usuario 
-            INNER JOIN genero_user on usuario.username = genero_user.id_user
-            INNER JOIN genero on genero_user.id_genero = genero.id
-            WHERE aforo IS NOT NULL
-            ORDER BY valoracion DESC
-            LIMIT 5;";
-    if($res = mysqli_query($con, $query))
-    {
-        createTable($res, 1);
-        desconectar($con);
-    }
-    else
-    {
-        errorConsulta($con);
-        desconectar($con);
-    }          
-}
-
-function selectMejoresBandas()
-{
-    $con = conectar($GLOBALS['db']);
-    $query = "SELECT publicname, nombre_genero, valoracion
+    $query = "SELECT username, publicname, nombre_genero, valoracion
             FROM usuario 
             INNER JOIN genero_user on usuario.username = genero_user.id_user
             INNER JOIN genero on genero_user.id_genero = genero.id
@@ -136,7 +114,10 @@ function selectMejoresBandas()
             LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res, 1);
+        if($loggedfan)
+            createTable($res, 12);
+        else
+            createTable($res);
         desconectar($con);
     }
     else
@@ -146,7 +127,32 @@ function selectMejoresBandas()
     }  
 }
 
-function selectMejoresConciertos()
+function selectMejoresGaritos($loggedfan=0)
+{
+    $con = conectar($GLOBALS['db']);
+    $query = "SELECT username, publicname, nombre_genero, valoracion
+            FROM usuario 
+            INNER JOIN genero_user on usuario.username = genero_user.id_user
+            INNER JOIN genero on genero_user.id_genero = genero.id
+            WHERE aforo IS NOT NULL
+            ORDER BY valoracion DESC
+            LIMIT 5;";
+    if($res = mysqli_query($con, $query))
+    {
+        if($loggedfan)
+            createTable($res, 13);
+        else
+            createTable($res);
+        desconectar($con);
+    }
+    else
+    {
+        errorConsulta($con);
+        desconectar($con);
+    }          
+}
+
+function selectMejoresConciertos($loggedfan=0)
 {
     $con = conectar($GLOBALS['db']);
     $query = "SELECT id, votos_conciertos.id_concierto, nom_local, participa.id_banda, fecha, (SELECT COUNT(id_fan) FROM votos_conciertos WHERE id_concierto=concierto.id) AS valoracion_conciertos
@@ -159,7 +165,10 @@ function selectMejoresConciertos()
             LIMIT 5;";
     if($res = mysqli_query($con, $query))
     {
-        createTable($res, 1);
+        if($loggedfan)
+            createTable($res, 1);
+        else
+            createTable($res);
         desconectar($con);
     }
     else

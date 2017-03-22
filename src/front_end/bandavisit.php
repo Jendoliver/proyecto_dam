@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="well">
-                        <h3>Conciertos en los que has sido aceptado</h3>
+                        <h3>Conciertos en los que <?php echo $publicnamevisit ?> ha sido aceptado</h3>
                         <div class="container">
                             <?php selectConciertosAceptado($usernamevisit) ?>
                         </div>

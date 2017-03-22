@@ -104,4 +104,8 @@ function errorNoResults()
     echo "<h1>No hay resultados</h1>";
 }
 
+function debug($error)
+{
+    echo "<script type='text/javascript'>console.log('$error');</script>";
+}
 ?>

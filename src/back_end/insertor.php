@@ -84,12 +84,25 @@ else if(isset($_POST["valorar_perfil"])) // Caso valorar perfil
     global $lastpage;
     session_start();
     extract($_POST);
+    
     if($_SESSION["usertypevisit"] == 2) // Banda
+        votarBanda($userfan, $userperfil);
+    else if($_SESSION["usertypevisit"] == 3) // Local
+        votarLocal($userfan, $userperfil);
+        
+    getSession($userperfil, $_SESSION["usertypevisit"], 0);
+    header("Location: $lastpage");
+}
+else if(isset($_POST["valorar_perfil_tabla"])) // Caso valorar perfil desde una tabla
+{
+    global $lastpage;
+    extract($_POST);
+    if($usertype == '2')
     {
         if(votarBanda($userfan, $userperfil))
             header("Location: $lastpage");
     }
-    else if($_SESSION["usertypevisit"] == 3) // Local
+    else
     {
         if(votarLocal($userfan, $userperfil))
             header("Location: $lastpage");

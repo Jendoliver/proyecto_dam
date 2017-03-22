@@ -165,6 +165,7 @@ function votoExiste($userfan, $votado, $tabla)
 
 function createTable($res, $button = 0) // Crea una tabla genérica automáticamente con el resultado de una query
 { // | BUTTON = 0: Sin botones | = 1: Botón de votación concierto (fans) | = 2: Botón de inscribirse a concierto (bandas) | = 3: Botones de aceptar/rechazar banda (local) 
+    global $imglike, $imgdislike, $insertor, $updater;
     if($button) { session_start(); extract($_SESSION); }
     
     if($row = mysqli_fetch_assoc($res)) //comprobamos que hay algo para evitar warning
@@ -187,6 +188,7 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
                 case "id_concierto": break;
                 case "id": break;
                 case "grupoaprobar": break;
+                case "username": break;
                 default: $table .= "<th>$key</th>";
             }
         }
@@ -194,7 +196,9 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
         switch($button) // según button, añadimos cabeceras para las columnas de los botones
         {
             case 0: break;
-            case 1: $table .= "<th>¡Vota!</th>"; break;
+            case 1: if($usertype == 1) $table .= "<th>¡Vota!</th>"; break;
+            case 12: $table .= "<th>¡Vota!</th>"; break;
+            case 13: $table .= "<th>¡Vota!</th>"; break;
             case 2: if($usertype != 3) $table .= "<th>¡Inscríbete!</th>"; break; // un local no tiene que visualizar el botón
             case 3: $table .= "<th>Aceptar bandas</th>"; "<th>Rechazar bandas</th>"; break;
         }
@@ -222,6 +226,8 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
                     case "id_concierto": break;
                     case "id": $idconcierto = $value; break;
                     case "grupoaprobar": $userbanda = $value; break;
+                    case "username": $userperfil = $value; break;
+                    case "valoracion": $table .= "<td>$value</td>"; break;
                     default: $table .= "<td>$value</td>";
                 }
             }
@@ -229,9 +235,11 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
             switch($button) // preparamos los botones según el caso
             {
                 case 0: break; // sin botones
-                case 1: if($usertype == 1) { $table .= "<td><form action='/src/back_end/insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'><button type='submit' name='valorar_concierto'>"; if(votoExiste($username, intval($idconcierto), "concierto")) $table .= "<img width='20' height='20' src='/src/front_end/img/dislike.png'>"; else $table .= "<img width='20' height='20' src='/src/front_end/img/like.png'>"; $table .= "</img></button></form></td>"; } break; // TODO botón de votación
-                case 2: if($usertype != 3) { $table .= "<td><form action='/src/back_end/insertor.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } break; // botón de inscribirse concierto
-                case 3: $table .= "<td><form action='/src/back_end/updater.php' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$userbanda'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'> <input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
+                case 1: if($usertype == 1) { $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userfan' value='$username'><button type='submit' name='valorar_concierto'>"; if(votoExiste($username, intval($idconcierto), "concierto")) $table .= "<img width='20' height='20' src='$imgdislike'>"; else $table .= "<img width='20' height='20' src='$imglike'>"; $table .= "</img></button></form></td>"; } break;
+                case 12: $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='usertype' value='2'><input type='hidden' name='userfan' value='$username'><input type='hidden' name='userperfil' value='$userperfil'><button type='submit' name='valorar_perfil_tabla'>"; if(votoExiste($username, $userperfil, "banda")) $table .= "<img width='20' height='20' src='$imgdislike'>"; else $table .= "<img width='20' height='20' src='$imglike'>"; $table .= "</img></button></form></td>"; break;
+                case 13: $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='usertype' value='3'><input type='hidden' name='userfan' value='$username'><input type='hidden' name='userperfil' value='$userperfil'><button type='submit' name='valorar_perfil_tabla'>"; if(votoExiste($username, $userperfil, "local")) $table .= "<img width='20' height='20' src='$imgdislike'>"; else $table .= "<img width='20' height='20' src='$imglike'>"; $table .= "</img></button></form></td>"; break;
+                case 2: if($usertype != 3) { $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } break; // botón de inscribirse concierto
+                case 3: $table .= "<td><form action='$updater' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$userbanda'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'> <input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
             }
             $table .= "</tr>";
         } while ($row = mysqli_fetch_assoc($res));

@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="well">
-                        <h3>Próximos conciertos de las bandas que te gustan</h3>
+                        <h3>Próximos conciertos de las bandas que le gustan a <?php echo $publicnamevisit ?></h3>
                         <div class="container-fluid">
                             <?php selectProximosConciertosLike($usernamevisit) ?>
                         </div>
@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="well">
-                        <h3>Conciertos que has valorado</h3>
+                        <h3>Conciertos que <?php echo $publicnamevisit ?> ha valorado</h3>
                         <div class="container-fluid">
                             <?php selectConciertosValorados($usernamevisit) ?>
                         </div>

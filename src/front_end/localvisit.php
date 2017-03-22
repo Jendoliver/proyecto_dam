@@ -39,26 +39,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="well">
-                        <h3>Crear un nuevo concierto</h3> <!-- FORMULARIO NUEVO CONCIERTO -->
-                        <div class="container-fluid">
-                            <form action="../back_end/insertor.php" method="POST">
-                                <div class="form-group">
-                                    <label for="date">Fecha del concierto:</label>
-                                    <input type="date" class="form-control" name="concertdate" min="<?php echo date('Y-m-d'); ?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="date">Remuneración del concierto por grupo:</label>
-                                    <input type="num" class="form-control" name="cash" placeholder="€" min="0" required>
-                                </div>
-                                <button type="submit" name="crear_concierto" class="btn btn-success btn-block">¡Crear concierto!</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Grupos pendientes de aprobar</h3>

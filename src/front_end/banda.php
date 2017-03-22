@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                     <div class="well">
                         <h3>Solicitudes de conciertos enviadas</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectConciertosApuntado($username) ?>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col-md-12">
                     <div class="well">
                         <h3>Conciertos en los que has sido aceptado</h3>
-                        <div class="container">
+                        <div class="container-fluid">
                             <?php selectConciertosAceptado($username) ?>
                         </div>
                     </div>

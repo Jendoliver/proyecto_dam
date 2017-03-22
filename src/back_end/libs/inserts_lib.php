@@ -148,6 +148,7 @@ function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, succ
             $insert = "DELETE FROM votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";
             if(mysqli_query($con, $insert))
             {
+                mysqli_query($con, "UPDATE usuario SET valoracion = valoracion - 1 WHERE username = '$userbanda';");
                 desconectar($con);
                 return 1;
             }
@@ -163,6 +164,7 @@ function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, succ
             $insert = "INSERT INTO votos_bandas VALUES('$userfan','$userbanda');";
             if(mysqli_query($con, $insert))
             {
+                mysqli_query($con, "UPDATE usuario SET valoracion = valoracion + 1 WHERE username = '$userbanda';");
                 desconectar($con);
                 return 1;
             }
@@ -193,6 +195,7 @@ function votarLocal($userfan, $userlocal) // $userfan, $userlocal = STRING, succ
             $insert = "DELETE FROM votos_locales WHERE id_fan='$userfan' AND id_local='$userlocal';";
             if(mysqli_query($con, $insert))
             {
+                mysqli_query($con, "UPDATE usuario SET valoracion = valoracion - 1 WHERE username = '$userlocal';");
                 desconectar($con);
                 return 1;
             }
@@ -208,6 +211,7 @@ function votarLocal($userfan, $userlocal) // $userfan, $userlocal = STRING, succ
             $insert = "INSERT INTO votos_locales VALUES('$userfan','$userlocal');";
             if(mysqli_query($con, $insert))
             {
+                mysqli_query($con, "UPDATE usuario SET valoracion = valoracion + 1 WHERE username = '$userlocal';");
                 desconectar($con);
                 return 1;
             }

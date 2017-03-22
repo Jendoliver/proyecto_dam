@@ -9,7 +9,7 @@ require "error_lib.php";
 
 function conectar($database) // Todo un clásico
 {
-    //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "lechero", "9fk27/Cj?[h]vCLN", $database) or PARA EL HOSTING
+    //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "u4993709_lechero", "9fk27/Cj?[h]vCLN", $database) or // PARA EL HOSTING 
     $conexion = mysqli_connect("localhost", "jandol", "", $database) or // Para C9
         die("No se ha podido conectar a la BBDD");
     mysqli_set_charset($conexion, "utf8");

@@ -1,4 +1,5 @@
 /*global $*/
+var res="";
 $(document).ready(init);
 function init()
 {
@@ -20,19 +21,34 @@ function actmemnum()
                         +"<label for='memape2'>Segundo apellido del miembro:</label>"
                         +"<input id='register_memberape2' class='form-control' type='text' placeholder='Jeviata' name='memberape2[]' required/>"
                     +"</div>"
-                    +"<div class='form-group'>"
+                    +"<div id='instruments' class='form-group'>"
                         +"<label for='meminst'>Instrumento del miembro:</label>"
-                        +"<input id='register_instrument' class='form-control' type='text' placeholder='Bandurria' name='memberinstrument[]' required/>"
+                        +"<select class='form-control' name='memberinstrument[]' required></select>"
                     +"</div>"
                     +"<div class='form-group'>"
                         +"<label for='memage'>Edad del miembro:</label>"
-                        +"<input id='register_memberage'class='form-control' type='number' placeholder='66' name='memberage[]' required/>"
+                        +"<input id='register_memberage' class='form-control' type='number' placeholder='66' name='memberage[]' required/>"
                     +"</div>";
-    var res = "";
+    res = "";
+
     for(var i=1; i<=memnum; i++)
     {
         res += "<h3>Información del miembro nº"+i+"</h3>";
         res += newmember;
     }
     $("#membersdiv").html(res);
+    getInstruments();
+}
+
+function getInstruments()
+{
+    $("#instruments select").empty();
+	$.ajax({
+            type: "POST",
+            url: "js/getInstruments.php",
+            success: function(response)
+            {
+                $('#instruments select').html(response).fadeIn();
+            }
+    });
 }

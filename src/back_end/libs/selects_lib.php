@@ -211,6 +211,22 @@ function selectPoblaciones()
     desconectar($con);
 }
 
+function selectInstrumentos()
+{
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, "SELECT nombre_instrumento FROM instrumento"))
+    {
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            echo "<option value='$nombre_instrumento'>$nombre_instrumento</option>";
+        }
+    }
+    else
+        errorConsulta($con);
+    desconectar($con);
+}
+
 /***************** SELECTS PERFILES (generales) *******************/
 function selectImgPerfil($username) // HA DE DEVOLVER LA RUTA DE LA IMAGEN PARA INSERTARLO EN EL SRC
 {

@@ -24,7 +24,7 @@ else if(isset($_POST["registro_banda"])) // Caso banda
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website="", $telnum)) // creamos primero la banda
+        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website, $telnum)) // creamos primero la banda
         {
             for($i=0; $i<$memnum; $i++)
             {

@@ -40,7 +40,7 @@ function insertBanda($username, $password, $email, $publicname, $poblacion, $idg
     $con = conectar($GLOBALS['db']);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$website', '$telnum');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`web`,`tel`,`valoracion`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$website', '$telnum', 0);";
         if(mysqli_query($con, $insert))
         {
             if(mysqli_query($con, "INSERT INTO genero_user VALUES ('$username', $idgenero);"))
@@ -85,7 +85,7 @@ function insertGarito($username, $password, $email, $publicname, $poblacion, $id
     $con = conectar($GLOBALS['db']);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`direccion`,`aforo`,`web`,`tel`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$direccion', '$aforomax', '$website', '$telnum');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`direccion`,`aforo`,`web`,`tel`,`valoracion`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$direccion', '$aforomax', '$website', '$telnum', 0);";
         if(mysqli_query($con, $insert))
         {
             if(mysqli_query($con, "INSERT INTO genero_user VALUES ('$username', $idgenero);"))

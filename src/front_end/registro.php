@@ -210,7 +210,7 @@
                         <form action="../back_end/insertor.php" method="POST">
                             <h3>Información de la cuenta</h3>
                             <div class="form-group">
-                                <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>z
+                                <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>
                                 <input type="text" class="form-control" name="username" placeholder="rocknroll" maxlength="20" required>
                             </div>
                             <div class="form-group">

@@ -1,5 +1,5 @@
 <?php
-require_once "../../back_end/libs/selects_lib.php";
+require "../../back_end/libs/selects_lib.php";
 
 $con = conectar($GLOBALS['db']);
  

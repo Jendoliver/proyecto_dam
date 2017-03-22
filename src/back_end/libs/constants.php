@@ -25,6 +25,7 @@ $updater = "/src/back_end/insertor.php";
 // img
 $imglike = "/src/front_end/img/like.png";
 $imgdislike = "/src/front_end/img/dislike.png";
+$favicon = "/src/front_end/img/favicon.ico";
 
 /*********** RUTAS HOSTING ****************/
 /*
@@ -46,6 +47,7 @@ $updater = "/back_end/insertor.php";
 // img
 $imglike = "/front_end/img/like.png";
 $imgdislike = "/front_end/img/dislike.png";
+$favicon = "/front_end/img/favicon.ico";
 */
 
 

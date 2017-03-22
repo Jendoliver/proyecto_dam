@@ -55,14 +55,14 @@
                                     else if($_SESSION["usertypevisit"] == 3) $table = "local"; 
                                 ?>
                                 <li> <!-- LIKE BUTTON -->
-                                    <form action="/src/back_end/insertor.php" method="POST">
+                                    <form action="<?php echo $insertor ?>" method="POST">
                                         <input type="hidden" name="userfan" value="<?php echo $_SESSION["username"]; ?>">
                                         <input type="hidden" name="userperfil" value="<?php echo $_SESSION["usernamevisit"]; ?>">
                                         <div class="navbar-brand">
                                             <button class="btn btn-primary btn-xs" type="submit" name="valorar_perfil">
                                             <?php if(votoExiste($_SESSION["username"], $_SESSION["usernamevisit"], $table)) 
-                                                    echo "<img class='img-responsive' src='/src/front_end/img/dislike.png'></img> Ya no me mola..."; 
-                                                else echo "<img class='img-responsive' src='/src/front_end/img/like.png'></img> ¡Me mola!"; 
+                                                    echo "<img class='img-responsive' src='$imgdislike'></img> Ya no me mola..."; 
+                                                else echo "<img class='img-responsive' src='$imglike'></img> ¡Me mola!"; 
                                             ?></button>
                                         </div>
                                     </form>

@@ -12,6 +12,11 @@ require "selects_lib.php";
 function insertFan($username, $password, $email, $publicname, $poblacion, $pic="img/user_image.png")
 {
     $con = conectar($GLOBALS['db']);
+    $username = mysqli_real_escape_string($con, $username);
+    $password = mysqli_real_escape_string($con, $password);
+    $email = mysqli_real_escape_string($con, $email);
+    $publicname = mysqli_real_escape_string($con, $publicname);
+    $poblacion = mysqli_real_escape_string($con, $poblacion);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic');";
@@ -38,6 +43,12 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
 function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $website="", $telnum)
 {
     $con = conectar($GLOBALS['db']);
+    $username = mysqli_real_escape_string($con, $username);
+    $password = mysqli_real_escape_string($con, $password);
+    $email = mysqli_real_escape_string($con, $email);
+    $publicname = mysqli_real_escape_string($con, $publicname);
+    $poblacion = mysqli_real_escape_string($con, $poblacion);
+    $website = mysqli_real_escape_string($con, $website);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`web`,`tel`,`valoracion`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$website', '$telnum', 0);";
@@ -63,6 +74,9 @@ function insertBanda($username, $password, $email, $publicname, $poblacion, $idg
 
 function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la tabla musico y la tabla usa
 {
+    $nom = mysqli_real_escape_string($con, $nom);
+    $ape1 = mysqli_real_escape_string($con, $ape1);
+    $ape2 = mysqli_real_escape_string($con, $ape2);
     $con = conectar($GLOBALS['db']);
     $id = generateID("musico");
     $insert = "INSERT INTO musico VALUES ($id, '$nom', '$ape1', '$ape2', $edad);";
@@ -83,6 +97,12 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
 function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
 {
     $con = conectar($GLOBALS['db']);
+    $username = mysqli_real_escape_string($con, $username);
+    $password = mysqli_real_escape_string($con, $password);
+    $email = mysqli_real_escape_string($con, $email);
+    $publicname = mysqli_real_escape_string($con, $publicname);
+    $poblacion = mysqli_real_escape_string($con, $poblacion);
+    $website = mysqli_real_escape_string($con, $website);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
         $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`,`direccion`,`aforo`,`web`,`tel`,`valoracion`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic', '$direccion', '$aforomax', '$website', '$telnum', 0);";

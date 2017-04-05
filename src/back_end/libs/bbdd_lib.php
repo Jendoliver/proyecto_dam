@@ -36,8 +36,16 @@ function generateID($table)
     $query = "SELECT * FROM $table";
     if($res = mysqli_query($con, $query))
     {
+        $id = 1;
+        while($row = mysqli_fetch_row($res))
+        {
+            if($row[0] == $id)
+                $id++;
+            else
+                break;
+        }
         desconectar($con);
-        return mysqli_num_rows($res)+1;
+        return $id;
     }
     else
     {

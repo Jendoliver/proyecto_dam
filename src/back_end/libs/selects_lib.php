@@ -410,4 +410,32 @@ function selectProximosConciertosLocal($username) // seleccionar proximos concie
     }
 }
 
+// CREATE TABLE UTILITIES
+function votoExiste($userfan, $votado, $tabla)
+{
+    $con = conectar($GLOBALS['db']);
+    $query = "SELECT * FROM ";
+    switch($tabla)
+    {
+        case "concierto": $query .= "votos_conciertos WHERE id_fan = '$userfan' AND id_concierto = $votado;"; break;
+        case "banda": $query .= "votos_bandas WHERE id_fan = '$userfan' AND id_banda = '$votado';"; break;
+        case "local": $query .= "votos_locales WHERE id_fan = '$userfan' AND id_local = '$votado';"; break;
+    }
+    
+    if($res = mysqli_query($con, $query))
+    {
+        desconectar($con);
+        return mysqli_num_rows($res) > 0;
+    }
+    errorConsulta($con);
+    desconectar($con);
+}
+
+function isInscrito($userbanda, $idconcierto)
+{
+    $con = conectar($GLOBALS['db']);
+    $res = mysqli_query($con, "SELECT * FROM participa WHERE id_concierto = $idconcierto AND id_banda = '$userbanda';");
+    return mysqli_num_rows($res) > 0;
+}
+
 ?>

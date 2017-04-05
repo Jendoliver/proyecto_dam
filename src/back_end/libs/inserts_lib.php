@@ -268,7 +268,6 @@ function votarConcierto($userfan, $idconcierto) // $userfan = STRING, $idconcier
             else
             {
                 errorConsulta($con);
-                echo "QUITAR VOTO userfan: ".$userfan.", idconcierto: ".$idconcierto;
                 desconectar($con);
                 return 0;
             }
@@ -284,7 +283,6 @@ function votarConcierto($userfan, $idconcierto) // $userfan = STRING, $idconcier
             else
             {
                 errorConsulta($con);
-                echo "DAR VOTO userfan: ".$userfan.", idconcierto: ".$idconcierto;
                 desconectar($con);
                 return 0;
             }

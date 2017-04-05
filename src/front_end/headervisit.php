@@ -61,7 +61,7 @@
                                         <div class="navbar-brand">
                                             <button class="btn btn-primary btn-xs" type="submit" name="valorar_perfil">
                                             <?php if(votoExiste($_SESSION["username"], $_SESSION["usernamevisit"], $table)) 
-                                                    echo "<img class='img-responsive' src='$imgdislike'></img> Ya no me mola..."; 
+                                                    echo "<img class='img-responsive' src='$imgdislike'></img> No mola..."; 
                                                 else echo "<img class='img-responsive' src='$imglike'></img> ¡Me mola!"; 
                                             ?></button>
                                         </div>

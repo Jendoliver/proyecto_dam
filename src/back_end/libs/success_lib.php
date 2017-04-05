@@ -58,3 +58,13 @@ function votoCorrecto()
     </script>";
     
 }
+
+function perfilModificat()
+{
+    global $lastpage;
+    $message = "¡Perfil modificado!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$lastpage';
+    </script>";
+}

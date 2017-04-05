@@ -9,8 +9,13 @@
     <link rel="icon" href="<?php echo $favicon ?>" type="image/x-icon" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- SMOOTH SCROLLING -->
     <script src="js/smoothiexxx.js"></script>
+    <!-- MEMBERS ECHO SCRIPT -->
     <script src="js/members.js"></script>
+    <!-- FORM VALIDATION -->
+    <script src="js/libs/jquery.validate.min.js"></script>
+    <script src="js/validation.js"></script>
     <title>Regístrate en La Leche Music</title>
 </head>
 <body>
@@ -100,18 +105,18 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Eres un fan?</h1>
                     <div class="well">
-                        <form action="../back_end/insertor.php" method="POST">
+                        <form id="regfan" action="<?php echo $insertor ?>" method="POST">
                             <div class="form-group">
                                 <label for="username">Nombre de usuario:</label>
-                                <input type="text" class="form-control" name="username" placeholder="elmejorfan" maxlength="20" required>
+                                <input type="text" class="form-control" name="username" placeholder="elmejorfan">
                             </div>
                             <div class="form-group">
                                 <label for="publicname">Nombre público <em>(cómo te conoce la gente)</em>:</label>
-                                <input type="text" class="form-control" name="publicname" placeholder="Moshpitter 666" maxlength="50" required>
+                                <input type="text" class="form-control" name="publicname" placeholder="Moshpitter 666">
                             </div>
                             <div class="form-group">
                                 <label for="email">Correo electrónico:</label>
-                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com" maxlength="100" required>
+                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="poblacion">Ciudad de residencia:</label>
@@ -121,17 +126,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="pass">Contraseña:</label>
-                                <input type="password" class="form-control" name="password" placeholder="lml" maxlength="20" required>
+                                <input id="passwordfan" type="password" class="form-control" name="password" placeholder="lml">
                             </div>
                             <div class="form-group">
                                 <label for="passconf">Confirmar contraseña:</label>
-                                <input type="password" class="form-control" name="password_confirm" placeholder="lml" maxlength="20" required>
+                                <input type="password" class="form-control" name="password_confirm" placeholder="lml">
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tí! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
                                 <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
                             </div>
-                            <button type="submit" name="registro_fan" class="btn btn-success btn-block">¡Quiero conocer los mejores garitos y bandas!</button>
+                            <button id="registro_fan" type="submit" name="registro_fan" class="btn btn-success btn-block">¡Quiero conocer los mejores garitos y bandas!</button>
                         </form>
                     </div>
                 </div>
@@ -143,23 +148,23 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Eres una banda?</h1>
                     <div class="well">
-                        <form action="../back_end/insertor.php" method="POST">
+                        <form id="regband" action="<?php echo $insertor ?>" method="POST">
                             <h3>Información de la cuenta</h3>
                             <div class="form-group">
                                 <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>
-                                <input type="text" class="form-control" name="username" placeholder="rocknroll" maxlength="20" required>
+                                <input type="text" class="form-control" name="username" placeholder="rocknroll">
                             </div>
                             <div class="form-group">
                                 <label for="email">Correo electrónico:</label>
-                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com" maxlength="100" required>
+                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="pass">Contraseña:</label>
-                                <input type="password" class="form-control" name="password" placeholder="007" maxlength="20" required>
+                                <input id="passwordband" type="password" class="form-control" name="password" placeholder="007">
                             </div>
                             <div class="form-group">
                                 <label for="passconf">Confirmar contraseña:</label>
-                                <input type="password" class="form-control" name="password_confirm" placeholder="007" maxlength="20" required>
+                                <input type="password" class="form-control" name="password_confirm" placeholder="007">
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de vosotros! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
@@ -168,7 +173,7 @@
                             <h3>Información de la banda</h3>
                             <div class="form-group">
                                 <label for="publicname">Nombre de la banda <em>(así lo verá la gente en tu perfil)</em>:</label>
-                                <input type="text" class="form-control" name="publicname" placeholder="Fénix" maxlength="50" required>
+                                <input type="text" class="form-control" name="publicname" placeholder="Fénix">
                             </div>
                             <div class="form-group">
                                 <label for="poblacion">Ciudad de residencia:</label>
@@ -184,18 +189,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="website">Página web de la banda <em>(¡si tenéis!)</em>:</label>
-                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150">
+                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com">
                             </div>
                             <div class="form-group">
                                 <label for="telnum">Número de teléfono de la banda <em>(opcional)</em>:</label>
-                                <input type="text" class="form-control" name="telnum" placeholder="rocknroll" maxlength="20" required>
+                                <input type="text" class="form-control" name="telnum" placeholder="rocknroll">
                             </div>
                             <div class="form-group">
                                 <label for="memnum">Número de miembros:</label>
-                                <input id="members" type="number" min="1" maxlength="2" class="form-control" name="memnum" placeholder="rocknroll" required>
+                                <input id="members" type="number" class="form-control" name="memnum" placeholder="rocknroll">
                             </div>
                             <div id="membersdiv"></div>
-                            <button type="submit" name="registro_banda" class="btn btn-success btn-block">¡Quiero que me escuchen por todo el mundo!</button>
+                            <button id="registro_banda" type="submit" name="registro_banda" class="btn btn-success btn-block">¡Quiero que me escuchen por todo el mundo!</button>
                         </form>
                     </div>
                 </div>
@@ -207,23 +212,23 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Tienes un garito?</h1>
                     <div class="well">
-                        <form action="../back_end/insertor.php" method="POST">
+                        <form id="regbar" action="<?php echo $insertor ?>" method="POST">
                             <h3>Información de la cuenta</h3>
                             <div class="form-group">
                                 <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>
-                                <input type="text" class="form-control" name="username" placeholder="rocknroll" maxlength="20" required>
+                                <input type="text" class="form-control" name="username" placeholder="rocknroll">
                             </div>
                             <div class="form-group">
                                 <label for="email">Correo electrónico:</label>
-                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com" maxlength="100" required>
+                                <input type="email" class="form-control" name="email" placeholder="speedking@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="pass">Contraseña:</label>
-                                <input type="password" class="form-control" name="password" placeholder="007" maxlength="20" required>
+                                <input id="passwordbar" type="password" class="form-control" name="password" placeholder="007">
                             </div>
                             <div class="form-group">
                                 <label for="passconf">Confirmar contraseña:</label>
-                                <input type="password" class="form-control" name="password_confirm" placeholder="007" maxlength="20" required>
+                                <input type="password" class="form-control" name="password_confirm" placeholder="007">
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tu garito! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
@@ -232,7 +237,7 @@
                             <h3>Información del garito</h3>
                             <div class="form-group">
                                 <label for="publicname">Nombre del garito <em>(así lo verá la gente en tu perfil)</em>:</label>
-                                <input type="text" class="form-control" name="publicname" placeholder="Bóveda" maxlength="50" required>
+                                <input type="text" class="form-control" name="publicname" placeholder="Bóveda">
                             </div>
                             <div class="form-group">
                                 <label for="garitostyle">Estilo más común <em>(opcional, luego podrás especificar más)</em>:</label>
@@ -242,7 +247,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="direccion">Dirección del garito:</label>
-                                <input type="text" class="form-control" name="direccion" placeholder="Calle Roc Boronat, 33" maxlength="100" required>
+                                <input type="text" class="form-control" name="direccion" placeholder="Calle Roc Boronat, 33">
                             </div>
                             <div class="form-group">
                                 <label for="poblacion">Ciudad:</label>
@@ -252,17 +257,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="aforomax">Aforo máximo:</label>
-                                <input type="number" class="form-control" name="aforomax" placeholder="To kiski" maxlength="20">
+                                <input type="number" class="form-control" name="aforomax" placeholder="To kiski">
                             </div>
                             <div class="form-group">
                                 <label for="website">Página web del garito <em>(¡si tenéis!)</em>:</label>
-                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com" maxlength="150">
+                                <input type="text" class="form-control" name="website" placeholder="www.avedefuego.com">
                             </div>
                             <div class="form-group">
                                 <label for="telnum">Número de teléfono del responsable del garito:</label>
-                                <input type="text" class="form-control" name="telnum" placeholder="Y que no sea falso, tronco" maxlength="20" required>
+                                <input type="text" class="form-control" name="telnum" placeholder="Y que no sea falso, tronco">
                             </div>
-                            <button type="submit" name="registro_garito" class="btn btn-success btn-block">¡Quiero que vengan a tocar grandes músicos a mi garito!</button>
+                            <button id="registro_garito" type="submit" name="registro_garito" class="btn btn-success btn-block">¡Quiero que vengan a tocar grandes músicos a mi garito!</button>
                         </form>
                     </div>
                 </div>
@@ -272,4 +277,4 @@
         <footer></footer> <!-- HAY QUE INCLUIR EL FOOTER -->
     </div>
 </body>
-</html>
+</html>+

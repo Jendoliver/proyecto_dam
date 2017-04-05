@@ -35,6 +35,34 @@
                         <div><span class="glyphicon glyphicon-globe"></span> Página web: <?php echo $web?></div>
                         <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <?php echo $tel?></div>
                         <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
+                        <div>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar perfil
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <div class="modal-body">
+                                    <form id="login-form" action="../back_end/updater.php" method="POST">
+                                        <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Actual password:</span>
+                                        </div>
+        				    		    <input id="login_username" class="form-control" type="password" placeholder="Old password" name="pass1" required>
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Publicname:</span>
+                                        </div>
+        				    		    <input id="login_username" class="form-control" type="text" placeholder="Usuario" name="publicname" required>
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">New password:</span>
+                                        </div>
+        				    		    <input id="login_username" class="form-control" type="password" placeholder="Password" name="pass2" required>
+                		    	        <button type="submit" name="modificar_perfil" class="btn btn-success btn-sm btn-block">Modificar</button>
+                                    </form>
+                		        </div>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

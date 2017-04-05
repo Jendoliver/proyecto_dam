@@ -19,6 +19,7 @@ h1 {
   margin-bottom: 0;
   height: 70%;
 }
+.formalert { color: red; }
 .justified {
   text-align: justify;
 }

@@ -15,3 +15,12 @@ else if(isset($_POST["rechazar_banda"])) // Caso rechazar banda
     if(updateConcertStatus($idconcierto, $userbanda, 0))
         bandNotAccepted();
 }
+
+else if(isset($_POST["modificar_perfil"])) //modificar perfil, falta front_end
+{
+    extract($_POST);
+    if(){
+    if(updateProfileStatus($publicname, $pass2, $email, $telefon, $web, $aforo, $direccion))
+        perfilModificat();
+    }
+}

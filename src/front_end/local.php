@@ -51,14 +51,45 @@
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Publicname:</span>
                                         </div>
-        				    		    <input id="login_username" class="form-control" type="text" placeholder="Usuario" name="publicname" required>
+        				    		    <input id="login_username" value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
         				    		    
         				    		    <div id="div-login-msg">
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">New password:</span>
                                         </div>
-        				    		    <input id="login_username" class="form-control" type="password" placeholder="Password" name="pass2" required>
-                		    	        <button type="submit" name="modificar_perfil" class="btn btn-success btn-sm btn-block">Modificar</button>
+        				    		    <input id="login_username" class="form-control" type="password" placeholder="Password" name="pass2">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Email:</span>
+                                        </div>
+        				    		    <input id="login_username" value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Email:</span>
+                                        </div>
+        				    		    <input id="login_username" value="<?php echo $tel?>" class="form-control" type="text" placeholder="telefon" name="tel">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Web:</span>
+                                        </div>
+        				    		    <input id="login_username" value="<?php echo $web?>" class="form-control" type="text" placeholder="www.lalechemusic.com" name="web">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Aforo:</span>
+                                        </div>
+        				    		    <input id="login_username" value="<?php echo $aforo?>" class="form-control" type="number" placeholder="over 9.000" name="aforo">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Direccion:</span>
+                                        </div>
+        				    		    <input id="login_username" value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="aforo">
+        				    		    
+                		    	        <button type="submit" name="modificar_perfil_local" class="btn btn-success btn-sm btn-block">Modificar</button>
                                     </form>
                 		        </div>
                             </ul>

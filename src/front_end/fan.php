@@ -32,6 +32,42 @@
                         <?php session_start(); extract($_SESSION); ?>
                         <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
                         <div><span class="glyphicon glyphicon-home"></span> Ciudad de residencia: <?php echo $poblacion?></div>
+                        <div>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar perfil
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <div class="modal-body">
+                                    <form id="login-form" action="../back_end/updater.php" method="POST">
+                                        <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Actual password:</span>
+                                        </div>
+        				    		    <input class="form-control" type="password" placeholder="Old password" name="pass1" required>
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Publicname:</span>
+                                        </div>
+        				    		    <input value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">New password:</span>
+                                        </div>
+        				    		    <input class="form-control" type="password" placeholder="Password" name="pass2">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Email:</span>
+                                        </div>
+        				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
+        				    		    
+                		    	        <button type="submit" name="modificar_perfil_fan" class="btn btn-success btn-sm btn-block">Modificar</button>
+                                    </form>
+                		        </div>
+                            </ul>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-6">

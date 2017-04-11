@@ -16,11 +16,25 @@ else if(isset($_POST["rechazar_banda"])) // Caso rechazar banda
         bandNotAccepted();
 }
 
-else if(isset($_POST["modificar_perfil"])) //modificar perfil, falta front_end
+else if(isset($_POST["modificar_perfil_local"])) //modificar perfil, falta front_end
 {
     extract($_POST);
-    if(){
-    if(updateProfileStatus($publicname, $pass2, $email, $telefon, $web, $aforo, $direccion))
+
+    if(updateLocalStatus($username, $publicname, $pass2, $email, $telefon, $web, $aforo, $direccion))
+        perfilModificat();
+    }
+}
+else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil, falta front_end
+{
+    extract($_POST);
+    if(updateFanStatus($username, $publicname, $pass2, $email))
+        perfilModificat();
+    }
+}
+else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil, falta front_end
+{
+    extract($_POST);
+    if(updateBandaStatus($username, $publicname, $pass2, $email, $telefon, $web, $aforo, $direccion))
         perfilModificat();
     }
 }

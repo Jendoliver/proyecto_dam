@@ -455,18 +455,38 @@ function selectModGenero($idgenero)
     errorConsulta($con);
     desconectar($con);
 }
-function selectModPoblaciones($poblacion)
+function selectPoblacionMod($poblacion)
 {
     $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
     {
-        while ($cons = mysqli_fetch_array($ciu)) {
-            extract($cons);
-            echo "<option value='$id' ";
-            if($poblacion==$id){ echo " selected "; }
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            echo "<option class='form-control' value='$id' ";
+            if($poblacion==$nombre_poblacion){ echo " selected='selected' "; }
                 echo " >$nombre_poblacion</option>";
         }
-        echo "</select><br>";
+    }
+    else
+    errorConsulta($con);
+    desconectar($con);
+}
+function selectGeneroMod($username)
+{
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, "SELECT id_genero FROM genero_user WHERE id_user='$username'"))
+    $row2 = mysqli_fetch_assoc($res);
+    if($res = mysqli_query($con, "SELECT id, nombre_genero FROM genero"))
+    {
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            echo "<option class='form-control' value='$id' ";
+            extract($row2);
+            if($id_genero==$nombre_genero){ echo " selected='selected' "; }
+                echo " >$nombre_genero</option>";
+        }
     }
     else
     errorConsulta($con);

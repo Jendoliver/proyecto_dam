@@ -26,9 +26,32 @@ function updateConcertStatus($idconcierto, $userbanda, $accepted)
     return 0;
 }
 //modificar perfil 
-function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $direccion)
+function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $direccion, $id_poblacion, $genero)
 {
-    $update = "UPDATE usuario SET publicname = '$publicname',  email = '$email', tel = '$tel', web = '$web', aforo = '$aforo', direccion = '$direccion'
+    $update = "UPDATE usuario SET publicname = '$publicname',  email = '$email', tel = '$tel', web = '$web', aforo = '$aforo', direccion = '$direccion', id_poblacion = '$id_poblacion'
+        WHERE username = '$username';";
+    $con = conectar($GLOBALS['db']);
+    if(mysqli_query($con, $update))
+    {
+        $update = "UPDATE genero_user SET id_genero='$genero'
+        WHERE id_user = '$username';";
+        $con = conectar($GLOBALS['db']);
+        if(mysqli_query($con, $update))
+        {
+        desconectar($con);
+        return 1;
+        }
+        errorConsulta($con);
+        desconectar($con);
+        return 0;
+    }
+    errorConsulta($con);
+    desconectar($con);
+    return 0;
+}
+function updateFanStatus($username, $publicname, $email, $id_poblacion)
+{
+    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', id_poblacion = '$id_poblacion' 
         WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
@@ -40,29 +63,24 @@ function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $
     desconectar($con);
     return 0;
 }
-function updateFanStatus($username, $publicname, $email)
+function updateBandaStatus($username, $publicname, $email, $tel, $web, $id_poblacion, $genero)
 {
-    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email' 
+    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', tel = '$tel', web = '$web', id_poblacion = '$id_poblacion'
         WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
     {
+        $update = "UPDATE genero_user SET id_genero='$genero'
+        WHERE id_user = '$username';";
+        $con = conectar($GLOBALS['db']);
+        if(mysqli_query($con, $update))
+        {
         desconectar($con);
         return 1;
-    }
-    errorConsulta($con);
-    desconectar($con);
-    return 0;
-}
-function updateBandaStatus($username, $publicname, $email, $tel, $web)
-{
-    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', tel = '$tel', web = '$web'
-        WHERE username = '$username';";
-    $con = conectar($GLOBALS['db']);
-    if(mysqli_query($con, $update))
-    {
+        }
+        errorConsulta($con);
         desconectar($con);
-        return 1;
+        return 0;
     }
     errorConsulta($con);
     desconectar($con);

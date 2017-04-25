@@ -67,15 +67,9 @@
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Ciudad:</span>
                                         </div>
-        				    		    <select class="form-control" name="ciudad">';<?php
-                                        selectModPoblaciones($poblacion);
-                                        /*while ($cons = mysqli_fetch_array($ciu)) {
-                                            extract($cons);
-                                            echo "<option value='$name' ";
-                                            if($id==$poblacion){ echo " selected "; }
-                                                echo " >$name</option>";
-                                        }
-                                        echo "</select><br>";*/ ?>
+        				    		    <select class="form-control" name="poblacion">
+                                        <?php selectPoblacionMod($poblacion) ?>
+                                        </select>
         				    		    
         				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
                 		    	        <button type="submit" name="modificar_perfil_fan" class="btn btn-success btn-sm btn-block">Modificar</button>

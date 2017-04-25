@@ -21,9 +21,9 @@ else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
     extract($_POST);
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
-        if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion))//genere i ciudad
+        if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero))//genere i ciudad
             perfilModificat();
-        }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion) && updatePass($username, $pass2))
+        }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero) && updatePass($username, $pass2))
         {
             perfilModificat();
         }
@@ -36,9 +36,9 @@ else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
     extract($_POST);
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
-        if(updateFanStatus($username, $publicname, $email, $ciudad))
+        if(updateFanStatus($username, $publicname, $email, $poblacion))
             perfilModificat();
-        }else if(updateFanStatus($username, $publicname, $email, $ciudad) && updatePass($username, $pass2))
+        }else if(updateFanStatus($username, $publicname, $email, $poblacion) && updatePass($username, $pass2))
         {
             perfilModificat();
         }
@@ -51,9 +51,9 @@ else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil
     extract($_POST);
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
-        if(updateBandaStatus($username, $publicname, $email, $telefon, $web))//genere i ciudad
+        if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero))
             perfilModificat();
-        }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web) && updatePass($username, $pass2))
+        }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero) && updatePass($username, $pass2))
         {
             perfilModificat();
         }

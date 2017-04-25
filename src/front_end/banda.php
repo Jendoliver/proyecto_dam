@@ -62,6 +62,22 @@
         				    		    -->
         				    		    <div id="div-login-msg">
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Ciudad:</span>
+                                        </div>
+        				    		    <select class="form-control" name="poblacion">
+                                        <?php selectPoblacionMod($poblacion) ?>
+                                        </select>
+                                        
+                                        <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Genero:</span>
+                                        </div>
+        				    		    <select class="form-control" name="genero">
+                                        <?php selectGeneroMod($username) ?>
+                                        </select>
+                                        
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Email:</span>
                                         </div>
         				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">

@@ -90,6 +90,22 @@
                                         </div>
         				    		    <input value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="direccion">
         				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Ciudad:</span>
+                                        </div>
+        				    		    <select class="form-control" name="poblacion">
+                                        <?php selectPoblacionMod($poblacion) ?>
+                                        </select>
+                                        
+                                        <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Genero:</span>
+                                        </div>
+        				    		    <select class="form-control" name="genero">
+                                        <?php selectGeneroMod($username) ?>
+                                        </select>
+                                        
         				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
                 		    	        <button type="submit" name="modificar_perfil_local" class="btn btn-success btn-sm btn-block">Modificar</button>
                                     </form>

@@ -437,5 +437,39 @@ function isInscrito($userbanda, $idconcierto)
     $res = mysqli_query($con, "SELECT * FROM participa WHERE id_concierto = $idconcierto AND id_banda = '$userbanda';");
     return mysqli_num_rows($res) > 0;
 }
-
+//select de ciudades i estils per modificar
+function selectModGenero($idgenero)
+{
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, "SELECT id, nombre_genero FROM genero"))
+    {
+        while ($cons = mysqli_fetch_array($ciu)) {
+            extract($cons);
+            echo "<option value='$id' ";
+            if($name==$idgenero){ echo " selected "; }
+                echo " >$nombre_genero</option>";
+        }
+        echo "</select><br>";
+    }
+    else
+    errorConsulta($con);
+    desconectar($con);
+}
+function selectModPoblaciones($poblacion)
+{
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
+    {
+        while ($cons = mysqli_fetch_array($ciu)) {
+            extract($cons);
+            echo "<option value='$id' ";
+            if($poblacion==$id){ echo " selected "; }
+                echo " >$nombre_poblacion</option>";
+        }
+        echo "</select><br>";
+    }
+    else
+    errorConsulta($con);
+    desconectar($con);
+}
 ?>

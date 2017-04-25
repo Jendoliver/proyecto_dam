@@ -35,6 +35,55 @@
                         <div><span class="glyphicon glyphicon-globe"></span> Página web: <?php echo $web?></div>
                         <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <?php echo $tel?></div>
                         <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
+                         <div>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar perfil
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <div class="modal-body">
+                                    <form id="login-form" action="../back_end/updater.php" method="POST">
+                                        <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Actual password:</span>
+                                        </div>
+        				    		    <input class="form-control" type="password" placeholder="Old password" name="pass1" required>
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Publicname:</span>
+                                        </div>
+        				    		    <input value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">New password:</span>
+                                        </div>
+        				    		    <input class="form-control" type="password" placeholder="Password" name="pass2" value="">
+        				    		    <!--<input type="hidden"  name="pass3" value="<?php echo $pass?>">
+        				    		    -->
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Email:</span>
+                                        </div>
+        				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Telefono:</span>
+                                        </div>
+        				    		    <input value="<?php echo $tel?>" class="form-control" type="text" placeholder="XXXXXXXXX" maxlength="9" name="telefon">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Web:</span>
+                                        </div>
+        				    		    <input value="<?php echo $web?>" class="form-control" type="text" placeholder="lalechemusic.com" name="web">
+        				    		    
+        				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
+                		    	        <button type="submit" name="modificar_perfil_banda" class="btn btn-success btn-sm btn-block">Modificar</button>
+                                    </form>
+                		        </div>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

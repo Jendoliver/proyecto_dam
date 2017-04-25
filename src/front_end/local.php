@@ -70,7 +70,7 @@
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Telefono:</span>
                                         </div>
-        				    		    <input value="<?php echo $tel?>" class="form-control" type="text" placeholder="telefon" name="tel">
+        				    		    <input value="<?php echo $tel?>" class="form-control" type="text" placeholder="telefon" name="telfon">
         				    		    
         				    		    <div id="div-login-msg">
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -88,8 +88,9 @@
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Direccion:</span>
                                         </div>
-        				    		    <input value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="aforo">
+        				    		    <input value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="direccion">
         				    		    
+        				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
                 		    	        <button type="submit" name="modificar_perfil_local" class="btn btn-success btn-sm btn-block">Modificar</button>
                                     </form>
                 		        </div>

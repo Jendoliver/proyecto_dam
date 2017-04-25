@@ -8,8 +8,8 @@ INSERT INTO Poblacion VALUES
 INSERT INTO Usuario VALUES -- username, pass, mail, img, publicname, teleponer, web, aforo, valoracion, direccion, poblacion
 ('jendoliver', 'poyankre', 'jandol1234@hotmail.com', NULL, 'Jandol', '123456789', NULL, NULL, NULL, NULL, 1), 
 ('smusi', 'elputoano', 'smusi@gmail.com', NULL,  'Smusiano', '932020321', NULL, NULL, NULL, NULL, 2),
-('guimaso', 'eljodidoguim', 'guimauro@poya.es', NULL, 'Anuard', '628345671', NULL, NULL, NULL, NULL, 3), -- fans
-('bovedamarina', 'putoeduceferino', 'boveda@poyankre.es', NULL, 'Bóveda Marina', '932929381', 'www.boveda.com', 170, 0, NULL, 1), -- garito
+('guimaso', 'guimaso', 'guimauro@poya.es', NULL, 'Anuard', '628345671', NULL, NULL, NULL, NULL, 3), -- fans
+('bovedamarina', 'masfacil', 'boveda@poyankre.es', NULL, 'Bóveda Marina', '932929381', 'www.boveda.com', 170, 0, NULL, 1), -- garito
 ('fenixheavymetal', '4v3d3fu3g0', 'fenixresurrecciondelmetal@hotmail.com', NULL, 'Fénix Oficial', '628530061', 'www.fenix.es', NULL, 100, NULL, 1), -- banda
 ('losdostolays', 'tolay6969', 'tolay@tontopoya.com', NULL, 'Tolays Oficial', '654321098', 'www.tontopoya.com', NULL, 0, NULL, 2);
 

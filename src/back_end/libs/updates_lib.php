@@ -28,7 +28,7 @@ function updateConcertStatus($idconcierto, $userbanda, $accepted)
 //modificar perfil 
 function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $direccion)
 {
-    $update = "UPDATE usuario SET publicname = '$publicname',  email = '$email', tel = '$tel', web = '$web', aforo = '$aforo', direccion = '$direccion';
+    $update = "UPDATE usuario SET publicname = '$publicname',  email = '$email', tel = '$tel', web = '$web', aforo = '$aforo', direccion = '$direccion'
         WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
@@ -56,7 +56,7 @@ function updateFanStatus($username, $publicname, $email)
 }
 function updateBandaStatus($username, $publicname, $email, $tel, $web)
 {
-    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', tel = '$tel', web = '$web';
+    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', tel = '$tel', web = '$web'
         WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
@@ -70,8 +70,8 @@ function updateBandaStatus($username, $publicname, $email, $tel, $web)
 }
 function updatePass($username, $pass)//funcio per canviar totes les pass de qualsevol usuari
 {
-    $update = "UPDATE usuario SET pass = $pass
-        WHERE username = $username;";
+    $update = "UPDATE usuario SET pass = '$pass'
+        WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
     {
@@ -81,4 +81,17 @@ function updatePass($username, $pass)//funcio per canviar totes les pass de qual
     errorConsulta($con);
     desconectar($con);
     return 0;
+}
+function comprovaPass($username, $pass)
+{
+    $con = conectar($GLOBALS['db']);
+    $query = "select username from usuario where username='$username' AND pass='$pass';";
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    $num_rows = mysqli_num_rows($resultado);
+    if ($num_rows == 0){
+        return false;
+    }else {
+        return true;
+    }
 }

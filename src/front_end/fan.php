@@ -55,13 +55,28 @@
                                             <span id="text-login-msg">New password:</span>
                                         </div>
         				    		    <input class="form-control" type="password" placeholder="Password" name="pass2" value="">
-        				    		    <input type="hidden"  name="pass3" value="<?php echo $pass?>">
-        				    		    
+        				    		    <!--<input type="hidden"  name="pass3" value="<?php echo $pass?>">
+        				    		    -->
         				    		    <div id="div-login-msg">
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                             <span id="text-login-msg">Email:</span>
                                         </div>
         				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
+        				    		    
+        				    		    <div id="div-login-msg">
+                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                            <span id="text-login-msg">Ciudad:</span>
+                                        </div>
+        				    		    <select class="form-control" name="ciudad">';<?php
+                                        selectModPoblaciones($poblacion);
+                                        /*while ($cons = mysqli_fetch_array($ciu)) {
+                                            extract($cons);
+                                            echo "<option value='$name' ";
+                                            if($id==$poblacion){ echo " selected "; }
+                                                echo " >$name</option>";
+                                        }
+                                        echo "</select><br>";*/ ?>
+        				    		    
         				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
                 		    	        <button type="submit" name="modificar_perfil_fan" class="btn btn-success btn-sm btn-block">Modificar</button>
                                     </form>

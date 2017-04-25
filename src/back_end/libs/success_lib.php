@@ -68,3 +68,12 @@ function perfilModificat()
     window.location = '$lastpage';
     </script>";
 }
+function passIncorrecte()
+{
+    global $lastpage;
+    $message = "¡La contrasenya es erronea!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$lastpage';
+    </script>";
+}

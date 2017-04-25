@@ -19,34 +19,45 @@ else if(isset($_POST["rechazar_banda"])) // Caso rechazar banda
 else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
 {
     extract($_POST);
-    if($pass2==""){
-    if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion))
-        perfilModificat();
-    }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion) && updatePass($username, $pass2))
-    {
-        perfilModificat();
+    if(comprovaPass($username, $pass1)==true){
+        if($pass2==""){
+        if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion))//genere i ciudad
+            perfilModificat();
+        }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion) && updatePass($username, $pass2))
+        {
+            perfilModificat();
+        }
+    }else{
+        passIncorrecte();    
     }
 }
 else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
 {
     extract($_POST);
-    if($pass2==""){
-    if(updateFanStatus($username, $publicname, $email))
-        perfilModificat();
-    }else if(updateFanStatus($username, $publicname, $email) && updatePass($username, $pass2))
-    {
-        perfilModificat();
+    if(comprovaPass($username, $pass1)==true){
+        if($pass2==""){
+        if(updateFanStatus($username, $publicname, $email, $ciudad))
+            perfilModificat();
+        }else if(updateFanStatus($username, $publicname, $email, $ciudad) && updatePass($username, $pass2))
+        {
+            perfilModificat();
+        }
+    }else{
+        passIncorrecte();    
     }
-    
 }
 else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil
 {
     extract($_POST);
-    if($pass2==""){
-    if(updateBandaStatus($username, $publicname, $email, $telefon, $web))
-        perfilModificat();
-    }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web) && updatePass($username, $pass2))
-    {
-        perfilModificat();
+    if(comprovaPass($username, $pass1)==true){
+        if($pass2==""){
+        if(updateBandaStatus($username, $publicname, $email, $telefon, $web))//genere i ciudad
+            perfilModificat();
+        }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web) && updatePass($username, $pass2))
+        {
+            perfilModificat();
+        }
+    }else{
+        passIncorrecte();    
     }
 }

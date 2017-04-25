@@ -34,24 +34,17 @@ function generateID($table)
 {
     $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM $table";
-    if($res = mysqli_query($con, $query))
+    $res = mysqli_query($con, $query);
+    $id = 1;
+    while($row = mysqli_fetch_row($res))
     {
-        $id = 1;
-        while($row = mysqli_fetch_row($res))
-        {
-            if($row[0] == $id)
-                $id++;
-            else
-                break;
-        }
-        desconectar($con);
-        return $id;
+        if($row[0] == $id)
+            $id++;
+        else
+            break;
     }
-    else
-    {
-        errorConsulta($con);
-        desconectar($con);
-    }
+    desconectar($con);
+    return $id;
 }
 
 function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXISTE UN DATO EN UNA TABLA (devuelve bool)
@@ -76,43 +69,36 @@ function getSession($user, $usertype, $islogged=1) // obtiene las variables de s
     global $fanpage, $bandpage, $garitopage;
     $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user'";
-    if($res = mysqli_query($con, $query))
+    $res = mysqli_query($con, $query);
+    session_start();
+    $row = mysqli_fetch_assoc($res);
+    extract($row);
+    if($islogged)
     {
-        session_start();
-        $row = mysqli_fetch_assoc($res);
-        extract($row);
-        if($islogged)
-        {
-            $_SESSION["usertype"] = $usertype;
-            $_SESSION["username"] = $username;
-            $_SESSION["publicname"] = $publicname;
-            $_SESSION["poblacion"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
-            $_SESSION["email"] = $email;
-            $_SESSION["img"] = $img;
-        }
-        else
-        {
-            $_SESSION["usertypevisit"] = $usertype;
-            $_SESSION["usernamevisit"] = $username;
-            $_SESSION["publicnamevisit"] = $publicname;
-            $_SESSION["poblacionvisit"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
-            $_SESSION["emailvisit"] = $email;
-            $_SESSION["imgvisit"] = $img;
-        }
-        
-        
-        switch($usertype)
-        {
-            case 1: if($islogged) $_SESSION["home"] = $fanpage; break; // fan
-            case 2: if($islogged){ $_SESSION["home"] = $bandpage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["valoracionvisit"] = $valoracion; } break;
-            case 3: if($islogged){ $_SESSION["home"] = $garitopage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["direccionvisit"] = $direccion; $_SESSION["valoracionvisit"] = $valoracion; } break;
-        }
+        $_SESSION["usertype"] = $usertype;
+        $_SESSION["username"] = $username;
+        $_SESSION["publicname"] = $publicname;
+        $_SESSION["poblacion"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
+        $_SESSION["email"] = $email;
+        $_SESSION["img"] = $img;
     }
     else
     {
-        errorConsulta();
-        desconectar($con);
+        $_SESSION["usertypevisit"] = $usertype;
+        $_SESSION["usernamevisit"] = $username;
+        $_SESSION["publicnamevisit"] = $publicname;
+        $_SESSION["poblacionvisit"] = idToValue($id_poblacion, "nombre_poblacion", "poblacion");
+        $_SESSION["emailvisit"] = $email;
+        $_SESSION["imgvisit"] = $img;
     }
+    
+    switch($usertype)
+    {
+        case 1: if($islogged) $_SESSION["home"] = $fanpage; break; // fan
+        case 2: if($islogged){ $_SESSION["home"] = $bandpage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["valoracionvisit"] = $valoracion; } break;
+        case 3: if($islogged){ $_SESSION["home"] = $garitopage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["direccionvisit"] = $direccion; $_SESSION["valoracionvisit"] = $valoracion; } break;
+    }
+    desconectar($con);
 }
 
 //UTILIDADES
@@ -124,31 +110,19 @@ function localToPublic($username) // devuelve el publicname asociado a $username
 {
     $con = conectar($GLOBALS['db']);
     $query = "SELECT publicname FROM usuario WHERE username = '$username';";
-    if($res = mysqli_query($con, $query))
-    {
-        $row = mysqli_fetch_assoc($res);
-        desconectar($con);
-        return $row["publicname"];
-    }
-    else
-        errorConsulta($con);
+    $res = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($res);
     desconectar($con);
-    return 0;
+    return $row["publicname"];
 }
 
 function idToValue($id, $col, $table) // devuelve el valor en la columna $col asociado a la id en una tabla hash
 {
     $con = conectar($GLOBALS['db']);
-    if($res = mysqli_query($con, "SELECT $col FROM $table WHERE id = $id"))
-    {
-        $row = mysqli_fetch_assoc($res);
-        desconectar($con);
-        return $row[$col];
-    }
-    else
-        errorConsulta($con);
+    $res = mysqli_query($con, "SELECT $col FROM $table WHERE id = $id");
+    $row = mysqli_fetch_assoc($res);
     desconectar($con);
-    return 0;
+    return $row[$col];
 }
 
 function createTable($res, $button = 0) // Crea una tabla genérica automáticamente con el resultado de una query

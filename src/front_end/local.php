@@ -58,6 +58,7 @@
                                             <span id="text-login-msg">New password:</span>
                                         </div>
         				    		    <input class="form-control" type="password" placeholder="Password" name="pass2">
+        				    		    <input type="hidden"  name="pass3" value="<?php echo $pass?>">
         				    		    
         				    		    <div id="div-login-msg">
                                             <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>

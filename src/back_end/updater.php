@@ -22,9 +22,13 @@ else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
         if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero))//genere i ciudad
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero) && updatePass($username, $pass2))
         {
+            getSession($username, 3); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }
     }else{
@@ -37,9 +41,13 @@ else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
         if(updateFanStatus($username, $publicname, $email, $poblacion))
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }else if(updateFanStatus($username, $publicname, $email, $poblacion) && updatePass($username, $pass2))
         {
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }
     }else{
@@ -52,12 +60,17 @@ else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil
     if(comprovaPass($username, $pass1)==true){
         if($pass2==""){
         if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero))
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero) && updatePass($username, $pass2))
         {
+            getSession($username, 2); 
+            $_SESSION["token"] = 1;
             perfilModificat();
         }
-    }else{
-        passIncorrecte();    
+        else{
+            passIncorrecte();    
+        }
     }
 }

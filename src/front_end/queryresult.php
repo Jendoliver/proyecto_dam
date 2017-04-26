@@ -26,8 +26,10 @@
         
             <?php
             $buscar=$_POST["busqueda"];
+            echo "$buscar";
             selectBusqueda($buscar);
             ?>
+            <!--
             <div class="col-md-3">
                 <h3>Perfil de Jendoliver (fan)</h3>
                 <form action="../back_end/selector.php" method="POST">
@@ -59,7 +61,7 @@
                     <input type="hidden" name="usertype" value="local">
                     <input class="btn btn-success" type="submit" name="visitProfile" value="Visitar">
                 </form>
-            </div>
+            </div>-->
         </div>
         <?php //getProfilesLike($_POST["q"]); ?> <!-- ESTO SERÍA LA BÚSQUEDA REAL -->
     </div>

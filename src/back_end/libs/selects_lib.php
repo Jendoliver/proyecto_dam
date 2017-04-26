@@ -496,8 +496,9 @@ function selectGeneroMod($username)
 function selectBusqueda($buscar)
 {
     $con = conectar($GLOBALS['db']);
+    echo "$buscar";
     if($res = mysqli_query($con, "SELECT username, publicname FROM usuario
-        WHERE publicname='%$buscar%' OR username='%$buscar%'"))
+        WHERE publicname LIKE '%$buscar%' OR username LIKE '%$buscar%'"))
     {
         while($row = mysqli_fetch_assoc($res))
         {
@@ -510,12 +511,12 @@ function selectBusqueda($buscar)
             {
                 $usertype='banda';
             }
-            else if(checkUserType($username)==2)
+            else if(checkUserType($username)==3)
             {
                 $usertype='local';
             }
                 echo "<div class='col-md-3'>
-                    <h3>Perfil de $username alias $publicname ($usertype)</h3>
+                    <h3>Perfil de $username <br>Alias $publicname ($usertype)</h3>
                     <form action='../back_end/selector.php' method='POST'>
                         <input type='hidden' name='username' value='$username'>
                         <input type='hidden' name='usertype' value='$usertype'>

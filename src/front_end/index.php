@@ -126,11 +126,11 @@
         <div id="search" class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="../front_end/queryresult.php" method="POST"> <!-- TODO: LINKEAR CON LA BÚSQUEDA -->
+                <form action="../front_end/queryresult.php" method="POST"><!-- TODO: LINKEAR CON LA BÚSQUEDA -->
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="busqueda">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" name="busqueda">
+                            <button class="btn btn-default" type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </div>

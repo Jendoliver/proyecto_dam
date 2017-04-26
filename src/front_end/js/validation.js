@@ -43,10 +43,10 @@ function validateFan()
             {
                 equalTo: "#passwordfan"
             },
-            pic:
+            /*pic:
             {
                 extension: "jpg|png|jpeg"
-            },
+            },*/
         },
         messages: 
         {
@@ -158,10 +158,10 @@ function validateBand()
                 required: true,
                 max: 120
             }
-             pic:
+             /*pic:
             {
                 extension: "jpg|png|jpeg"
-            },
+            },*/
         },
         messages: 
         {
@@ -296,10 +296,10 @@ function validateBar()
                 required: true,
                 maxlength: 20
             }
-             pic:
+             /*pic:
             {
                 extension: "jpg|png|jpeg"
-            },
+            },*/
         },
         messages: 
         {

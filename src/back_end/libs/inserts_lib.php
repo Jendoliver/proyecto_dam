@@ -14,6 +14,7 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $email = mysqli_real_escape_string($con, $email);
     $publicname = mysqli_real_escape_string($con, $publicname);
     $poblacion = mysqli_real_escape_string($con, $poblacion);
@@ -37,6 +38,7 @@ function insertBanda($username, $password, $email, $publicname, $poblacion, $idg
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $email = mysqli_real_escape_string($con, $email);
     $publicname = mysqli_real_escape_string($con, $publicname);
     $poblacion = mysqli_real_escape_string($con, $poblacion);
@@ -77,6 +79,7 @@ function insertGarito($username, $password, $email, $publicname, $poblacion, $id
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $email = mysqli_real_escape_string($con, $email);
     $publicname = mysqli_real_escape_string($con, $publicname);
     $poblacion = mysqli_real_escape_string($con, $poblacion);

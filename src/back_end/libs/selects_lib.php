@@ -10,6 +10,7 @@ require "bbdd_lib.php";
 function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
     $con = conectar($GLOBALS['db']);
+    $pass = password_hash($pass, PASSWORD_DEFAULT);
     $query = "SELECT * FROM usuario WHERE username = '$user' AND pass = '$pass';";
     if($res = mysqli_query($con, $query)) // si no hay error en la consulta
     {
@@ -496,7 +497,6 @@ function selectGeneroMod($username)
 function selectBusqueda($buscar)
 {
     $con = conectar($GLOBALS['db']);
-    echo "$buscar";
     if($res = mysqli_query($con, "SELECT username, publicname FROM usuario
         WHERE publicname LIKE '%$buscar%' OR username LIKE '%$buscar%'"))
     {

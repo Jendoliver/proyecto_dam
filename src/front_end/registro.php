@@ -134,7 +134,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tí! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
+                                <input type="file" class="form-control" name="pic" >
                             </div>
                             <button id="registro_fan" type="submit" name="registro_fan" class="btn btn-success btn-block">¡Quiero conocer los mejores garitos y bandas!</button>
                         </form>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de vosotros! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
+                                <input type="file" class="form-control" name="pic" >
                             </div>
                             <h3>Información de la banda</h3>
                             <div class="form-group">
@@ -232,7 +232,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">¡Una foto de tu garito! <em>(opcional)</em></label> <!-- POR IMPLEMENTAR -->
-                                <input type="text" class="form-control" name="pic" placeholder="Próximamente" maxlength="11">
+                                <input type="file" class="form-control" name="pic" >
                             </div>
                             <h3>Información del garito</h3>
                             <div class="form-group">

@@ -23,6 +23,11 @@
     <div class="container-fluid">
         <div class="row"><br><br><br><br><br></div>
         <div class="row"> <!-- APROXIMACIÓN -->
+        
+            <?php
+            $buscar=$_POST["busqueda"];
+            selectBusqueda($buscar);
+            ?>
             <div class="col-md-3">
                 <h3>Perfil de Jendoliver (fan)</h3>
                 <form action="../back_end/selector.php" method="POST">

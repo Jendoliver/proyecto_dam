@@ -192,7 +192,7 @@ function selectGeneros()
     }
     else
         errorConsulta($con);
-    desconectar($con);
+        desconectar($con);
 }
 
 function selectPoblaciones()
@@ -208,7 +208,7 @@ function selectPoblaciones()
     }
     else
         errorConsulta($con);
-    desconectar($con);
+        desconectar($con);
 }
 
 function selectInstrumentos()
@@ -491,5 +491,43 @@ function selectGeneroMod($username)
     else
     errorConsulta($con);
     desconectar($con);
+}
+/***************** SELECTS per buscar perfils *******************/
+function selectBusqueda($buscar)
+{
+    $con = conectar($GLOBALS['db']);
+    if($res = mysqli_query($con, "SELECT username, publicname FROM usuario
+        WHERE publicname='%$buscar%' OR username='%$buscar%'"))
+    {
+        while($row = mysqli_fetch_assoc($res))
+        {
+            extract($row);
+            if(checkUserType($username)==1)
+            {
+                $usertype='fan';
+            }
+            else if(checkUserType($username)==2)
+            {
+                $usertype='banda';
+            }
+            else if(checkUserType($username)==2)
+            {
+                $usertype='local';
+            }
+                echo "<div class='col-md-3'>
+                    <h3>Perfil de $username alias $publicname ($usertype)</h3>
+                    <form action='../back_end/selector.php' method='POST'>
+                        <input type='hidden' name='username' value='$username'>
+                        <input type='hidden' name='usertype' value='$usertype'>
+                        <input class='btn btn-success' type='submit' name='visitProfile' value='Visitar'>
+                    </form>
+                </div>";
+        }
+    }
+    else
+        echo "<div>
+            <h3>No se ha encontrado resultados</h3>
+        </div>";
+        desconectar($con);
 }
 ?>

@@ -16,6 +16,7 @@ $bandpage = "/src/front_end/banda.php";
 $bandpagevisit = "/src/front_end/bandavisit.php";
 $garitopage = "/src/front_end/local.php";
 $garitopagevisit = "/src/front_end/localvisit.php";
+//$profile = "/src/front_end/img/users"
 
 // back_end
 $insertor = "/src/back_end/insertor.php";
@@ -26,6 +27,7 @@ $updater = "/src/back_end/updater.php";
 $imglike = "/src/front_end/img/like.png";
 $imgdislike = "/src/front_end/img/dislike.png";
 $favicon = "/src/front_end/img/favicon.ico";
+
 
 /*********** RUTAS HOSTING ****************/
 /*

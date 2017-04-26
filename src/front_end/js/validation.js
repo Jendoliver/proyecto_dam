@@ -43,6 +43,10 @@ function validateFan()
             {
                 equalTo: "#passwordfan"
             },
+            pic:
+            {
+                extension: "jpg|png|jpeg"
+            },
         },
         messages: 
         {
@@ -74,7 +78,11 @@ function validateFan()
             password_confirm:
             {
                 equalTo:"<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> Las contraseñas no coinciden</div>"
-            }
+            },
+            pic:
+            {
+                extension: "<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> El tipo de archivo debe ser jpg, png o jpeg</div>"
+            },
         }
     });
 }
@@ -150,6 +158,10 @@ function validateBand()
                 required: true,
                 max: 120
             }
+             pic:
+            {
+                extension: "jpg|png|jpeg"
+            },
         },
         messages: 
         {
@@ -215,7 +227,11 @@ function validateBand()
             {
                 required:"<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> Campo requerido</div>",
                 max:"<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> ¡Menudo pureta! Quítate unos años, anda...</div>"
-            }
+            },
+             pic:
+            {
+                extension: "<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> El tipo de archivo debe ser jpg, png o jpeg</div>"
+            },
         }
     });
 }
@@ -280,6 +296,10 @@ function validateBar()
                 required: true,
                 maxlength: 20
             }
+             pic:
+            {
+                extension: "jpg|png|jpeg"
+            },
         },
         messages: 
         {
@@ -330,7 +350,11 @@ function validateBar()
             {
                 required:"<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> Campo requerido</div>",
                 min:"<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> Pa ganar así prefiero no ganar</div>"
-            }
+            },
+             pic:
+            {
+                extension: "<div class='formalert'><span class='glyphicon glyphicon-chevron-right'></span> El tipo de archivo debe ser jpg, png o jpeg</div>"
+            },
         }
     });
 }

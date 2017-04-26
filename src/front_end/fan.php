@@ -68,7 +68,7 @@
                                             <span id="text-login-msg">Ciudad:</span>
                                         </div>
         				    		    <select class="form-control" name="poblacion">
-                                        <?php selectPoblacionMod($poblacion) ?>
+                                        <?php selectPoblacionMod($poblacion);?>
                                         </select>
         				    		    
         				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
@@ -77,14 +77,13 @@
                 		        </div>
                             </ul>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="well">
                         <h3>Próximos conciertos de las bandas que te gustan</h3>
                         <div class="container-fluid">
-                            <?php selectProximosConciertosLike($username) ?>
+                            <?php selectProximosConciertosLike($username)?>
                         </div>
                     </div>
                 </div>
@@ -94,7 +93,7 @@
                     <div class="well">
                         <h3>Conciertos que has valorado</h3>
                         <div class="container-fluid">
-                            <?php selectConciertosValorados($username) ?>
+                            <?php selectConciertosValorados($username)?>
                         </div>
                     </div>
                 </div>

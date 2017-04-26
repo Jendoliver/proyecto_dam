@@ -22,6 +22,12 @@ else if(isset($_POST["visitProfile"])) // Venimos de queryresult.php, visitamos 
         case "local": getSession($_POST["username"], 3, 0); header("Location: $garitopagevisit"); break;
     }
 }
+else if(isset($_POST["busqueda"])) // Venimos de queryresult.php, visitamos un perfil
+{
+    $buscar=$_POST["busqueda"];
+    selectBusqueda($buscar);
+
+}
 else
 {
     errorSelector();

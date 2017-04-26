@@ -4,11 +4,17 @@ require "libs/inserts_lib.php";
 /********** CASOS DE REGISTRO ***************/
 if(isset($_POST["registro_fan"])) // Caso fan
 {
+  /*$sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+    $targetPath = "/../front_end/img/users/" . $_FILES['pic']['name']; // Target path where file is to be stored, we change the file name to the user name and convert it to jpg
+    move_uploaded_file($sourcePath, $targetPath); // Moving Uploaded file
+    */       
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
         if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
         {
+
+            
             getSession($username, 1); 
             $_SESSION["token"] = 1;
             header("Location: $fanpage");

@@ -19,7 +19,7 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
     $poblacion = mysqli_real_escape_string($con, $poblacion);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$username');";
         mysqli_query($con, $insert);
         desconectar($con);
         return 1;

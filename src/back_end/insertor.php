@@ -13,8 +13,6 @@ if(isset($_POST["registro_fan"])) // Caso fan
     {
         if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
         {
-
-            
             getSession($username, 1); 
             $_SESSION["token"] = 1;
             header("Location: $fanpage");

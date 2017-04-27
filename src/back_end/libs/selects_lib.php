@@ -26,49 +26,22 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
 {
     $con = conectar($GLOBALS['db']);
     $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NULL;"; // Comprobación fan
-    if($res = mysqli_query($con, $query)) 
+    $res = mysqli_query($con, $query);
+    if(mysqli_num_rows($res)) 
     {
-        if(mysqli_num_rows($res)) 
-        {
-            desconectar($con);
-            return 1; // El usuario es un fan
-        }
-    }
-    else 
-    {
-        errorConsulta();
         desconectar($con);
+        return 1; // El usuario es un fan
     }
-    
+
     $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NULL AND valoracion IS NOT NULL;"; // Comprobación banda
-    if($res = mysqli_query($con, $query)) 
+    $res = mysqli_query($con, $query);
+    if(mysqli_num_rows($res)) 
     {
-        if(mysqli_num_rows($res)) 
-        {
-            desconectar($con);
-            return 2; // El usuario es una banda
-        }
-    }
-    else 
-    {
-        errorConsulta();
         desconectar($con);
+        return 2; // El usuario es una banda
     }
-    
-    $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación local
-    if($res = mysqli_query($con, $query)) 
-    {
-        if(mysqli_num_rows($res)) 
-        {
-            desconectar($con);
-            return 3; // El usuario es un local
-        }
-    }
-    else 
-    {
-        errorConsulta();
-        desconectar($con);
-    }
+    desconectar($con);
+    return 3; // El usuario es un garito por descarte
 }
 
 /***************** SELECTS HOMEPAGE *******************/
@@ -174,48 +147,36 @@ function selectMejoresConciertos($loggedfan=0)
 function selectGeneros()
 {
     $con = conectar($GLOBALS['db']);
-    if($res = mysqli_query($con, "SELECT id, nombre_genero FROM genero"))
+    $res = mysqli_query($con, "SELECT id, nombre_genero FROM genero");
+    while($row = mysqli_fetch_assoc($res))
     {
-        while($row = mysqli_fetch_assoc($res))
-        {
-            extract($row);
-            echo "<option value='$id'>$nombre_genero</option>";
-        }
+        extract($row);
+        echo "<option value='$id'>$nombre_genero</option>";
     }
-    else
-        errorConsulta($con);
-        desconectar($con);
+    desconectar($con);
 }
 
 function selectPoblaciones()
 {
     $con = conectar($GLOBALS['db']);
-    if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
+    $res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion");
+    while($row = mysqli_fetch_assoc($res))
     {
-        while($row = mysqli_fetch_assoc($res))
-        {
-            extract($row);
-            echo "<option value='$id'>$nombre_poblacion</option>";
-        }
+        extract($row);
+        echo "<option value='$id'>$nombre_poblacion</option>";
     }
-    else
-        errorConsulta($con);
-        desconectar($con);
+    desconectar($con);
 }
 
 function selectInstrumentos()
 {
     $con = conectar($GLOBALS['db']);
-    if($res = mysqli_query($con, "SELECT nombre_instrumento FROM instrumento"))
+    $res = mysqli_query($con, "SELECT nombre_instrumento FROM instrumento");
+    while($row = mysqli_fetch_assoc($res))
     {
-        while($row = mysqli_fetch_assoc($res))
-        {
-            extract($row);
-            echo "<option value='$nombre_instrumento'>$nombre_instrumento</option>";
-        }
+        extract($row);
+        echo "<option value='$nombre_instrumento'>$nombre_instrumento</option>";
     }
-    else
-        errorConsulta($con);
     desconectar($con);
 }
 

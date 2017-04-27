@@ -9,8 +9,10 @@
 require "selects_lib.php";
 
 /************ REGISTRO ****************/
-function insertFan($username, $password, $email, $publicname, $poblacion, $pic="img/user_image.png")
+function insertFan($username, $password, $email, $publicname, $poblacion, $pic)
 {
+    if($pic == "") // Default image
+        $pic = "img/users/user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
@@ -20,7 +22,7 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
     $poblacion = mysqli_real_escape_string($con, $poblacion);
     if(!alreadyExists($username, "usuario", "username")) // si no existe
     {
-        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$username');";
+        $insert = "INSERT INTO usuario(`username`,`pass`,`email`,`publicname`,`id_poblacion`,`img`) VALUES ('$username', '$password', '$email', '$publicname', $poblacion, '$pic');";
         mysqli_query($con, $insert);
         desconectar($con);
         return 1;
@@ -33,8 +35,10 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic="
     }
 }
 
-function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $website="", $telnum)
+function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website="", $telnum)
 {
+    if($pic == "") // Default image
+        $pic = "img/users/user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
@@ -61,10 +65,10 @@ function insertBanda($username, $password, $email, $publicname, $poblacion, $idg
 
 function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la tabla musico y la tabla usa
 {
+    $con = conectar($GLOBALS['db']);
     $nom = mysqli_real_escape_string($con, $nom);
     $ape1 = mysqli_real_escape_string($con, $ape1);
     $ape2 = mysqli_real_escape_string($con, $ape2);
-    $con = conectar($GLOBALS['db']);
     $id = generateID("musico");
     $insert = "INSERT INTO musico VALUES ($id, '$nom', '$ape1', '$ape2', $edad);";
     mysqli_query($con, $insert);
@@ -74,8 +78,10 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
     return 1;
 }
 
-function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic="img/user_image.png", $direccion, $aforomax, $website="", $telnum)
+function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website="", $telnum)
 {
+    if($pic == "") // Default image
+        $pic = "img/users/user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
@@ -130,7 +136,7 @@ function altaConcierto($idconcierto, $userbanda) // $idconcierto = INT, $userban
     return 0;
 }
 
-/************ VOTACIONES ***************no comprovat encara*/
+/************ VOTACIONES ***************/
 function votarBanda($userfan, $userbanda) // $userfan, $userbanda = STRING, success = return 1, fail = return 0
 {           //si hi ha vot borrara el vot si no afegira vot(me gusta/ya no me gusta)
     $select = "SELECT * FROM votos_bandas WHERE id_fan='$userfan' AND id_banda='$userbanda';";

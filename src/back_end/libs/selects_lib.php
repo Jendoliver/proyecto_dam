@@ -10,25 +10,16 @@ require "bbdd_lib.php";
 function checkUser($user, $pass) // Función que comprueba que el login es correcto y devuelve: 0 - Incorrecto, 1 - Fan, 2 - Banda, 3 - Local
 {
     $con = conectar($GLOBALS['db']);
-    $pass = password_hash($pass, PASSWORD_DEFAULT);
-    $query = "SELECT * FROM usuario WHERE username = '$user' AND pass = '$pass';";
-    if($res = mysqli_query($con, $query)) // si no hay error en la consulta
+    $query = "SELECT pass FROM usuario WHERE username = '$user';";
+    $res = mysqli_query($con, $query);
+    desconectar($con);
+    if(mysqli_num_rows($res)) // si existe un usuario con ese username, comprobamos la contraseña
     {
-        if(mysqli_num_rows($res)) // si existe un usuario con ese username y pass, comprobamos su tipo
-        {
-            return checkUserType($user);
-        }
-        else
-        {
-            desconectar($con);
-            return 0; // no existe un usuario con esas credenciales
-        }
+        $row = mysqli_fetch_row($res);
+        if(password_verify($pass, $row[0]))
+            return checkUserType($user); // si las credenciales son correctas checkeamos y devolvemos el tipo de usuario
     }
-    else
-    {
-        errorConsulta();
-        desconectar($con);
-    }
+    return 0;
 }
 
 function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan, 2 = Banda, 3 = Local

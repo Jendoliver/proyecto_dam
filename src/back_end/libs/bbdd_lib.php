@@ -64,7 +64,7 @@ function alreadyExists($data, $table, $attrib) // FUNCIÓN PARA COMPROBAR SI EXI
     }
 }
 
-function getSession($user, $usertype, $islogged=1) // obtiene las variables de sesión de un usuario
+function getSession($user, $usertype, $islogin=1) // obtiene las variables de sesión de un usuario
 {
     global $fanpage, $bandpage, $garitopage;
     $con = conectar($GLOBALS['db']);
@@ -73,7 +73,7 @@ function getSession($user, $usertype, $islogged=1) // obtiene las variables de s
     session_start();
     $row = mysqli_fetch_assoc($res);
     extract($row);
-    if($islogged)
+    if($islogin)
     {
         $_SESSION["usertype"] = $usertype;
         $_SESSION["username"] = $username;
@@ -94,9 +94,9 @@ function getSession($user, $usertype, $islogged=1) // obtiene las variables de s
     
     switch($usertype)
     {
-        case 1: if($islogged) $_SESSION["home"] = $fanpage; break; // fan
-        case 2: if($islogged){ $_SESSION["home"] = $bandpage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["valoracionvisit"] = $valoracion; } break;
-        case 3: if($islogged){ $_SESSION["home"] = $garitopage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["direccionvisit"] = $direccion; $_SESSION["valoracionvisit"] = $valoracion; } break;
+        case 1: if($islogin) $_SESSION["home"] = $fanpage; break; // fan
+        case 2: if($islogin){ $_SESSION["home"] = $bandpage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["valoracionvisit"] = $valoracion; } break;
+        case 3: if($islogin){ $_SESSION["home"] = $garitopage; $_SESSION["web"] = $web; $_SESSION["tel"] = $tel; $_SESSION["direccion"] = $direccion; $_SESSION["valoracion"] = $valoracion; } else { $_SESSION["webvisit"] = $web; $_SESSION["telvisit"] = $tel; $_SESSION["direccionvisit"] = $direccion; $_SESSION["valoracionvisit"] = $valoracion; } break;
     }
     desconectar($con);
 }

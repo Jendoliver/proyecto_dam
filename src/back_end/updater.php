@@ -38,21 +38,16 @@ else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
 else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
 {
     extract($_POST);
-    if(comprovaPass($username, $pass1)==true){
-        if($pass2==""){
-        if(updateFanStatus($username, $publicname, $email, $poblacion))
-            getSession($username, 2); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }else if(updateFanStatus($username, $publicname, $email, $poblacion) && updatePass($username, $pass2))
-        {
-            getSession($username, 2); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }
-    }else{
-        passIncorrecte();    
+    if(comprovaPass($username, $pass1)) // si la pass es correcta
+    {
+        updateFanStatus($username, $publicname, $email, $poblacion);
+        if($pass2!="") // si hay cambio de pass
+            updatePass($username, $pass2);
+        getSession($username, 2); 
+        perfilModificat();
     }
+    else
+        passIncorrecte();
 }
 else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil
 {

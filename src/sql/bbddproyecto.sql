@@ -11,7 +11,7 @@ pais varchar(50)
 CREATE TABLE IF NOT EXISTS Usuario( -- usuarios registrados
 username varchar(20) PRIMARY KEY,
 pass varchar(255) NOT NULL,
-email varchar(100) NOT NULL UNIQUE, -- si da por culo el unik a tomar por sakó
+email varchar(100) NOT NULL,
 img varchar(50), -- NOMBRE DE LA IMAGEN
 publicname varchar(50),
 tel char(9),

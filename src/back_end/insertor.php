@@ -7,13 +7,13 @@ if(isset($_POST["registro_fan"])) // Caso fan
   /*$sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
     $targetPath = "/../front_end/img/users/" . $_FILES['pic']['name']; // Target path where file is to be stored, we change the file name to the user name and convert it to jpg
     move_uploaded_file($sourcePath, $targetPath); // Moving Uploaded file
-    */
+  */
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
         if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
         {
-            getSession($username, 1); 
+            getSession($username, 1);
             $_SESSION["token"] = 1;
             header("Location: $fanpage");
         }
@@ -33,7 +33,7 @@ else if(isset($_POST["registro_banda"])) // Caso banda
             for($i=0; $i<$memnum; $i++)
             {
                 insertMusico($membername[$i], $memberape1[$i], $memberape2[$i], $memberinstrument[$i], $memberage[$i], $username); // a continuación los músicos, que quedan registrados en "pertenece"
-            }    
+            }
             getSession($username, 2); 
             $_SESSION["token"] = 1;
             header("Location: $bandpage");
@@ -50,7 +50,7 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
         if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum))
-        {    
+        {
             getSession($username, 3); 
             $_SESSION["token"] = 1;
             header("Location: $garitopage");

@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/smoothiexxx.js"></script>
+    <script src="js/modify.js"></script>
     <title>La Leche Music</title>
 </head>
 
@@ -27,91 +28,98 @@
             <div id="publicity" class="row"><div class="col-md-12"><div class="well" style="text-align: center;">PUBLICIDAD</div></div></div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="well">
+                    <div id="personalinfo" class="well">
                         <h3>Información personal</h3>
-                        <?php session_start(); extract($_SESSION); ?>
-                        <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <?php echo $email?></div>
-                        <div><span class="glyphicon glyphicon-home"></span> Dirección: <?php echo $direccion.", ".$poblacion?></div>
-                        <div><span class="glyphicon glyphicon-globe"></span> Página web: <?php echo $web?></div>
-                        <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <?php echo $tel?></div>
-                        <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
-                        <div>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar perfil
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <div class="modal-body">
-                                    <form id="login-form" action="../back_end/updater.php" method="POST">
-                                        <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Actual password:</span>
-                                        </div>
-        				    		    <input class="form-control" type="password" placeholder="Old password" name="pass1" required>
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Publicname:</span>
-                                        </div>
-        				    		    <input value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">New password:</span>
-                                        </div>
-        				    		    <input class="form-control" type="password" placeholder="Password" name="pass2">
-        				    		    <input type="hidden"  name="pass3" value="<?php echo $pass?>">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Email:</span>
-                                        </div>
-        				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Telefono:</span>
-                                        </div>
-        				    		    <input value="<?php echo $tel?>" class="form-control" type="text" placeholder="telefon" name="telfon">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Web:</span>
-                                        </div>
-        				    		    <input value="<?php echo $web?>" class="form-control" type="text" placeholder="www.lalechemusic.com" name="web">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Aforo:</span>
-                                        </div>
-        				    		    <input value="<?php echo $aforo?>" class="form-control" type="number" placeholder="over 9.000" name="aforo">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Direccion:</span>
-                                        </div>
-        				    		    <input value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="direccion">
-        				    		    
-        				    		    <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Ciudad:</span>
-                                        </div>
-        				    		    <select class="form-control" name="poblacion">
-                                        <?php selectPoblacionMod($poblacion) ?>
-                                        </select>
-                                        
-                                        <div id="div-login-msg">
-                                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                            <span id="text-login-msg">Genero:</span>
-                                        </div>
-        				    		    <select class="form-control" name="genero">
-                                        <?php selectGeneroMod($username) ?>
-                                        </select>
-                                        
-        				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
-                		    	        <button type="submit" name="modificar_perfil_local" class="btn btn-success btn-sm btn-block">Modificar</button>
-                                    </form>
-                		        </div>
-                            </ul>
-                        </div>
+                        <form action="<?php echo $updater ?>" method="POST">
+                            <?php session_start(); extract($_SESSION); ?>
+                            <?php require "modalmodify.php"; ?>
+                            <input type="hidden" id="usertype" value="3">
+                            <div id="publicname"></div>
+                            <div id="password"></div>
+                            <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <span id="email"><?php echo $email?></span></div>
+                            <div><span class="glyphicon glyphicon-home"></span> Dirección: <span id="direccion"><?php echo $direccion."</span>, <span id='poblacion'>".$poblacion?></span></div>
+                            <div><span class="glyphicon glyphicon-globe"></span> Página web: <span id="web"><?php echo $web?></span></div>
+                            <div><span class="glyphicon glyphicon-phone-alt"></span> Teléfono de contacto: <span id="telefon"><?php echo $tel?></span></div>
+                            <div><span class="glyphicon glyphicon-piggy-bank"></span> Valoración: <?php echo $valoracion?></div>
+                             <div id="buttons"><button id="modify" class="btn btn-primary btn-block">Modificar perfil</button></div>
+                            <div>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar perfil
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <div class="modal-body">
+                                        <form id="login-form" action="../back_end/updater.php" method="POST">
+                                            <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Actual password:</span>
+                                            </div>
+            				    		    <input class="form-control" type="password" placeholder="Old password" name="pass1" required>
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Publicname:</span>
+                                            </div>
+            				    		    <input value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">New password:</span>
+                                            </div>
+            				    		    <input class="form-control" type="password" placeholder="Password" name="pass2">
+            				    		    <input type="hidden"  name="pass3" value="<?php echo $pass?>">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Email:</span>
+                                            </div>
+            				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Telefono:</span>
+                                            </div>
+            				    		    <input value="<?php echo $tel?>" class="form-control" type="text" placeholder="telefon" name="telfon">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Web:</span>
+                                            </div>
+            				    		    <input value="<?php echo $web?>" class="form-control" type="text" placeholder="www.lalechemusic.com" name="web">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Aforo:</span>
+                                            </div>
+            				    		    <input value="<?php echo $aforo?>" class="form-control" type="number" placeholder="over 9.000" name="aforo">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Direccion:</span>
+                                            </div>
+            				    		    <input value="<?php echo $direccion?>" class="form-control" type="text" placeholder="Pelai ,8" name="direccion">
+            				    		    
+            				    		    <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Ciudad:</span>
+                                            </div>
+            				    		    <select class="form-control" name="poblacion">
+                                            <?php selectPoblacionMod($poblacion) ?>
+                                            </select>
+                                            
+                                            <div id="div-login-msg">
+                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-login-msg">Genero:</span>
+                                            </div>
+            				    		    <select class="form-control" name="genero">
+                                            <?php selectGeneroMod($username) ?>
+                                            </select>
+                                            
+            				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
+                    		    	        <button type="submit" name="modificar_perfil_local" class="btn btn-success btn-sm btn-block">Modificar</button>
+                                        </form>
+                    		        </div>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

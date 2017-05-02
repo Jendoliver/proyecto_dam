@@ -1,21 +1,26 @@
 <div class="container">
-    <h2>Modal Example</h2>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="passconfirm" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Confirma tu contraseña para modificar el perfil</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <label for="pass">Introduce tu contraseña:</label>
+                        <input type="password" class="form-control" name="pass1" placeholder="" required>
+                    </div>
+                    <?php 
+                    switch($usertype)
+                    {
+                        case 1: ?><button id="modificar-perfil" type="submit" name="modificar_perfil_fan" class="btn btn-success btn-block">Confirmar</button><?php ; break;
+                        case 2: ?><button id="modificar-perfil" type="submit" name="modificar_perfil_banda" class="btn btn-success btn-block">Confirmar</button><?php ; break;
+                        case 3: ?><button id="modificar-perfil" type="submit" name="modificar_perfil_local" class="btn btn-success btn-block">Confirmar</button><?php ; break;
+                    }
+                    ?>
                 </div>
             </div>
         </div>

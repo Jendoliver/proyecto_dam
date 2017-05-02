@@ -16,14 +16,9 @@ function updateConcertStatus($idconcierto, $userbanda, $accepted)
         $update .= "2 "; // Rechazado
     $update .= "WHERE id_concierto = $idconcierto AND id_banda = '$userbanda';";
     $con = conectar($GLOBALS['db']);
-    if(mysqli_query($con, $update))
-    {
-        desconectar($con);
-        return 1;
-    }
-    errorConsulta($con);
+    mysqli_query($con, $update);
     desconectar($con);
-    return 0;
+    return 1;
 }
 //modificar perfil 
 function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $direccion, $id_poblacion, $genero)
@@ -51,7 +46,7 @@ function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $
 }
 function updateFanStatus($username, $publicname, $email, $id_poblacion)
 {
-    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', id_poblacion = '$id_poblacion' 
+    $update = "UPDATE usuario SET publicname = '$publicname', email = '$email', id_poblacion = $id_poblacion
         WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
     if(mysqli_query($con, $update))
@@ -88,17 +83,11 @@ function updateBandaStatus($username, $publicname, $email, $tel, $web, $id_pobla
 }
 function updatePass($username, $pass)//funcio per canviar totes les pass de qualsevol usuari
 {
-    $update = "UPDATE usuario SET pass = '$pass'
-        WHERE username = '$username';";
+    $update = "UPDATE usuario SET pass = '$pass' WHERE username = '$username';";
     $con = conectar($GLOBALS['db']);
-    if(mysqli_query($con, $update))
-    {
-        desconectar($con);
-        return 1;
-    }
-    errorConsulta($con);
+    mysqli_query($con, $update);
     desconectar($con);
-    return 0;
+    return 1;
 }
 function comprovaPass($username, $pass)
 {
@@ -106,10 +95,5 @@ function comprovaPass($username, $pass)
     $query = "select username from usuario where username='$username' AND pass='$pass';";
     $resultado = mysqli_query($con, $query);
     desconectar($con);
-    $num_rows = mysqli_num_rows($resultado);
-    if ($num_rows == 0){
-        return false;
-    }else {
-        return true;
-    }
+    return mysqli_num_rows($resultado) > 0;
 }

@@ -45,7 +45,7 @@ function toggleModify()
     // Añadir input de password
     $("#password").append(
         "Nueva contraseña: " +
-        "<input type='password' class='form-control' name='pass1'>");
+        "<input type='password' class='form-control' name='newpass'>");
     
     // Convertir spans de datos en inputs
     $("#email").empty();
@@ -77,16 +77,16 @@ function toggleModify()
 
 function removeModify()
 {
-    $("#personalinfo").html(noModify);
+    $("#personalinfo").html(noModify).fadeIn(500);
     $("#modify").click(toggleModify);
 }
 
 function getCities()
 {
-    $("#poblaciones").empty();
 	$.ajax({
             type: "POST",
-            url: "getCities.php",
+            data: {'poblacion':poblacion},
+            url: "js/getCities.php",
             success: function(response)
             {
                 $('#poblaciones').html(response).fadeIn();

@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="pass">Introduce tu contraseña:</label>
-                        <input type="password" class="form-control" name="pass1" placeholder="" required>
+                        <input type="password" class="form-control" name="pass" placeholder="" required>
                     </div>
                     <?php 
                     switch($usertype)

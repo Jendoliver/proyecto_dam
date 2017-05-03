@@ -34,54 +34,12 @@
                             <?php session_start(); extract($_SESSION); ?>
                             <?php require "modalmodify.php"; ?>
                             <input type="hidden" id="usertype" value="1">
+                            <input type="hidden" name="username" value="<?php echo $username ?>">
                             <div id="publicname"></div>
                             <div id="password"></div>
                             <div><span class="glyphicon glyphicon-envelope"></span> Correo electrónico: <span id="email"><?php echo $email?></span></div>
                             <div><span class="glyphicon glyphicon-home"></span> Ciudad de residencia: <span id="poblacion"><?php echo $poblacion?></span></div>
                             <div id="buttons"><button id="modify" class="btn btn-primary btn-block">Modificar perfil</button></div>
-                                <!-- REMOVE
-                                <ul class="dropdown-menu">
-                                    <div class="modal-body">
-                                        <form id="login-form" action="../back_end/updater.php" method="POST">
-                                            <div id="div-login-msg">
-                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                                <span id="text-login-msg">Actual password:</span>
-                                            </div>
-            				    		    <input class="form-control" type="password" placeholder="Old password" name="pass1" required>
-            				    		    
-            				    		    <div id="div-login-msg">
-                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                                <span id="text-login-msg">Publicname:</span>
-                                            </div>
-            				    		    <input value="<?php echo $publicname?>" class="form-control" type="text" placeholder="Usuario" name="publicname">
-            				    		    
-            				    		    <div id="div-login-msg">
-                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                                <span id="text-login-msg">New password:</span>
-                                            </div>
-            				    		    <input class="form-control" type="password" placeholder="Password" name="pass2" value="">
-            				    		    <!--<input type="hidden"  name="pass3" value="<?php echo $pass?>">
-            				    		    
-            				    		    <div id="div-login-msg">
-                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                                <span id="text-login-msg">Email:</span>
-                                            </div>
-            				    		    <input value="<?php echo $email?>" class="form-control" type="text" placeholder="Exemple@hotmail.com" name="email">
-            				    		    
-            				    		    <div id="div-login-msg">
-                                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                                <span id="text-login-msg">Ciudad:</span>
-                                            </div>
-            				    		    <select class="form-control" name="poblacion">
-                                            <?php selectPoblacionMod($poblacion);?>
-                                            </select>
-            				    		    
-            				    		    <input type="hidden"  name="username" value="<?php echo $username?>">
-                    		    	        <button type="submit" name="modificar_perfil_fan" class="btn btn-success btn-sm btn-block">Modificar</button>
-                                        </form>
-                    		        </div>
-                                </ul>
-                                -->
                         </form>
                     </div>
                 </div>

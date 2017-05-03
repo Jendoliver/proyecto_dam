@@ -19,31 +19,26 @@ else if(isset($_POST["rechazar_banda"])) // Caso rechazar banda
 else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
 {
     extract($_POST);
-    if(comprovaPass($username, $pass1)==true){
-        if($pass2==""){
-        if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero))//genere i ciudad
-            getSession($username, 2); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }else if(updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion, $genero) && updatePass($username, $pass2))
-        {
-            getSession($username, 3); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }
-    }else{
-        passIncorrecte();    
+    if(comprovaPass($username, $pass))
+    {
+        updateLocalStatus($username, $publicname, $email, $telefon, $web, $aforo, $direccion, $poblacion); // TODO: AÑADIR MOD GENERO
+        if($newpass != "")
+            updatePass($username, $newpass);
+        getSession($username, 3); 
+        perfilModificat();
     }
+    else
+        passIncorrecte();    
 }
 else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
 {
     extract($_POST);
-    if(comprovaPass($username, $pass1)) // si la pass es correcta
+    if(comprovaPass($username, $pass)) // si la pass es correcta
     {
         updateFanStatus($username, $publicname, $email, $poblacion);
-        if($pass2!="") // si hay cambio de pass
-            updatePass($username, $pass2);
-        getSession($username, 2); 
+        if($newpass!="") // si hay cambio de pass
+            updatePass($username, $newpass);
+        getSession($username, 1); 
         perfilModificat();
     }
     else
@@ -52,20 +47,14 @@ else if(isset($_POST["modificar_perfil_fan"])) //modificar perfil
 else if(isset($_POST["modificar_perfil_banda"])) //modificar perfil
 {
     extract($_POST);
-    if(comprovaPass($username, $pass1)==true){
-        if($pass2==""){
-        if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero))
-            getSession($username, 2); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }else if(updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion, $genero) && updatePass($username, $pass2))
-        {
-            getSession($username, 2); 
-            $_SESSION["token"] = 1;
-            perfilModificat();
-        }
-        else{
-            passIncorrecte();    
-        }
+    if(comprovaPass($username, $pass))
+    {
+        updateBandaStatus($username, $publicname, $email, $telefon, $web, $poblacion); // TODO: AÑADIR MOD GENERO
+        if($newpass != "")
+            updatePass($username, $newpass);
+        getSession($username, 2); 
+        perfilModificat();
     }
+    else
+        passIncorrecte();
 }

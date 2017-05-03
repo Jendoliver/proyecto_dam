@@ -1,16 +1,19 @@
 <?php
-require "../../back_end/libs/selects_lib.php";
+/*** EXTRACTED FROM SELECTS_LIB (selectPoblacionMod) ***/
+require "../../back_end/libs/bbdd_lib.php";
+$poblacion = $_POST["poblacion"];
 
 $con = conectar($GLOBALS['db']);
- 
-$query="SELECT nombre_poblacion FROM poblacion";
-if($res = mysqli_query($con, $query))
+if($res = mysqli_query($con, "SELECT id, nombre_poblacion FROM poblacion"))
 {
-    while ($row = mysqli_fetch_assoc($res)) 
+    while($row = mysqli_fetch_assoc($res))
     {
         extract($row);
-        echo "<option value='$nombre_poblacion'>$nombre_poblacion</option>";
+        echo "<option class='form-control' value='$id' ";
+        if($poblacion==$nombre_poblacion){ echo " selected='selected' "; }
+            echo " >$nombre_poblacion</option>";
     }
 }
-
+else
+    errorConsulta($con);
 desconectar($con);

@@ -15,12 +15,8 @@
 
 <body>
     <?php session_start();
-    if(!auth())
-    {
-        $_SESSION["usertype"] = 0;
-        require "navbarlogged.php";
-    else
-    { ?>
+    if(!auth()) { $_SESSION["usertype"] = 0; }
+        require "navbarlogged.php"; ?>
     <?php require "navbarlogged.php";  } ?>
     <div class="container-fluid">
         <div class="row"><br><br><br><br><br></div>

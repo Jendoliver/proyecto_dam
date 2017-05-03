@@ -7,20 +7,21 @@ if(isset($_POST["registro_fan"])) // Caso fan
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
+        // IMAGE UPLOAD
+        $destDir  = $imgroute;
+        $destName = uniqid() . '_' . $_FILES['pic']['name'];
+        $fichero_subido = $destDir.basename($destName);
+
+		// El archivo está ahora en la destinacion con un nombre unico 
+		if (move_uploaded_file($_FILES['pic']['tmp_name'], $fichero_subido)) {
+            $pic = $destName;
+        } else { $pic = ""; }
+        
         if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
         {
             getSession($username, 1);
             $_SESSION["token"] = 1;
             header("Location: $fanpage");
-            
-            $tempFile = $_FILES['pic']['tmp_name'];    
-    		$destDir  = '/front_end/img/users/';
-    		$destName = uniqid() . '_' . $_FILES['pic']['name'];
-    		$destFile = $destDir . $destName;
-
-    		// El archivo está ahora en la destinacion con un nombre unico 
-    		move_uploaded_file($tempFile, $destFile);
-		
         }
         else
             errorRegistro();

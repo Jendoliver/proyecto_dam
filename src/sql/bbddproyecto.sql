@@ -20,6 +20,7 @@ aforo int DEFAULT NULL,
 valoracion int DEFAULT NULL,
 direccion varchar(100), -- NO ESTÁ EN EL MODELO RELACIONAL
 id_poblacion int,
+estado int(3) DEFAULT 0 -- 0 per confirmar, 1 confirmat i actiu, 2 conta donada de baixa 
 CONSTRAINT fk_usuario_poblacion FOREIGN KEY(`id_poblacion`) REFERENCES Poblacion(`id`) ON DELETE SET NULL ON UPDATE CASCADE -- poblacion del usuario
 ) DEFAULT CHARSET=utf8;
 

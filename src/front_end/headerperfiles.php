@@ -42,7 +42,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a id="img-profile" class="navbar-brand" href="#"><img id="profilepic" class="img-responsive" src="<?php echo $_SESSION["img"];?>"></a> <!-- IMG -->
+                            <a id="img-profile" class="navbar-brand" href="#"><img id="profilepic" class="img-responsive" src="<?php echo $imgfiles.$_SESSION["img"]; ?>"></a> <!-- IMG -->
                             <span class="user-name"><?php echo $_SESSION["publicname"]; ?></span> <!-- PUBLICNAME -->
                             <span class="site-description"><?php echo "@".$_SESSION["username"]; ?></span> <!-- USERNAME -->
                         </div>

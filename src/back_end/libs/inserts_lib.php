@@ -12,7 +12,7 @@ require "selects_lib.php";
 function insertFan($username, $password, $email, $publicname, $poblacion, $pic)
 {
     if($pic == "") // Default image
-        $pic = "img/users/user_image.png";
+        $pic = "user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
@@ -37,7 +37,7 @@ function insertFan($username, $password, $email, $publicname, $poblacion, $pic)
 function insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website="", $telnum)
 {
     if($pic == "") // Default image
-        $pic = "img/users/user_image.png";
+        $pic = "user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
@@ -92,7 +92,7 @@ function insertMusico($nom, $ape1, $ape2, $inst, $edad, $banda) // actualiza la 
 function insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website="", $telnum)
 {
     if($pic == "") // Default image
-        $pic = "img/users/user_image.png";
+        $pic = "user_image.png";
     $con = conectar($GLOBALS['db']);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);

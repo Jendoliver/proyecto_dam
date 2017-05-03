@@ -14,19 +14,20 @@
 </head>
 
 <body>
-    <?php
+    <?php session_start();
     if(!auth())
-        errorNotLogged();
+    {
+        $_SESSION["usertype"] = 0;
+        require "navbarlogged.php";
     else
     { ?>
-    <?php require "navbarlogged.php"; ?>
+    <?php require "navbarlogged.php";  } ?>
     <div class="container-fluid">
         <div class="row"><br><br><br><br><br></div>
         <div class="row"> <!-- APROXIMACIÓN -->
         
             <?php
             $buscar=$_POST["busqueda"];
-            echo "$buscar";
             selectBusqueda($buscar);
             ?>
             <!--
@@ -65,6 +66,6 @@
         </div>
         <?php //getProfilesLike($_POST["q"]); ?> <!-- ESTO SERÍA LA BÚSQUEDA REAL -->
     </div>
-    <?php } ?>
+    
 </body>
 </html>

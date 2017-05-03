@@ -12,9 +12,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <div class="col-sm-5 col-md-5">
-                <form action="queryresult.php" class="navbar-form" role="search" method="POST">
+                <form action="../front_end/queryresult.php" class="navbar-form" role="search" method="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Busca perfiles..." name="q">
+                    <input type="text" class="form-control" placeholder="Buscar perfiles..." name="busqueda">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>

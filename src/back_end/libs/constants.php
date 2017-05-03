@@ -16,7 +16,8 @@ $bandpage = "/src/front_end/banda.php";
 $bandpagevisit = "/src/front_end/bandavisit.php";
 $garitopage = "/src/front_end/local.php";
 $garitopagevisit = "/src/front_end/localvisit.php";
-//$profile = "/src/front_end/img/users"
+$imgfiles = "/src/front_end/img/users/";
+
 
 // back_end
 $insertor = "/src/back_end/insertor.php";
@@ -40,6 +41,7 @@ $bandpage = "/front_end/banda.php";
 $bandpagevisit = "/front_end/bandavisit.php";
 $garitopage = "/front_end/local.php";
 $garitopagevisit = "/front_end/localvisit.php";
+$imgfiles = "/src/front_end/img/users/";
 
 // back_end
 $insertor = "/back_end/insertor.php";

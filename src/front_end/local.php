@@ -27,7 +27,7 @@
             <div class="row"><br></div>
             <div id="publicity" class="row"><div class="col-md-12"><div class="well" style="text-align: center;">PUBLICIDAD</div></div></div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div id="personalinfo" class="well">
                         <h3>Información personal</h3>
                         <form action="<?php echo $updater ?>" method="POST">
@@ -46,6 +46,10 @@
                             <div id="buttons"><button id="modify" class="btn btn-primary btn-block">Modificar perfil</button></div>
                         </form>
                     </div>
+                </div>
+                <!-- GMAP -->
+                <div class="col-md-6">
+                    
                 </div>
             </div>
             <div class="row">

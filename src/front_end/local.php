@@ -13,7 +13,7 @@
     <script src="js/modify.js"></script>
     <!-- GMAP -->
     <script src="js/libs/gmap3.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnV6FRgLTJdy8PLzdaKgRV-FmMNbyULUk"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgDVAtY7m3iZGAQ1ciAP1CXx7krD5i9Dw"></script>
     <title>La Leche Music</title>
 </head>
 

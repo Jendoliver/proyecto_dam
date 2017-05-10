@@ -1,6 +1,7 @@
 <?php
 
 require "libs/inserts_lib.php";
+require "libs/updates_lib.php";
 /********** CASOS DE REGISTRO ***************/
 if(isset($_POST["registro_fan"])) // Caso fan
 {
@@ -17,7 +18,7 @@ if(isset($_POST["registro_fan"])) // Caso fan
             $pic = $destName;
         } else { $pic = ""; }
         
-        if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
+        if(insertFan($username, $password, $email, $publicname, $poblacion, $pic)&&updateStat($username, 0))
         {
             getSession($username, 1);
             $_SESSION["token"] = 1;
@@ -34,7 +35,7 @@ else if(isset($_POST["registro_banda"])) // Caso banda
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website, $telnum)) // creamos primero la banda
+        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website, $telnum)&&updateStat($username, 0)) // creamos primero la banda
         {
             for($i=0; $i<$memnum; $i++)
             {
@@ -55,7 +56,7 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum))
+        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum)&&updateStat($username, 0))
         {
             getSession($username, 3); 
             $_SESSION["token"] = 1;

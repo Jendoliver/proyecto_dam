@@ -11,6 +11,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/smoothiexxx.js"></script>
     <script src="js/modify.js"></script>
+    <!-- GMAP -->
+    <script src="js/libs/gmap3.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnV6FRgLTJdy8PLzdaKgRV-FmMNbyULUk"></script>
     <title>La Leche Music</title>
 </head>
 
@@ -48,8 +51,8 @@
                     </div>
                 </div>
                 <!-- GMAP -->
-                <div class="col-md-6">
-                    
+                <div id="mapcontainer" class="col-md-6">
+                    <div id="map"></div>
                 </div>
             </div>
             <div class="row">
@@ -93,5 +96,27 @@
         </div> <!-- FIN DEL MAIN CONTAINER -->
         <?php require "footer.php" ?>
     </div>
+    <script>
+        $(document).ready(init);
+        function init() 
+        {
+            $('#map')
+                .gmap3({
+                    zoom: 4
+                })
+                .infowindow()
+                .marker([
+                    {address: "<?php echo $direccion.', '.$poblacion ?>", data: "<h3><?php echo $publicname ?></h3>", icon: "http://maps.google.com/mapfiles/marker_orange.png"},
+                ])
+                .on('click', function (marker) {  //Al clicar obrim una finestra sobre la marca i hi insertem el data de la marca
+                    marker.setIcon('http://maps.google.com/mapfiles/marker_green.png');
+                    var map = this.get(0); //this.get(0) retorna la primera propietat vinculada-> gmap3
+                    var infowindow = this.get(1); //this.get(1) retorna la segona propietat vinculada -> infowindow
+                    infowindow.setContent(marker.data);     //dins la finestra mostrem el atribut data de la marca
+                    infowindow.open(map, marker);
+                })
+                .fit();
+        }
+    </script>
     <?php } ?>
 </body>

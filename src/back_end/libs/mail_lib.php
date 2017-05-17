@@ -11,7 +11,7 @@
             </head>
             <body bgcolor="#FFEEAA">
                 <p>Your account has been successfully created. 
-                Please now proceed to click <a href="https://proyecto_transversal_dam_plix-jandol.c9users.io/confirmaccount.php?username='.echo $username.'">HERE</a> to confirm your account.
+                Please now proceed to click <a href="https://proyecto_transversal_dam_plix-jandol.c9users.io/confirmaccount.php?username='.echo $username.'">HER</a> to confirm your account.
             </body>
         </html>
         ';

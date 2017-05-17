@@ -99,6 +99,7 @@ function insertGarito($username, $password, $email, $publicname, $poblacion, $id
     $password = password_hash($password, PASSWORD_DEFAULT);
     $email = mysqli_real_escape_string($con, $email);
     $publicname = mysqli_real_escape_string($con, $publicname);
+    $direccion = mysqli_real_escape_string($con, $direccion);
     $poblacion = mysqli_real_escape_string($con, $poblacion);
     $website = mysqli_real_escape_string($con, $website);
     if(!alreadyExists($username, "usuario", "username")) // si no existe

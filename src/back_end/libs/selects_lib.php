@@ -439,6 +439,7 @@ function selectGeneroMod($username)
 /***************** SELECTS per buscar perfils *******************/
 function selectBusqueda($buscar)
 {
+    global $selector;
     $con = conectar($GLOBALS['db']);
     if($res = mysqli_query($con, "SELECT username, publicname FROM usuario
         WHERE publicname LIKE '%$buscar%' OR username LIKE '%$buscar%'"))
@@ -460,7 +461,7 @@ function selectBusqueda($buscar)
             }
                 echo "<div class='col-md-3'>
                     <h3>Perfil de $username <br>Alias $publicname ($usertype)</h3>
-                    <form action='../back_end/selector.php' method='POST'>
+                    <form action='$selector' method='POST'>
                         <input type='hidden' name='username' value='$username'>
                         <input type='hidden' name='usertype' value='$usertype'>
                         <input class='btn btn-success' type='submit' name='visitProfile' value='Visitar'>

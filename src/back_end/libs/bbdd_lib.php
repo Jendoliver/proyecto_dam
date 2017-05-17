@@ -127,7 +127,7 @@ function idToValue($id, $col, $table) // devuelve el valor en la columna $col as
 
 function createTable($res, $button = 0) // Crea una tabla genérica automáticamente con el resultado de una query
 { // | BUTTON = 0: Sin botones | = 1: Botón de votación concierto (fans) | = 2: Botón de inscribirse a concierto (bandas) | = 3: Botones de aceptar/rechazar banda (local) 
-    global $imglike, $imgdislike, $insertor, $updater;
+    global $imglike, $imgdislike, $insertor, $updater, $garitopagevisit, $bandpagevisit;
     if($button) { session_start(); extract($_SESSION); }
     
     if($row = mysqli_fetch_assoc($res)) //comprobamos que hay algo para evitar warning
@@ -174,8 +174,8 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
             {
                 switch($key) // preparamos outputs especiales para que se vean bonitos
                 {
-                    case "nom_local": $table .= "<td>".localToPublic($value)."</td>"; break;
-                    case "id_banda": $table .= "<td>".localToPublic($value)."</td>"; break;
+                    case "nom_local": $table .= "<td><a href='$garitopagevisit?u=$value'>".localToPublic($value)."</a></td>"; break;
+                    case "id_banda": $table .= "<td><a href='$bandpagevisit?u=$value'>".localToPublic($value)."</a></td>"; break;
                     case "aceptado":
                         {
                             switch($value)

@@ -19,6 +19,8 @@
         errorNotLogged();
     else
     { 
+    if($_GET["u"] == $_SESSION["username"])
+        header("Location: ".$_SESSION["home"]);
     $type = checkUserType($_GET["u"]);
     switch($type) // Patch to avoid accessing to a page without the user being of that type (really ugly)
     {

@@ -40,8 +40,15 @@ function checkUserType($user) // checkea el tipo de usuario y devuelve: 1 = Fan,
         desconectar($con);
         return 2; // El usuario es una banda
     }
+    $query = "SELECT * FROM usuario WHERE username = '$user' AND aforo IS NOT NULL AND valoracion IS NOT NULL;"; // Comprobación garito
+    $res = mysqli_query($con, $query);
+    if(mysqli_num_rows($res))
+    {
+        desconectar($con);
+        return 3; // El usuario es un garito
+    }
     desconectar($con);
-    return 3; // El usuario es un garito por descarte
+    return 0; // El usuario no existe
 }
 
 /***************** SELECTS HOMEPAGE *******************/

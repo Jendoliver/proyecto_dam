@@ -18,7 +18,17 @@
     if(!auth())
         errorNotLogged();
     else
-    { ?>
+    { 
+    $type = checkUserType($_GET["u"]);
+    switch($type) // Patch to avoid accessing to a page without the user being of that type (really ugly)
+    {
+        case 1: getSession($_GET["u"], $type, 0); break;
+        case 2: header("Location: $bandpagevisit?u=".$_GET["u"]); break;
+        case 3: header("Location: $garitopagevisit?u=".$_GET["u"]); break;
+        default: header("Location: ".$_SESSION["home"]);
+    }
+    
+    ?>
     <?php require "navbarlogged.php"; ?>
     <?php require "headervisit.php"; ?>
         <div class="container"> <!-- INICIO DEL MAIN CONTAINER -->

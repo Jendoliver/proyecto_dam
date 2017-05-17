@@ -60,7 +60,7 @@
                     <div class="well">
                         <h3>Crear un nuevo concierto</h3> <!-- FORMULARIO NUEVO CONCIERTO -->
                         <div class="container-fluid">
-                            <form action="../back_end/insertor.php" method="POST">
+                            <form action="<?php echo $insertor; ?>" method="POST">
                                 <div class="form-group">
                                     <label for="date">Fecha del concierto:</label>
                                     <input type="date" class="form-control" name="concertdate" min="<?php echo date('Y-m-d'); ?>" required>

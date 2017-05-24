@@ -5,6 +5,10 @@ CUENTA HOSTALIA
 CUENTA GMAIL
     correo -  lalechemusic@gmail.com
     contraseña -  a53318214M!
+    
+CUENTA CORREO DOMINIO
+    correo - milkman@lalechemusic.com
+    contraseña - a53318214M!
 
 CUENTA FTP
     servidor -  ftp.d4993709-72947.srv-hostalia.com

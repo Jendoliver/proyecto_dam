@@ -9,8 +9,9 @@ require "error_lib.php";
 
 function conectar($database) // Todo un clásico
 {
+    global $dburl, $dbuser, $dbpass;
     //$conexion = mysqli_connect("mysql128int.srv-hostalia.com", "u4993709_lechero", "9fk27/Cj?[h]vCLN", $database) or // PARA EL HOSTING 
-    $conexion = mysqli_connect("localhost", "smusi", "", $database) or // Para C9
+    $conexion = mysqli_connect($dburl, $dbuser, $dbpass, $database) or // Para C9
         die("No se ha podido conectar a la BBDD");
     mysqli_set_charset($conexion, "utf8");
     return $conexion;

@@ -60,6 +60,7 @@ hr
 .container {
     color: black;
     margin-bottom: 100px;
+    margin-top: 30px;
 }
 .navbar li a, .navbar .navbar-brand { 
   color: #d5d5d5 !important;

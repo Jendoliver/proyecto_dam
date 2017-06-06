@@ -22,6 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
+                <img class="navbar-brand" id="logo" src="<?php echo $logo ?>"></img>
                 <a class="navbar-brand" href="#myPage">La Leche Music</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -29,7 +30,6 @@
                     <li><a href="#bandas">BANDAS</a></li>
                     <li><a href="#garitos">GARITOS</a></li>
                     <li><a href="#conciertos">CONCIERTOS</a></li>
-                    <li><a href="#loultimo">LO ÚLTIMO</a></li>
                     <li><a href="#estilos">ESTILOS MUSICALES</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -48,14 +48,7 @@
         				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" name="password" required>
                 		    	    <button type="submit" name="login" class="btn btn-success btn-sm btn-block">Login</button>
                                 </form>
-                                <form id="login-form" action="../back_end/libs/mail_lib.php" method="POST">
-        				    		<div id="div-login-msg">
-                                        <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                        <span id="text-login-msg">Recuperar password por email:</span>
-                                    </div>
-        				    		<input id="login_username" class="form-control" type="text" placeholder="Usuario" name="username" required>
-                		    	    <button type="submit" name="recu" class="btn btn-success btn-sm btn-block">Recuperar</button>
-                                </form>
+                                <a style="font-size: 10px; letter-spacing: 2px; font-color: black" href="passrecover.php">¿Has olvidado tu contraseña?</a>
                 		    </div>
     				        <div class="modal-footer">
                                 <a href="registro.php" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->
@@ -157,7 +150,8 @@
                     <img src="img/bandas.jpg" class="img-responsive"></img>
                 </div>
                 <div class="col-md-6">
-                    <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
+                    <div class="row" style="text-align: justify;">¡Descubre una selección de bandas exquisitas en nuestra plataforma! Tanto si eres un fan y buscas nuevo material que seguir como si eres un garito y buscas buenos músicos para llenar tu sala, aquí encontrarás lo mejor de lo mejor. ¡Esto es la leche!</div>
+                    <hr>
                     <div class="row">
                         <h2>LAS MEJORES BANDAS DEL MES</h2>
                         <?php if($_SESSION["usertype"] == 1) selectMejoresBandas(1); else selectMejoresBandas(); ?>
@@ -175,7 +169,8 @@
                     <img src="img/garitos.jpg" class="img-responsive"></img>
                 </div>
                 <div class="col-md-6">
-                    <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
+                    <div class="row" style="text-align: justify;">¿Acabas de formar una banda y no sabes dónde tocar? ¿Te gustaría saber qué conciertos ofrecerá un garito de tu zona? ¡En La Leche Music encontrarás una variedad de garitos y géneros colosal! ¡No te quedes sin planes este finde, tronco!</div>
+                    <hr>
                     <div class="row">
                         <h2>LOS MEJORES GARITOS DEL MES</h2>
                         <?php if($_SESSION["usertype"] == 1) selectMejoresGaritos(1); else selectMejoresGaritos(); ?>
@@ -193,64 +188,12 @@
                     <img src="img/concierto.jpg" class="img-responsive"></img>
                 </div>
                 <div class="col-md-6">
-                    <div class="row" style="text-align: justify;">Lorem fistrum llevame al sircoo me cago en tus muelas tiene musho peligro benemeritaar. Mamaar se calle ustée al ataquerl está la cosa muy malar a peich tiene musho peligro. A peich benemeritaar no te digo trigo por no llamarte Rodrigor no puedor de la pradera llevame al sircoo ese hombree no puedor ahorarr. Está la cosa muy malar hasta luego Lucas a peich ahorarr al ataquerl. Por la gloria de mi madre quietooor a gramenawer quietooor sexuarl la caidita no te digo trigo por no llamarte Rodrigor diodeno diodenoo se calle ustée hasta luego Lucas. A gramenawer apetecan por la gloria de mi madre llevame al sircoo benemeritaar fistro apetecan ahorarr benemeritaar a gramenawer ese pedazo de. Por la gloria de mi madre qué dise usteer por la gloria de mi madre diodeno quietooor está la cosa muy malar hasta luego Lucas tiene musho peligro está la cosa muy malar está la cosa muy malar te voy a borrar el cerito.</div>
+                    <div class="row" style="text-align: justify;">En La Leche Music nos tomamos muy en serio la calidad de nuestros músicos y garitos, y por ello contamos con un potente sistema de votaciones gestionado por los propios fans. ¿Quieres saber qué se pía de tu último bolo? ¡Descúbrelo!</div>
+                    <hr>
                     <div class="row">
                         <h2>LOS MEJORES CONCIERTOS DEL MES</h2>
                         <?php if($_SESSION["usertype"] == 1) selectMejoresConciertos(1); else selectMejoresConciertos(); ?>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- SECCIÓN LO ÚLTIMO -->
-        <div id="loultimo" class="container">
-            <div class="row"> <!-- TÍTULO SECCIÓN -->
-                <div class="col-md-12"><h1 style="text-align: center;">LO ÚLTIMO</h1></div>
-            </div>
-            <div class="row">
-                <div id="carousel-loulitmo" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-loulitmo" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-loulitmo" data-slide-to="1"></li>
-                        <li data-target="#carousel-loulitmo" data-slide-to="2"></li>
-                    </ol>
-            
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="img/ny.jpg" alt="New York" width="1000" height="300">
-                            <div class="carousel-caption">
-                                <h3>Noticia 1</h3>
-                                <p>El concierto fue un exitazo.</p>
-                            </div>      
-                        </div>
-            
-                        <div class="item">
-                            <img src="img/chicago.jpg" alt="Chicago" width="1000" height="300">
-                            <div class="carousel-caption">
-                                <h3>Noticia 2</h3>
-                                <p>Espectacular poyankre</p>
-                            </div>      
-                        </div>
-                
-                        <div class="item">
-                            <img src="img/la.jpg" alt="Los Angeles" width="1000" height="300">
-                            <div class="carousel-caption">
-                                <h3>Noticia 3</h3>
-                                <p>La verdad es que este Los Angeles es bastante botorudorf</p>
-                            </div>      
-                        </div>
-                    </div>
-            
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#carousel-loulitmo" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-loulitmo" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
         </div>

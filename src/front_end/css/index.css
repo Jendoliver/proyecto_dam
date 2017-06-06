@@ -13,6 +13,14 @@ h1 {
     font-family: oldtown;
     color: black;
 }
+hr
+{
+  border-color: #000000;
+}
+#logo{
+  width: 50px;
+  height: 50px;
+}
 #cerrarsesion
 {
   margin: 13px;
@@ -52,6 +60,7 @@ h1 {
 .container {
     color: black;
     margin-bottom: 100px;
+    margin-top: 30px;
 }
 .navbar li a, .navbar .navbar-brand { 
   color: #d5d5d5 !important;
@@ -81,4 +90,8 @@ h1 {
 }
 .input-group div button {
   border-radius: 100px;
+}
+
+@media (max-width: 1000px) {
+  .cowa { display: none; }
 }

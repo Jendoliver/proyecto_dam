@@ -91,3 +91,7 @@ hr
 .input-group div button {
   border-radius: 100px;
 }
+
+@media (max-width: 1000px) {
+  .cowa { display: none; }
+}

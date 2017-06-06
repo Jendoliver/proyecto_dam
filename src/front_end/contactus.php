@@ -51,7 +51,7 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-        <footer></footer> <!-- HAY QUE INCLUIR EL FOOTER -->
+        <footer></footer>
     </div>
     <?php }?>
 </body>

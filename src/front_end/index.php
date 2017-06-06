@@ -48,6 +48,14 @@
         				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" name="password" required>
                 		    	    <button type="submit" name="login" class="btn btn-success btn-sm btn-block">Login</button>
                                 </form>
+                                <form id="login-form" action="../back_end/libs/mail_lib.php" method="POST">
+        				    		<div id="div-login-msg">
+                                        <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                        <span id="text-login-msg">Recuperar password por email:</span>
+                                    </div>
+        				    		<input id="login_username" class="form-control" type="text" placeholder="Usuario" name="username" required>
+                		    	    <button type="submit" name="recu" class="btn btn-success btn-sm btn-block">Recuperar</button>
+                                </form>
                 		    </div>
     				        <div class="modal-footer">
                                 <a href="registro.php" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->

@@ -127,3 +127,12 @@ display: inline-block;
 .input-group div button {
   border-radius: 100px;
 }
+
+/***** GMAP *****/
+#mapcontainer { text-align: center; }
+#map 
+{ 
+    display: inline-block; 
+    width: 450px;
+    height: 230px;
+}

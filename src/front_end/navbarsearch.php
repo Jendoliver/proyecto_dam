@@ -7,6 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
+            <img class="navbar-brand" id="logo" src="<?php echo $logo ?>"></img>
             <a class="navbar-brand" href="index.php">La Leche Music</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">

@@ -28,6 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
+                    <img class="navbar-brand" id="logo" src="<?php echo $logo ?>"></img>
                     <a class="navbar-brand" href="index.php">La Leche Music</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -50,52 +51,6 @@
                 </div>
             </div>
         </nav>
-        <!-- CAROUSEL DE IMAGENES A MODIFICAR PARA ADECUARLO AL REGISTRO-->
-        <div id="carousel-head" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-head" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-head" data-slide-to="1"></li>
-                <li data-target="#carousel-head" data-slide-to="2"></li>
-            </ol>
-    
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="img/concierto.jpg" alt="New York" width="1200" height="700">
-                    <div class="carousel-caption">
-                        <h3>EL FAN</h3>
-                        <p>¿Eres un fan en busca de sus músicos favoritos? ¡Descubre donde actúan!</p>
-                    </div>      
-                </div>
-    
-                <div class="item">
-                    <img src="img/bandas.jpg" alt="Chicago" width="1200" height="700">
-                    <div class="carousel-caption">
-                        <h3>LA BANDA</h3>
-                        <p>¿Eres una banda en busca de garitos donde actuar?</p>
-                    </div>      
-                </div>
-        
-                <div class="item">
-                    <img src="img/garitos.jpg" alt="Los Angeles" width="1200" height="700">
-                    <div class="carousel-caption">
-                        <h3>EL GARITO</h3>
-                        <p>¿Eres un garito en busca de los amantes de la música y el bebercio?</p>
-                    </div>      
-                </div>
-            </div>
-    
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#carousel-head" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-head" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
         
         <!-- MAIN REGISTRO -->
         <div class="container">
@@ -105,7 +60,7 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Eres un fan?</h1>
                     <div class="well">
-                        <form id="regfan" action="<?php echo $insertor ?>" method="POST">
+                        <form id="regfan" action="<?php echo $insertor ?>" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="username">Nombre de usuario:</label>
                                 <input type="text" class="form-control" name="username" placeholder="elmejorfan">
@@ -148,7 +103,7 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Eres una banda?</h1>
                     <div class="well">
-                        <form id="regband" action="<?php echo $insertor ?>" method="POST">
+                        <form id="regband" action="<?php echo $insertor ?>" method="POST" enctype="multipart/form-data">
                             <h3>Información de la cuenta</h3>
                             <div class="form-group">
                                 <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>
@@ -212,7 +167,7 @@
                 <div class="col-md-6">
                     <h1 style="text-align: center">¿Tienes un garito?</h1>
                     <div class="well">
-                        <form id="regbar" action="<?php echo $insertor ?>" method="POST">
+                        <form id="regbar" action="<?php echo $insertor ?>" method="POST" enctype="multipart/form-data">
                             <h3>Información de la cuenta</h3>
                             <div class="form-group">
                                 <label for="username">Nombre de usuario <em>(el que usas para iniciar sesión)</em>:</label>

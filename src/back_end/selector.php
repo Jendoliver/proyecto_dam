@@ -17,9 +17,9 @@ else if(isset($_POST["visitProfile"])) // Venimos de queryresult.php, visitamos 
 {
     switch($_POST["usertype"])
     {
-        case "fan": getSession($_POST["username"], 1, 0); header("Location: $fanpagevisit"); break;
-        case "banda": getSession($_POST["username"], 2, 0); header("Location: $bandpagevisit"); break;
-        case "local": getSession($_POST["username"], 3, 0); header("Location: $garitopagevisit"); break;
+        case "fan": header("Location: $fanpagevisit?u=".$_POST["username"]); break;
+        case "banda": header("Location: $bandpagevisit?u=".$_POST["username"]); break;
+        case "local": header("Location: $garitopagevisit?u=".$_POST["username"]); break;
     }
 }
 else

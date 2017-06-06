@@ -1,7 +1,6 @@
 <?php
 
 require "libs/inserts_lib.php";
-require "libs/updates_lib.php";
 /********** CASOS DE REGISTRO ***************/
 if(isset($_POST["registro_fan"])) // Caso fan
 {
@@ -9,16 +8,17 @@ if(isset($_POST["registro_fan"])) // Caso fan
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
         // IMAGE UPLOAD
-        $destDir  = $imgroute;
+        $destDir = $imgroute;
+        //$destDir = "/src/front_end/img/users/";
         $destName = uniqid() . '_' . $_FILES['pic']['name'];
-        $fichero_subido = $destDir.basename($destName);
 
-		// El archivo está ahora en la destinacion con un nombre unico 
+        $fichero_subido = $destDir.basename($destName);
+            
 		if (move_uploaded_file($_FILES['pic']['tmp_name'], $fichero_subido)) {
             $pic = $destName;
         } else { $pic = ""; }
         
-        if(insertFan($username, $password, $email, $publicname, $poblacion, $pic)&&updateStat($username, 0))
+        if(insertFan($username, $password, $email, $publicname, $poblacion, $pic))
         {
             getSession($username, 1);
             $_SESSION["token"] = 1;
@@ -35,7 +35,18 @@ else if(isset($_POST["registro_banda"])) // Caso banda
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website, $telnum)&&updateStat($username, 0)) // creamos primero la banda
+         // IMAGE UPLOAD
+        $destDir = $imgroute;
+        //$destDir = "/src/front_end/img/users/";
+        $destName = uniqid() . '_' . $_FILES['pic']['name'];
+
+        $fichero_subido = $destDir.basename($destName);
+            
+		if (move_uploaded_file($_FILES['pic']['tmp_name'], $fichero_subido)) {
+            $pic = $destName;
+        } else { $pic = ""; }
+        
+        if(insertBanda($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $website, $telnum)) // creamos primero la banda
         {
             for($i=0; $i<$memnum; $i++)
             {
@@ -56,7 +67,18 @@ else if(isset($_POST["registro_garito"])) // Caso garito
     extract($_POST);
     if(!strcmp($password, $password_confirm)) // por los viejos tiempos de C
     {
-        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum)&&updateStat($username, 0))
+         // IMAGE UPLOAD
+        $destDir = $imgroute;
+        //$destDir = "/src/front_end/img/users/";
+        $destName = uniqid() . '_' . $_FILES['pic']['name'];
+
+        $fichero_subido = $destDir.basename($destName);
+            
+		if (move_uploaded_file($_FILES['pic']['tmp_name'], $fichero_subido)) {
+            $pic = $destName;
+        } else { $pic = ""; }
+        
+        if(insertGarito($username, $password, $email, $publicname, $poblacion, $idgenero, $pic, $direccion, $aforomax, $website, $telnum))
         {
             getSession($username, 3); 
             $_SESSION["token"] = 1;

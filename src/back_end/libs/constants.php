@@ -28,7 +28,7 @@ $updater = "/src/back_end/updater.php";
 $imglike = "/src/front_end/img/like.png";
 $imgdislike = "/src/front_end/img/dislike.png";
 $favicon = "/src/front_end/img/favicon.ico";
-
+$logo = "/src/front_end/img/logo.png";
 
 /*********** RUTAS HOSTING ****************/
 /*
@@ -52,11 +52,23 @@ $updater = "/back_end/updater.php";
 $imglike = "/front_end/img/like.png";
 $imgdislike = "/front_end/img/dislike.png";
 $favicon = "/front_end/img/favicon.ico";
+$logo = "/front_end/img/logo.png";
 */
 
 
 /********** BBDD **************/
-//$db = "db4993709_proyecto"; // Hosting
-$db = 'proyecto'; // C9
+// HOSTING
+/*
+$db = "db4993709_proyecto";
+$dburl = "mysql128int.srv-hostalia.com";
+$dbuser = "u4993709_lechero";
+$dbpass = "9fk27/Cj?[h]vCLN";
+*/
+
+// C9
+$db = "proyecto";
+$dburl = "localhost";
+$dbuser = "jandol";
+$dbpass = "";
 
 ?>

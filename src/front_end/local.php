@@ -15,6 +15,12 @@
     <!-- GMAP -->
     <script src="js/libs/gmap3.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgDVAtY7m3iZGAQ1ciAP1CXx7krD5i9Dw"></script>
+    <!-- DATE PICKER -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/datepicker.js" type="text/javascript"></script>
     <title>La Leche Music</title>
 </head>
 
@@ -64,7 +70,7 @@
                             <form action="<?php echo $insertor; ?>" method="POST">
                                 <div class="form-group">
                                     <label for="date">Fecha del concierto:</label>
-                                    <input type="date" class="form-control" name="concertdate" min="<?php echo date('Y-m-d'); ?>" required>
+                                    <input id="datepicker" type="text" class="form-control" name="concertdate" placeholder="Haz clic aquí para escoger una fecha..." required>
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Remuneración del concierto por grupo:</label>

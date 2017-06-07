@@ -19,7 +19,7 @@ function modifyConcert()
                     "<input type='hidden' name='idconcert' value='"+idconcert+"'>"+
                     "<div class='form-group'>"+
                         "<label for='date'>Nueva fecha del concierto:</label>"+
-                        "<input type='date' class='form-control' name='concertdate' required>"+
+                        "<input id='datepicker' type='text' class='form-control' name='concertdate' placeholder='Haz clic aquí...' required>"+
                     "</div>"+
                     "<div class='form-group'>"+
                         "<label for='date'>Nueva remuneración del concierto por grupo:</label>"+
@@ -38,6 +38,8 @@ function modifyConcert()
        "</div>"+
    "</div>"
     );
+    $( "#datepicker" ).datepicker({ minDate: 0 });
+    $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
     $("#cancelmodify").click(cancelmodify);
 }
 
@@ -49,5 +51,8 @@ function deleteConcert()
 
 function cancelmodify()
 {
+    $("#concerts").empty();
     $("#concerts").html(prevcontent);
+    $( "#datepicker" ).datepicker({ minDate: 0 });
+    $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
 }

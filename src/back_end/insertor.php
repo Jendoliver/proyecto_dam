@@ -97,6 +97,8 @@ else if(isset($_POST["crear_concierto"])) // Caso crear concierto
     session_start();
     if(crearConcierto($concertdate, $cash, $_SESSION["username"]))
         conciertoCreado();
+    else
+        fechaErronea();
 }
 else if(isset($_POST["inscribirse_concierto"])) // Caso inscribirse concierto
 {

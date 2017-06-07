@@ -87,6 +87,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="well">
+                        <?php require "modaldeleteconcert.php"; ?>
                         <h3>Conciertos creados</h3>
                         <div class="container-fluid">
                             <?php selectProximosConciertosLocal($username); ?>

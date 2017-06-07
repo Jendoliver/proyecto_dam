@@ -23,6 +23,7 @@ $imgroute = "/home/ubuntu/workspace/src/front_end/img/users/";
 $insertor = "/src/back_end/insertor.php";
 $selector = "/src/back_end/selector.php";
 $updater = "/src/back_end/updater.php";
+$deleter = "/src/back_end/deleter.php";
 
 // img
 $imglike = "/src/front_end/img/like.png";
@@ -47,6 +48,7 @@ $imgfiles = "/webspace/httpdocs/lalechemusic.com/front_end/img/users";
 $insertor = "/back_end/insertor.php";
 $selector = "/back_end/selector.php";
 $updater = "/back_end/updater.php";
+$deleter = "/back_end/deleter.php";
 
 // img
 $imglike = "/front_end/img/like.png";

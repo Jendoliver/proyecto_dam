@@ -58,6 +58,16 @@ function concertUpdated()
     </script>";
 }
 
+function concertDewa()
+{
+    global $garitopage;
+    $message = "¡Concierto borrado con éxito!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$garitopage';
+    </script>";
+}
+
 function votoCorrecto()
 {
     global $lastpage;

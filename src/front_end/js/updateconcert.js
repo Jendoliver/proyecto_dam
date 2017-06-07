@@ -3,12 +3,13 @@ var prevcontent;
 $(document).ready(function()
 {
     $(".modifyconcert").click(modifyConcert);
+    $(".deleteconcert").click(deleteConcert);
 })
 
 function modifyConcert()
 {
     prevcontent = $("#concerts").html();
-    var idconcert = $(this).attr("id");
+    var idconcert = $(this).parent("td").attr("id");
     $("#concerts").html(
     "<div class='col-md-12'>"+
         "<div class='well'>"+
@@ -29,7 +30,7 @@ function modifyConcert()
                             "<button type='submit' name='modificar_concierto' class='btn btn-success btn-block'>Modificar concierto</button>"+
                         "</div>"+ 
                         "<div class='col-md-6'>"+ 
-                            "<button id='cancel' class='btn btn-danger btn-block'>Cancelar</button>"+
+                            "<button id='cancelmodify' class='btn btn-danger btn-block'>Cancelar</button>"+
                         "</div>"+
                     "</div>"+
                 "</form>"+
@@ -37,10 +38,16 @@ function modifyConcert()
        "</div>"+
    "</div>"
     );
-    $("#cancel").click(cancel);
+    $("#cancelmodify").click(cancelmodify);
 }
 
-function cancel()
+function deleteConcert()
+{
+    var idconcert = $(this).parent("td").attr("id");
+    $("#idconcert-modal").attr("value", idconcert);
+}
+
+function cancelmodify()
 {
     $("#concerts").html(prevcontent);
 }

@@ -40,6 +40,7 @@
     				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" name="password" required>
             		    	    <button type="submit" name="login" class="btn btn-success btn-sm btn-block">Login</button>
                             </form>
+                            <a style="font-size: 12px; letter-spacing: 2px; color: black !important;" href="passrecover.php">¿Has olvidado tu contraseña?</a>
             		    </div>
 				        <div class="modal-footer">
                             <a href="registro.php" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->

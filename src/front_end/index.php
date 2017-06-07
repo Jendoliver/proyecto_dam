@@ -48,10 +48,10 @@
         				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" name="password" required>
                 		    	    <button type="submit" name="login" class="btn btn-success btn-sm btn-block">Login</button>
                                 </form>
-                                <a style="font-size: 10px; letter-spacing: 2px; font-color: black" href="passrecover.php">¿Has olvidado tu contraseña?</a>
+                                <a style="font-size: 12px; letter-spacing: 2px; color: black !important;" href="passrecover.php">¿Has olvidado tu contraseña?</a>
                 		    </div>
     				        <div class="modal-footer">
-                                <a href="registro.php" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a> <!-- TODO: LINKEAR CON REGISTRO -->
+                                <a href="registro.php" type="submit" class="btn btn-primary btn-sm btn-block">Registrarse</a>
     				        </div>
                         </ul>
                     </li>
@@ -88,7 +88,7 @@
                 <img src="img/ny.jpg" alt="New York" width="1200" height="700">
                 <div class="carousel-caption">
                     <h3>New York</h3>
-                    <p>The atmosphere in New York is lorem ipsum.</p>
+                    <p>The atmosphere in New York is a little bit finolis.</p>
                 </div>      
             </div>
 
@@ -104,7 +104,7 @@
                 <img src="img/la.jpg" alt="Los Angeles" width="1200" height="700">
                 <div class="carousel-caption">
                     <h3>LA</h3>
-                    <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
+                    <p>Even though the traffic was a mess, we had the best time playing at Venidi et Lekarda!</p>
                 </div>      
             </div>
         </div>

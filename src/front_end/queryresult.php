@@ -14,10 +14,7 @@
 </head>
 
 <body>
-    <?php session_start();
-    if(!auth()) { $_SESSION["usertype"] = 0; }
-        require "navbarlogged.php"; ?>
-    <?php require "navbarlogged.php"; ?>
+    <?php require "navbarsearch.php"; ?>
     <div class="container-fluid">
         <div class="row"><br><br><br><br><br></div> <!-- WARRAPOP SIII WARRAPOP NAO -->
         <div class="row">

@@ -441,9 +441,9 @@ function selectGeneroMod($username)
 /***************** SELECTS per buscar perfils *******************/
 function selectBusqueda($buscar)
 {
-    global $selector;
+    global $selector, $imgfiles;
     $con = conectar($GLOBALS['db']);
-    if($res = mysqli_query($con, "SELECT username, publicname FROM usuario
+    if($res = mysqli_query($con, "SELECT username, publicname, img FROM usuario
         WHERE publicname LIKE '%$buscar%' OR username LIKE '%$buscar%'"))
     {
         while($row = mysqli_fetch_assoc($res))
@@ -461,13 +461,22 @@ function selectBusqueda($buscar)
             {
                 $usertype='local';
             }
-                echo "<div class='col-md-3'>
-                    <h3>Perfil de $username <br>Alias $publicname ($usertype)</h3>
-                    <form action='$selector' method='POST'>
-                        <input type='hidden' name='username' value='$username'>
-                        <input type='hidden' name='usertype' value='$usertype'>
-                        <input class='btn btn-success' type='submit' name='visitProfile' value='Visitar'>
-                    </form>
+            echo "<div class='col-md-3'>
+                    <div class='row well'>
+                        <div class='col-md-5'>
+                            <img class='img-responsive' src='$imgfiles"."$img'/>
+                        </div>
+                        <div class='col-md-7'>
+                            <h3>Perfil de $publicname</h3>
+                            <h4><em>@$username</em></h4>
+                            <h5>($usertype)</h5>
+                            <form action='$selector' method='POST'>
+                                <input type='hidden' name='username' value='$username'>
+                                <input type='hidden' name='usertype' value='$usertype'>
+                                <input class='btn btn-success' type='submit' name='visitProfile' value='Visitar'>
+                            </form>
+                        </div>
+                    </div>
                 </div>";
         }
     }

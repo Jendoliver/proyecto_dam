@@ -14,14 +14,13 @@
     <script src="js/updateconcert.js"></script>
     <!-- GMAP -->
     <script src="js/libs/gmap3.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgDVAtY7m3iZGAQ1ciAP1CXx7krD5i9Dw"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuUEGFrLqVjPOlCdoHmz1ao_Nap1fJ9eg"></script>
     <!-- DATE PICKER -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/datepicker.js" type="text/javascript"></script>
     <title>La Leche Music</title>
+    
 </head>
 
 <body>

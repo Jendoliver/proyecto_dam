@@ -127,7 +127,7 @@ function idToValue($id, $col, $table) // devuelve el valor en la columna $col as
 }
 
 function createTable($res, $button = 0) // Crea una tabla genérica automáticamente con el resultado de una query
-{ // | BUTTON = 0: Sin botones | = 1: Botón de votación concierto (fans) | = 2: Botón de inscribirse a concierto (bandas) | = 3: Botones de aceptar/rechazar banda (local) 
+{ // | BUTTON = 0: Sin botones | = 1: Botón de votación concierto (fans) | = 2: Botón de inscribirse a concierto (bandas) | = 3: Botones de aceptar/rechazar banda (local)
     global $imglike, $imgdislike, $insertor, $updater, $garitopagevisit, $bandpagevisit;
     if($button) { session_start(); extract($_SESSION); }
     
@@ -203,6 +203,7 @@ function createTable($res, $button = 0) // Crea una tabla genérica automáticam
                 case 13: $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='usertype' value='3'><input type='hidden' name='userfan' value='$username'><input type='hidden' name='userperfil' value='$userperfil'><button type='submit' name='valorar_perfil_tabla'>"; if(votoExiste($username, $userperfil, "local")) $table .= "<img width='20' height='20' src='$imgdislike'>"; else $table .= "<img width='20' height='20' src='$imglike'>"; $table .= "</img></button></form></td>"; break;
                 case 2: if($usertype == 2) { if(!isInscrito($username, $idconcierto)) { $table .= "<td><form action='$insertor' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$username'><input type='submit' class='btn btn-sm btn-primary' name='inscribirse_concierto' value='INSCRIBIRSE'></form></td>"; } else $table .= "<td>¡INSCRITO!</td>"; } break; // botón de inscribirse concierto
                 case 3: $table .= "<td><form action='$updater' method='POST'><input type='hidden' name='idconcierto' value='$idconcierto'><input type='hidden' name='userbanda' value='$userbanda'><input type='submit' class='btn btn-sm btn-success' name='aceptar_banda' value='ACEPTAR'> <input type='submit' class='btn btn-sm btn-danger' name='rechazar_banda' value='RECHAZAR'></form></td>"; break; // botones aceptar/rechazar banda
+                case 32: $table .= "<td><button id='$idconcierto' class='modifyconcert btn btn-sm btn-primary'>MODIFICAR</button></td>"; break; // boton modificar concierto
             }
             $table .= "</tr>";
         } while ($row = mysqli_fetch_assoc($res));

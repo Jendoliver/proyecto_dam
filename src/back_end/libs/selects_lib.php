@@ -357,9 +357,11 @@ function selectProximosConciertosLocal($username) // seleccionar proximos concie
             LIMIT 10; ";
     if($res = mysqli_query($con, $query))
     {
-        if($_SESSION["usertype"] != 1)
+        if($_SESSION["usertype"] == 2)
             createTable($res, 2);
-        else
+        else if($_SESSION["usertype"] == 3)
+            createTable($res, 32);
+        else if($_SESSION["usertype"] == 1)
             createTable($res, 1);
         desconectar($con);
     }

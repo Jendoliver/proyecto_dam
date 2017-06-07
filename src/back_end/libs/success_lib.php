@@ -48,6 +48,16 @@ function bandNotAccepted()
     </script>";
 }
 
+function concertUpdated()
+{
+    global $garitopage;
+    $message = "¡Concierto modificado!";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$garitopage';
+    </script>";
+}
+
 function votoCorrecto()
 {
     global $lastpage;

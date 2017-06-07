@@ -20,6 +20,19 @@ function updateConcertStatus($idconcierto, $userbanda, $accepted)
     desconectar($con);
     return 1;
 }
+
+function updateConcert($idconcert, $concertdate, $cash)
+{
+    $update = "UPDATE concierto SET fecha = '$concertdate', precio = $cash WHERE id = $idconcert;";
+    $con = conectar($GLOBALS['db']);
+    if(mysqli_query($con, $update));
+    {
+        desconectar($con);
+        return 1;
+    }
+    errorConsulta();
+    return 0;
+}
 //modificar perfil 
 function updateLocalStatus($username, $publicname, $email, $tel, $web, $aforo, $direccion, $id_poblacion)
 {

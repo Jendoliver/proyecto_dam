@@ -16,6 +16,13 @@ else if(isset($_POST["rechazar_banda"])) // Caso rechazar banda
         bandNotAccepted();
 }
 
+else if(isset($_POST["modificar_concierto"])) // Caso modificar concierto
+{
+    extract($_POST);
+    if(updateConcert($idconcert, $concertdate, $cash))
+        concertUpdated();
+}
+
 else if(isset($_POST["modificar_perfil_local"])) //modificar perfil
 {
     extract($_POST);

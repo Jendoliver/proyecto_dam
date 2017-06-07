@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/smoothiexxx.js"></script>
     <script src="js/modify.js"></script>
+    <script src="js/updateconcert.js"></script>
     <!-- GMAP -->
     <script src="js/libs/gmap3.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgDVAtY7m3iZGAQ1ciAP1CXx7krD5i9Dw"></script>

@@ -131,12 +131,11 @@ function crearConcierto($fecha, $precio, $userlocal) // $fecha = DATE, $precio =
     $con = conectar($GLOBALS['db']);
     $id = generateID("concierto");
     $insert = "INSERT INTO concierto VALUES($id, '$fecha', $precio, '$userlocal');";
-    if($res = mysqli_query($con, $insert))
+    if(mysqli_query($con, $insert))
     {
         desconectar($con);
         return 1;
     }
-    errorConsulta($con);
     desconectar($con);
     return 0;
 }

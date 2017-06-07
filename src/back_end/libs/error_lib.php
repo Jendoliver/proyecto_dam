@@ -76,6 +76,16 @@ function errorUserExists()
     </script>";
 }
 
+function fechaErronea()
+{
+    global $garitopage;
+    $message = "El formato de la fecha es incorrecto. Utiliza el calendario";
+    echo "<script type='text/javascript'>
+    alert('$message');
+    window.location = '$garitopage';
+    </script>";
+}
+
 /*function errorNotLogged()
 {
     ?>

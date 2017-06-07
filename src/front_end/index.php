@@ -30,7 +30,7 @@
                     <li><a href="#bandas">BANDAS</a></li>
                     <li><a href="#garitos">GARITOS</a></li>
                     <li><a href="#conciertos">CONCIERTOS</a></li>
-                    <li><a href="#estilos">ESTILOS MUSICALES</a></li>
+                    <li><a href="#estilos">CONTACTO</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php if(!auth()) { ?> <!-- CAMBIO DE NAV SEGÚN LOGIN -->
@@ -205,16 +205,16 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <h1 style="text-align: center;">ESTILOS MUSICALES</h1>
+                        <h1 style="text-align: center;">¿Qué te pongo, tron?</h1>
                     </div>
                     <div class="row">
-                        <p style="text-align: center;">¿Buscas alguna banda, garito o concierto de un estilo musical en concreto?
-                        <p style="text-align: center;">¡Utiliza nuestras herramientas de búsqueda por género!
+                        <p style="text-align: center;">¿Tienes alguna pregunta, duda o queja sobre el funcionamiento de nuestra plataforma?
+                        <p style="text-align: center;">¡Háznoslo saber mediante este formulario de contacto!
                     </div>
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <a style="text-align: center;" href="#" class="btn btn-primary btn-block">¡DESCUBRIR!</a>
+                            <a style="text-align: center;" href="#" class="btn btn-primary btn-block">¡CONTACTA!</a>
                         </div>
                         <div class="col-md-3"></div>
                     </div>

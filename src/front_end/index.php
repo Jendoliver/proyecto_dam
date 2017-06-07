@@ -197,30 +197,30 @@
                 </div>
             </div>
         </div>
-        <!-- SECCIÓN ESTILOS MUSICALES -->
+        <!-- SECCIÓN CONTACTO -->
         <div id="estilos" class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <!--<img></img>-->
+                    <img class="img-responsive" src="img/logo_big_inverted.png"></img>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
                         <h1 style="text-align: center;">¿Qué te pongo, tron?</h1>
                     </div>
                     <div class="row">
-                        <p style="text-align: center;">¿Tienes alguna pregunta, duda o queja sobre el funcionamiento de nuestra plataforma?
-                        <p style="text-align: center;">¡Háznoslo saber mediante este formulario de contacto!
+                        <p style="text-align: center;">¿Tienes alguna pregunta, duda o queja sobre el funcionamiento de la plataforma?
+                        <p style="text-align: center;">¡Háznoslo saber mediante nuestro formulario de contacto!
                     </div>
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <a style="text-align: center;" href="#" class="btn btn-primary btn-block">¡CONTACTA!</a>
+                            <a style="text-align: center;" href="contactform.php" class="btn btn-primary btn-block">¡CONTACTA!</a>
                         </div>
                         <div class="col-md-3"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <!--<img></img>-->
+                    <img class="img-responsive" src="img/logo_big.png"></img>
                 </div>
             </div>
         </div>

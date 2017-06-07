@@ -19,49 +19,13 @@
         require "navbarlogged.php"; ?>
     <?php require "navbarlogged.php"; ?>
     <div class="container-fluid">
-        <div class="row"><br><br><br><br><br></div>
-        <div class="row"> <!-- APROXIMACIÓN -->
-        
+        <div class="row"><br><br><br><br><br></div> <!-- WARRAPOP SIII WARRAPOP NAO -->
+        <div class="row">
             <?php
             $buscar=$_POST["busqueda"];
             selectBusqueda($buscar);
             ?>
-            <!--
-            <div class="col-md-3">
-                <h3>Perfil de Jendoliver (fan)</h3>
-                <form action="../back_end/selector.php" method="POST">
-                    <input type="hidden" name="username" value="jendoliver">
-                    <input type="hidden" name="usertype" value="fan">
-                    <input class="btn btn-success" type="submit" name="visitProfile" value="Visitar">
-                </form>
-            </div>
-            <div class="col-md-3">
-                <h3>Perfil de Fénix Oficial (banda)</h3>
-                <form action="../back_end/selector.php" method="POST">
-                    <input type="hidden" name="username" value="fenixheavymetal">
-                    <input type="hidden" name="usertype" value="banda">
-                    <input class="btn btn-success" type="submit" name="visitProfile" value="Visitar">
-                </form>
-            </div>
-            <div class="col-md-3">
-                <h3>Perfil de Anuard (fan)</h3>
-                <form action="../back_end/selector.php" method="POST">
-                    <input type="hidden" name="username" value="guimaso">
-                    <input type="hidden" name="usertype" value="fan">
-                    <input class="btn btn-success" type="submit" name="visitProfile" value="Visitar">
-                </form>
-            </div>
-            <div class="col-md-3">
-                <h3>Perfil de Bóveda Marina (garito)</h3>
-                <form action="../back_end/selector.php" method="POST">
-                    <input type="hidden" name="username" value="bovedamarina">
-                    <input type="hidden" name="usertype" value="local">
-                    <input class="btn btn-success" type="submit" name="visitProfile" value="Visitar">
-                </form>
-            </div>-->
         </div>
-        <?php //getProfilesLike($_POST["q"]); ?> <!-- ESTO SERÍA LA BÚSQUEDA REAL -->
     </div>
-    
 </body>
 </html>
